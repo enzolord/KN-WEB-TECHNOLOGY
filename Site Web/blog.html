@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KN WEB & TECHNOLOGY | Blog & Ressources Digitales</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/logo/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0a0c14;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* Header du blog */
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: rgba(99, 102, 241, 0.15);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .sub {
+      color: #94a3b8;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    /* Filtres et recherche */
+    .blog-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .filter-btn {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #cbd5e1;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #6366f1;
+      color: white;
+      border-color: #6366f1;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.3rem 0.5rem;
+      border-radius: 60px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      outline: none;
+      font-size: 0.9rem;
+      width: 220px;
+    }
+
+    .search-box button {
+      background: #6366f1;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #a855f7;
+    }
+
+    /* Grille des articles */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Carte article */
+    .blog-card {
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 102, 241, 0.6);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+    }
+
+    .card-img {
+      position: relative;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Étiquette date couleur or en haut à gauche */
+    .date-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a0c14;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      z-index: 2;
+    }
+
+    .card-category {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #6366f1;
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .card-excerpt {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .read-more {
+      color: #a5b4fc;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s;
+    }
+
+    .blog-card:hover .read-more {
+      gap: 0.8rem;
+      color: #fff;
+    }
+
+    /* Modal pour l'article complet */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background: #0f172a;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 2rem;
+      border: 1px solid rgba(99,102,241,0.5);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #94a3b8;
+      transition: 0.3s;
+    }
+
+    .close-modal:hover {
+      color: white;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .modal h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal .meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    .modal p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .modal h3 {
+      margin: 1.5rem 0 0.8rem 0;
+      color: #a5b4fc;
+    }
+
+    .modal ul, .modal ol {
+      margin: 0.8rem 0 1rem 1.5rem;
+    }
+
+    .modal li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box input {
+        width: auto;
+      }
+    }
+  /* Styles spécifiques pour la hero blog – à ajouter dans votre fichier CSS */
+.hero-blog {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 4%;
+  background: linear-gradient(135deg, #0a0c14 0%, #0f172a 100%);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
+}
+
+/* Colonne texte */
+.hero-content {
+  flex: 1.2;
+  min-width: 300px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(99, 102, 241, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1.2rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #eab308);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textShine 6s linear infinite;
+}
+
+@keyframes textShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.hero-sub {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  max-width: 550px;
+  margin-bottom: 2rem;
+}
+
+/* Boutons animés */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 2rem;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: linear-gradient(95deg, #6366f1, #a855f7);
+  color: white;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(95deg, #a855f7, #6366f1);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  left: 0;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  color: #fde68a;
+  animation: borderPulse 2s infinite;
+}
+
+.btn-secondary:hover {
+  background: rgba(245, 158, 11, 0.2);
+  transform: translateY(-3px);
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(245,158,11,0.4);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes borderPulse {
+  0% { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 0 0px rgba(245,158,11,0); }
+  50% { border-color: #fbbf24; box-shadow: 0 0 12px rgba(245,158,11,0.4); }
+  100% { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 0 0px rgba(245,158,11,0); }
+}
+
+/* Statistiques */
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.stat {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.stat span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fbbf24;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* Image stylisée */
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.hero-image-inner {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 2rem;
+  overflow: hidden;
+  transform: rotateY(3deg) rotateX(2deg);
+  transition: transform 0.5s ease;
+  box-shadow: 0 25px 40px -20px rgba(0,0,0,0.6);
+}
+
+.hero-image-inner:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+.hero-image-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2rem;
+}
+
+.hero-image-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  background: radial-gradient(circle at 30% 40%, rgba(245,158,11,0.3), transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Scroll indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, #fbbf24, transparent);
+  animation: scrollAnim 2s infinite;
+}
+
+@keyframes scrollAnim {
+  0% { transform: scaleY(0.3); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0.3); opacity: 0.5; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  .hero-content {
+    text-align: center;
+    align-items: center;
+  }
+  .hero-sub {
+    max-width: 100%;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .hero-stats {
+    justify-content: center;
+  }
+  .hero-image {
+    margin-top: 2rem;
+  }
+}
+  </style>
+</head>
+<body>
+<div id="pgbar"></div>
+<div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
+<div id="site-header"></div>
+
+<div class="container">
+<!-- HERO SECTION – Page Blog avec CTA vers contact -->
+<section class="hero-blog">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-inner">
+    <!-- Colonne gauche : texte -->
+    <div class="hero-content">
+      <div class="hero-label">
+        <i class="fas fa-pen-fancy"></i> Notre blog · Ressources digitales
+      </div>
+      <h1 class="hero-title">
+        Conseils, guides &<br>actualités pour<br><span class="gradient-text">booster votre business</span>
+      </h1>
+      <p class="hero-sub">
+        Des articles longs, pratiques et enrichissants rédigés par nos experts. Découvrez les meilleures stratégies web, SEO, e-commerce, WhatsApp et IA adaptées au Cameroun.
+      </p>
+      <div class="hero-buttons">
+        <!-- CTA 1 : demande de conseil personnalisé (ouvre la section contact ou WhatsApp) -->
+        <button class="btn-primary" id="btnConseil">
+          <span>Obtenir un conseil personnalisé</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        <!-- CTA 2 : discuter du projet (redirige vers contact) -->
+        <button class="btn-secondary" id="btnContact">
+          <span>Discuter de mon projet</span>
+          <i class="fas fa-comment-dots"></i>
+        </button>
+      </div>
+    
+    </div>
+
+    <!-- Colonne droite : image représentant le blog -->
+    <div class="hero-image">
+      <div class="hero-image-inner">
+        <img src="images/image_blog.jpeg" alt="Blog et conseils" loading="lazy">
+        <div class="hero-image-glow"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Découvrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+  <div class="blog-controls">
+    <div class="filters" id="filterGroup">
+      <button class="filter-btn active" data-cat="all">Tous</button>
+      <button class="filter-btn" data-cat="seo">SEO Local</button>
+      <button class="filter-btn" data-cat="whatsapp">WhatsApp Business</button>
+      <button class="filter-btn" data-cat="ecommerce">E-commerce</button>
+      <button class="filter-btn" data-cat="ia">IA & Automatisation</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Rechercher un article...">
+      <button id="searchBtn"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+
+  <div class="blog-grid" id="blogGrid"></div>
+
+  <!-- Modal -->
+  <div id="articleModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Base de données des articles – chacun avec un contenu très long et enrichi
+  const articles = [
+    {
+      id: 1,
+      title: "Comment être premier sur Google à Douala ou Édéa – Guide SEO local complet 2025",
+      excerpt: "Découvrez les techniques avancées de référencement local au Cameroun : mots-clés géolocalisés, Google Business Profile, citations locales et netlinking.",
+      content: `
+        <h3>Pourquoi le SEO local est-il indispensable pour votre PME camerounaise ?</h3>
+        <p>Plus de 80 % des consommateurs utilisent Google pour trouver un service près de chez eux. Que vous soyez à Douala, Yaoundé, Édéa ou Bafoussam, apparaître dans les premiers résultats de recherche locale peut doubler votre chiffre d'affaires. Contrairement aux idées reçues, le référencement local ne nécessite pas un gros budget, mais une stratégie cohérente et une connaissance des spécificités camerounaises.</p>
+        <h3>1. Optimisez votre fiche Google Business Profile (ex Google My Business)</h3>
+        <p>La fiche Google est le pilier du SEO local. Voici les actions prioritaires :</p>
+        <ul>
+          <li><strong>Complétez toutes les informations</strong> : nom, adresse, téléphone, site web, horaires d'ouverture précis.</li>
+          <li><strong>Ajoutez des photos régulièrement</strong> (locaux, produits, équipe). Les entreprises avec des images reçoivent 42 % de demandes d'itinéraire en plus.</li>
+          <li><strong>Encouragez les avis clients</strong> : répondez à chaque avis (positif ou négatif) avec professionnalisme. Utilisez les mots-clés dans vos réponses.</li>
+          <li><strong>Publiez des posts Google</strong> : annonces, offres spéciales, événements. Cela montre à Google que votre fiche est active.</li>
+        </ul>
+        <h3>2. Structurez votre site pour les recherches locales</h3>
+        <p>Votre site doit parler aux robots et aux humains. Adoptez ces bonnes pratiques :</p>
+        <ul>
+          <li><strong>Créez une page "Nous contacter"</strong> avec votre adresse complète, carte interactive et un schéma LocalBusiness (données structurées).</li>
+          <li><strong>Intégrez des pages "ville"</strong> : si vous couvrez plusieurs zones, dédiez une page par localité (ex : "plombier Douala", "plombier Édéa").</li>
+          <li><strong>Utilisez des balises title et meta description</strong> incluant le nom de la ville et le service principal.</li>
+          <li><strong>Ajoutez un plan du site (sitemap)</strong> et assurez-vous que votre site est rapide et mobile-friendly.</li>
+        </ul>
+        <h3>3. Obtenez des citations et backlinks locaux</h3>
+        <p>Les annuaires locaux et les liens depuis des sites camerounais renforcent votre autorité. Inscrivez-vous gratuitement sur :</p>
+        <ul>
+          <li>Annuaire camerounais (camerounweb, camerounlink, etc.)</li>
+          <li>Chambres de commerce et sites d’associations professionnelles</li>
+          <li>Blogs partenaires ou sites d'actualité locale (avec un article invité)</li>
+        </ul>
+        <h3>4. Mesurez vos résultats</h3>
+        <p>Utilisez Google Search Console et Google Analytics pour suivre vos positions, le trafic organique et les conversions. Avec une stratégie bien appliquée, vous pouvez atteindre le top 3 en 2 à 4 mois.</p>
+        <p><strong>Prêt à passer à l'action ?</strong> Nos experts SEO vous accompagnent avec un audit complet et un plan d'action mensuel sur mesure.</p>
+      `,
+      category: "seo",
+      date: "15 mars 2025",
+      readTime: "12 min",
+      image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=700&h=450&fit=crop"
+    },
+    {
+      id: 2,
+      title: "5 automatisations WhatsApp Business qui transforment vos ventes",
+      excerpt: "Utilisez WhatsApp Business pour générer des leads 24h/24, envoyer des rappels de paiement et fidéliser vos clients grâce à des scénarios automatisés.",
+      content: `
+        <p>WhatsApp est devenu le canal de communication commercial numéro 1 en Afrique centrale. Plus de 90 % des Camerounais équipés d’un smartphone l’utilisent quotidiennement. Automatiser certains échanges vous fait gagner un temps précieux tout en améliorant l’expérience client. Voici cinq automatisations puissantes que nous mettons en place pour nos clients.</p>
+        <h3>1. Message d’accueil personnalisé avec qualification</h3>
+        <p>Dès qu’un client vous écrit, répondez instantanément avec un message chaleureux qui présente votre activité et propose un catalogue. Ajoutez un court formulaire (via boutons) pour collecter nom, téléphone et besoin. Cela permet de qualifier le lead avant même une intervention humaine.</p>
+        <h3>2. Catalogue produit interactif</h3>
+        <p>WhatsApp Business permet de créer un catalogue avec images, prix et descriptions. En l’associant à un message automatique, vous offrez une vitrine 24h/24. Chaque produit peut être partagé en un clic, et le client commande directement par message.</p>
+        <h3>3. Réponses rapides aux questions fréquentes</h3>
+        <p>Créez des modèles pour les questions récurrentes : horaires, prix, livraison, modes de paiement. Utilisez des raccourcis clavier (ex : /prix, /livraison). Cela réduit le temps de réponse de 80 %.</p>
+        <h3>4. Relances automatiques pour panier abandonné ou rappel de rendez-vous</h3>
+        <p>Grâce à des outils comme WATI ou Twilio, vous pouvez programmer des relances : par exemple, 2 heures après un devis non finalisé, envoyez un message avec un code promo. Pour les rendez-vous, un rappel 24h avant réduit les absences.</p>
+        <h3>5. Chatbot simple pour la qualification et la prise de commande</h3>
+        <p>Un chatbot peut guider le client pas à pas : choix du produit, quantité, adresse de livraison, puis générer un récapitulatif. Ensuite, un humain ne reprend que la validation finale. Résultat : des ventes réalisées même la nuit ou le week-end.</p>
+        <p><strong>Besoin de mettre en place ces scénarios ?</strong> Nous configurons votre WhatsApp Business Pro avec formation de votre équipe. Forfait à partir de 50 000 FCFA + 15 000 FCFA/mois pour la maintenance et l’évolution des scénarios.</p>
+      `,
+      category: "whatsapp",
+      date: "2 avril 2025",
+      readTime: "8 min",
+      image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=700&h=450&fit=crop"
+    },
+    {
+      id: 3,
+      title: "Mobile Money et e-commerce au Cameroun : guide complet pour lancer votre boutique en ligne",
+      excerpt: "Orange Money, MTN Mobile Money, gestion des stocks, sécurité des paiements – tout ce qu’il faut savoir pour réussir votre boutique en ligne.",
+      content: `
+        <p>Le Mobile Money est le mode de paiement préféré des Camerounais pour les achats en ligne. Selon une étude récente, 73 % des internautes déclarent qu’ils achèteraient plus si le paiement par mobile money était disponible. Pourtant, de nombreuses boutiques en ligne échouent faute d’une intégration technique et d’une expérience utilisateur adaptée. Ce guide vous donne les clés du succès.</p>
+        <h3>Les deux opérateurs indispensables : Orange Money et MTN Mobile Money</h3>
+        <p>Votre boutique doit accepter au minimum ces deux moyens de paiement. Les passerelles comme Lygos, Inlomba ou encore PayTech simplifient l’intégration. Nous recommandons Lygos pour sa fiabilité et son support réactif.</p>
+        <h3>Étapes pour créer votre e-commerce Mobile Money</h3>
+        <ul>
+          <li><strong>Choisissez une plateforme e-commerce</strong> : WooCommerce (WordPress) ou Shopify sont les plus adaptés. Nous développons des solutions sur mesure avec des interfaces simples.</li>
+          <li><strong>Intégrez le paiement Mobile Money</strong> : l’utilisateur sélectionne son opérateur, saisit son numéro, reçoit une demande de paiement sur son téléphone et confirme. La transaction est immédiate.</li>
+          <li><strong>Automatisez les confirmations</strong> : envoyez un message WhatsApp ou SMS dès que le paiement est validé, avec le récapitulatif de commande.</li>
+          <li><strong>Mettez en place une gestion de stock fiable</strong> : votre boutique doit décrémenter automatiquement les quantités et vous alerter en cas de rupture.</li>
+          <li><strong>Prévoyez un service client réactif</strong> : via WhatsApp intégré directement sur chaque page produit.</li>
+        </ul>
+        <h3>Exemples de succès au Cameroun</h3>
+        <p>Nous avons accompagné une boutique de vêtements à Douala : en 3 mois, son chiffre d’affaires en ligne a augmenté de 200 % grâce à l’intégration Orange Money et à une campagne WhatsApp ciblée. De même, une quincaillerie à Édéa a vu ses commandes exploser après la mise en place de fiches produits détaillées et d’un chatbot pour les horaires.</p>
+        <h3>Pièges à éviter</h3>
+        <ul>
+          <li>Ne pas tester le processus de paiement sur tous les opérateurs et tous les téléphones.</li>
+          <li>Négliger la sécurisation du site (certificat SSL, protection contre les fraudes).</li>
+          <li>Avoir des temps de chargement trop longs (les clients mobiles abandonnent après 3 secondes).</li>
+        </ul>
+        <p><strong>Vous souhaitez lancer votre boutique e-commerce Mobile Money ?</strong> Contactez-nous pour un devis personnalisé. Nos solutions commencent à 200 000 FCFA, incluant la formation et 3 mois de support.</p>
+      `,
+      category: "ecommerce",
+      date: "20 avril 2025",
+      readTime: "10 min",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed2f5c0b6?w=700&h=450&fit=crop"
+    },
+    {
+      id: 4,
+      title: "L'intelligence artificielle pour les PME : 5 applications concrètes (sans budget énorme)",
+      excerpt: "Chatbot, génération de contenu, analyse des avis, prévisions de vente… Découvrez comment l’IA peut transformer votre entreprise dès aujourd’hui.",
+      content: `
+        <p>L’intelligence artificielle n’est plus réservée aux multinationales. Aujourd’hui, des outils accessibles permettent aux PME camerounaises d’automatiser des tâches chronophages et d’améliorer leur relation client. Voici cinq applications que vous pouvez mettre en place dès maintenant, souvent avec des budgets très réduits.</p>
+        <h3>1. Chatbot sur votre site et WhatsApp</h3>
+        <p>Des solutions comme ManyChat, Chatfuel ou même l’API de WhatsApp Business permettent de créer un chatbot visuel, sans coder. Votre bot peut répondre aux questions fréquentes (horaires, prix, disponibilité), qualifier des leads et même prendre des rendez-vous. Résultat : une disponibilité 24h/24 et une réduction de 50 % du temps passé par vos équipes.</p>
+        <h3>2. Génération de contenu avec ChatGPT ou Google Bard</h3>
+        <p>Rédiger des articles de blog, des descriptions de produits ou des posts pour les réseaux sociaux peut prendre des heures. Les IA génératives produisent des brouillons de qualité en quelques secondes. Il ne reste qu’à les relire et les personnaliser. Testez gratuitement ChatGPT-4 ou des versions spécialisées comme Jasper (payant mais très efficace).</p>
+        <h3>3. Analyse automatique des avis clients</h3>
+        <p>Des outils comme MonkeyLearn ou l’API Google Natural Language classent les avis positifs/négatifs et extraient les thèmes récurrents. Vous saurez en un coup d’œil ce que vos clients aiment ou ce qui les freine.</p>
+        <h3>4. Prévisions de vente et optimisation des stocks</h3>
+        <p>Avec des données historiques (même dans Excel), des IA comme Forecast Pro ou des modules sur Google Sheets peuvent anticiper les pics de demande. Vous éviterez les ruptures de stock ou les surstocks coûteux.</p>
+        <h3>5. Assistant virtuel pour les rendez-vous et relances</h3>
+        <p>Des calendriers intelligents (Calendly, vous êtes libre) couplés à un bot permettent à vos clients de réserver un créneau. Le bot envoie des confirmations et rappels automatiquement. Pour les factures impayées, un système de relance par email/SMS peut être automatisé avec des conditions simples.</p>
+        <p><strong>Prêt à intégrer l’IA dans vos processus ?</strong> Nous vous conseillons sur les outils les plus adaptés à votre activité et vous assistons dans leur mise en place. Offre d’audit gratuit.</p>
+      `,
+      category: "ia",
+      date: "5 mai 2025",
+      readTime: "9 min",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&h=450&fit=crop"
+    },
+    {
+      id: 5,
+      title: "Pourquoi votre entreprise a besoin d’un site web responsive en 2025",
+      excerpt: "80 % des Camerounais naviguent sur mobile. Un site non adapté vous fait perdre des clients et nuit à votre référencement. Explications et solutions.",
+      content: `
+        <p>Le nombre d’utilisateurs de smartphones ne cesse de croître en Afrique. Au Cameroun, selon l’ART, plus de 12 millions de personnes utilisent leur téléphone pour se connecter à Internet. Pourtant, de nombreux sites d’entreprises locales ne sont pas optimisés pour les écrans mobiles. Conséquences : temps de chargement long, boutons trop petits, contenu illisible, et taux de rebond qui dépasse 70 %. Votre entreprise mérite mieux.</p>
+        <h3>Qu’est-ce qu’un site responsive ?</h3>
+        <p>Un site responsive s’adapte automatiquement à la taille de l’écran (ordinateur, tablette, smartphone). La navigation, la lecture et l’interaction restent fluides quel que soit le support. Google le recommande vivement et l’utilise comme critère de classement dans ses résultats mobiles.</p>
+        <h3>Les avantages concrets d’un site responsive</h3>
+        <ul>
+          <li><strong>Amélioration du référencement SEO</strong> : Google indexe d’abord la version mobile de votre site. S’il n’est pas responsive, vous serez pénalisé.</li>
+          <li><strong>Augmentation du taux de conversion</strong> : un visiteur frustré par une mauvaise expérience mobile part chez un concurrent. Un site responsive peut doubler vos demandes de devis.</li>
+          <li><strong>Réduction des coûts de maintenance</strong> : un seul site à gérer pour tous les appareils, au lieu d’une version desktop et d’une version mobile séparée.</li>
+          <li><strong>Partage facilité sur les réseaux sociaux</strong> : les liens renvoient vers la même URL, ce qui évite la perte de trafic.</li>
+        </ul>
+        <h3>Comment savoir si votre site actuel est responsive ?</h3>
+        <p>Ouvrez votre site sur votre smartphone. Si vous devez zoomer pour lire le texte, si les images débordent ou si les menus sont inaccessibles, il n’est pas responsive. Vous pouvez aussi utiliser le test de Google : <em>Google Mobile-Friendly Test</em>.</p>
+        <h3>Nos solutions pour un site web performant</h3>
+        <p>Chez KN WEB & TECHNOLOGY, tous nos sites sont développés en « mobile-first ». Nous partons des contraintes du mobile pour améliorer ensuite l’expérience sur grands écrans. Délai de livraison : 3 à 5 jours ouvrés. À partir de 75 000 FCFA, nous vous offrons un design moderne, responsive, optimisé SEO et avec une gestion de contenu facile.</p>
+        <p><strong>Ne laissez pas vos clients mobiles repartir.</strong> Contactez-nous pour un audit gratuit de votre site actuel et un devis sans engagement.</p>
+      `,
+      category: "seo",
+      date: "12 mai 2025",
+      readTime: "7 min",
+      image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=700&h=450&fit=crop"
+    },
+    {
+      id: 6,
+      title: "Stratégie de contenu pour PME : les 3 piliers qui génèrent des clients gratuitement",
+      excerpt: "Blog, vidéos, publications WhatsApp : comment attirer des prospects sans budget publicitaire, grâce au marketing de contenu.",
+      content: `
+        <p>Le marketing de contenu consiste à créer et partager des informations utiles pour attirer naturellement votre cible. Contrairement aux publicités payantes, les effets du contenu sont durables. Une étude de HubSpot montre que les entreprises qui bloguent régulièrement génèrent 67 % de leads en plus. Voici comment construire votre stratégie en trois piliers.</p>
+        <h3>Pilier 1 : Le blog éducatif</h3>
+        <p>Rédigez des articles qui répondent aux questions que se posent vos clients. Par exemple, un plombier peut écrire « Comment détecter une fuite d’eau avant qu’elle ne devienne grave ». Un restaurant peut partager des recettes ou des astuces de conservation. Ces articles vous positionnent comme expert et remontent dans les résultats de recherche.</p>
+        <p><strong>Fréquence recommandée :</strong> 2 à 4 articles par mois. Chaque article doit faire entre 800 et 1500 mots. Utilisez des titres accrocheurs, des listes, des images et une conclusion avec appel à l’action (contactez-nous, téléchargez un guide).</p>
+        <h3>Pilier 2 : Les vidéos courtes pour les réseaux sociaux et WhatsApp</h3>
+        <p>Les vidéos de moins d’une minute ont un fort taux d’engagement. Montrez votre savoir-faire en action : un artisan qui répare, un commercial qui présente un produit, un témoignage client. Publiez sur Facebook, TikTok, YouTube et surtout sur vos groupes WhatsApp. Une vidéo bien faite peut devenir virale et attirer des dizaines de prospects.</p>
+        <h3>Pilier 3 : Une newsletter ou une diffusion WhatsApp hebdomadaire</h3>
+        <p>Collectez les numéros de téléphone de vos clients (avec consentement) et envoyez chaque semaine un conseil, une promotion ou une actualité. Le format doit être court et utile. Par exemple, une boutique de mode peut envoyer « Les 3 couleurs tendance de la saison » avec des photos. Un coach peut proposer « L’exercice de la semaine ».</p>
+        <h3>Outils gratuits pour vous aider</h3>
+        <ul>
+          <li><strong>Canva</strong> : pour créer des visuels et miniatures.</li>
+          <li><strong>ChatGPT</strong> : pour générer des idées de sujets et des brouillons.</li>
+          <li><strong>Later ou Buffer</strong> : pour planifier vos publications.</li>
+        </ul>
+        <p><strong>Vous n’avez pas le temps de créer du contenu ?</strong> Nous proposons un service de rédaction et de gestion de contenu à partir de 25 000 FCFA/mois (2 articles par mois + 4 posts pour réseaux).</p>
+      `,
+      category: "ia",
+      date: "28 mai 2025",
+      readTime: "9 min",
+      image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=700&h=450&fit=crop"
+    }
+  ];
+
+  let currentFilter = "all";
+  let currentSearch = "";
+
+  function formatDate(dateStr) {
+    // Conserve la date sous forme "15 mars 2025"
+    return dateStr;
+  }
+
+  function renderArticles() {
+    let filtered = articles.filter(article => {
+      const matchFilter = currentFilter === "all" || article.category === currentFilter;
+      const matchSearch = article.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                          article.excerpt.toLowerCase().includes(currentSearch.toLowerCase());
+      return matchFilter && matchSearch;
+    });
+    const grid = document.getElementById("blogGrid");
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:3rem; color:#94a3b8;">Aucun article ne correspond à votre recherche. 🔍</div>`;
+      return;
+    }
+    grid.innerHTML = filtered.map(article => `
+      <div class="blog-card" onclick="openArticle(${article.id})">
+        <div class="card-img" style="background-image: url('${article.image}');">
+          <div class="date-badge"><i class="far fa-calendar-alt"></i> ${article.date}</div>
+          <div class="card-category">${getCategoryLabel(article.category)}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> ${article.readTime}</span>
+          </div>
+          <div class="card-title">${article.title}</div>
+          <div class="card-excerpt">${article.excerpt.substring(0, 110)}...</div>
+          <div class="read-more">Lire l'article <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function getCategoryLabel(cat) {
+    const labels = {
+      seo: "SEO Local",
+      whatsapp: "WhatsApp Business",
+      ecommerce: "E-commerce",
+      ia: "IA & Automatisation"
+    };
+    return labels[cat] || cat;
+  }
+
+  function openArticle(id) {
+    const article = articles.find(a => a.id === id);
+    if (!article) return;
+    const modal = document.getElementById("articleModal");
+    const modalContentDiv = document.getElementById("modalContent");
+    modalContentDiv.innerHTML = `
+      <div class="modal-img" style="background-image: url('${article.image}');"></div>
+      <h2>${article.title}</h2>
+      <div class="meta">
+        <span><i class="far fa-calendar-alt"></i> ${article.date}</span>
+        <span><i class="far fa-clock"></i> ${article.readTime}</span>
+        <span><i class="fas fa-tag"></i> ${getCategoryLabel(article.category)}</span>
+      </div>
+      ${article.content}
+      <div style="margin-top:2rem; padding-top:1rem; border-top:1px solid rgba(99,102,241,0.3); text-align:center;">
+        <button class="filter-btn" onclick="window.location.href='/#contact'">Besoin d'un accompagnement ? Contactez-nous</button>
+      </div>
+    `;
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("articleModal").style.display = "none";
+  }
+
+  // Gestion des filtres et recherche
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      currentFilter = this.getAttribute("data-cat");
+      renderArticles();
+    });
+  });
+
+  document.getElementById("searchBtn").addEventListener("click", () => {
+    currentSearch = document.getElementById("searchInput").value;
+    renderArticles();
+  });
+  document.getElementById("searchInput").addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      currentSearch = e.target.value;
+      renderArticles();
+    }
+  });
+
+  window.onclick = function(event) {
+    const modal = document.getElementById("articleModal");
+    if (event.target === modal) closeModal();
+  };
+// Particules simples (optionnel) – à ajouter dans un script
+function initHeroParticles() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  for (let i = 0; i < 40; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 5 + 's';
+    particle.style.opacity = Math.random() * 0.3 + 0.1;
+    particle.style.width = Math.random() * 3 + 1 + 'px';
+    particle.style.height = particle.style.width;
+    container.appendChild(particle);
+  }
+}
+// Style supplémentaire pour les particules
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+  .particle {
+    position: absolute;
+    background: #a5b4fc;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatParticle 8s infinite alternate;
+  }
+  @keyframes floatParticle {
+    0% { transform: translateY(0px) translateX(0px); opacity: 0.1; }
+    100% { transform: translateY(-30px) translateX(20px); opacity: 0.4; }
+  }
+`;
+document.head.appendChild(particleStyle);
+// Appeler la fonction au chargement
+window.addEventListener('DOMContentLoaded', initHeroParticles);
+// Gestion des CTA – redirection vers la section contact ou ouverture WhatsApp
+document.getElementById('btnConseil')?.addEventListener('click', () => {
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Si la section n'existe pas, rediriger vers la page contact ou WhatsApp
+    window.location.href = '/#contact';
+  }
+});
+
+document.getElementById('btnContact')?.addEventListener('click', () => {
+  // Exemple : redirection vers WhatsApp direct
+  window.open('https://wa.me/237620819290?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20mon%20projet%20digital', '_blank');
+});
+  renderArticles();
+</script>
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

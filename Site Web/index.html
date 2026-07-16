@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KN WEB & TECHNOLOGY Agence Digitale Cameroun — Sites Web, SEO, E-commerce | Édéa</title>
+<meta name="description" content="Agence digitale à Édéa, Cameroun. Sites web, e-commerce Mobile Money, WhatsApp Business, SEO. Livraison 3–5 jours. Devis gratuit.">
+<link rel="canonical" href="https://knwebtechnology.cm/">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body data-page="accueil">
+
+<div id="pgbar"></div>
+<div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
+<div id="site-header"></div>
+
+<!-- HERO SECTION – Ultra captivante, boutons animés, images à 4s -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <!-- Colonne gauche : texte -->
+    <div class="hero-content">
+      <div class="hero-label"><span class="hero-dot"></span> Agence digitale · Édéa, Cameroun · Fondée 2025</div>
+      <h1>Votre présence<br>en ligne est<br><em>votre meilleur</em><br><em>commercial.</em></h1>
+      <p class="hero-sub">Nous concevons des sites web, des e-commerces et des stratégies digitales qui transforment vos visiteurs en clients — avec des résultats mesurables.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" type="button" onclick="scrollToSection('services')"><i class="fas fa-arrow-down"></i> Voir nos services</button>
+        <button class="btn-ai" type="button" onclick="scrollToSection('contact')">Discutons maintenant <i class="fas fa-arrow-up-right-from-square"></i></button>
+      </div>
+    </div>
+
+    <!-- Colonne droite : cadre à images animées (jeu de lumière & va-et-vient) -->
+    <div class="hero-media">
+      <div class="image-frame">
+        <div class="frame-inner">
+          <div class="frame-img" style="background-image: url('images/poussin-sarl.png');"></div>
+          <div class="frame-img" style="background-image: url('images/ecohabitat.png');"></div>
+          <div class="frame-img" style="background-image: url('images/empire-longrich.png');"></div>
+        </div>
+        <div class="light-ray"></div>
+        <div class="glass-morph"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ========== VOS STYLES DE BASE ========== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 4%;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(58,12,163,.2) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 40% at 80% 60%, rgba(114,9,183,.12) 0%, transparent 60%);
+}
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(67,97,238,.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(67,97,238,.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 8rem 0 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+/* ========== TEXTE – TAILLE MOYENNE ========== */
+.hero-content {
+  flex: 1.2;
+  min-width: 280px;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(67, 97, 238, 0.12);
+  backdrop-filter: blur(4px);
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color:  #f72585;
+  border: 1px solid rgba(67, 97, 238, 0.3);
+  margin-bottom: 1.5rem;
+}
+.hero-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color:  #f72585;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #818cf8;
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0% { opacity: 0.4; transform: scale(0.8);}
+  100% { opacity: 1; transform: scale(1.2);}
+}
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem); /* Taille moyenne */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+.hero-content h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, #3a0ca3, #7209b7, #f72585);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textShine 5s linear infinite;
+}
+@keyframes textShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.hero-sub {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  max-width: 550px;
+  margin-bottom: 1.8rem;
+}
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+/* ========== BOUTONS ANIMÉS (CLIGNOTEMENT / PULSATION) ========== */
+.btn-primary, .btn-ai {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+/* Bouton principal : pulsation + ombre */
+.btn-primary {
+  background: linear-gradient(95deg, #6366f1, #a855f7);
+  color: white;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+  animation: btnPulse 1.8s infinite ease-in-out;
+}
+@keyframes btnPulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); transform: scale(1); }
+  50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.2); transform: scale(1.02); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); transform: scale(1); }
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  animation: none;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.7);
+}
+
+/* Bouton secondaire : effet clignotement de bordure + lueur */
+.btn-ai {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(129, 140, 248, 0.6);
+  color: #e0e7ff;
+  animation: borderGlow 1.4s infinite alternate;
+}
+@keyframes borderGlow {
+  0% { border-color: rgba(129, 140, 248, 0.3); box-shadow: 0 0 0px rgba(168,85,247,0); }
+  100% { border-color: rgba(168, 85, 247, 0.9); box-shadow: 0 0 12px rgba(168,85,247,0.4); }
+}
+.btn-ai:hover {
+  background: rgba(99, 102, 241, 0.2);
+  transform: translateY(-3px);
+  animation: none;
+  border-color: #a5b4fc;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  z-index: 3;
+}
+.scroll-line {
+  width: 30px;
+  height: 1px;
+  background: rgba(129, 140, 248, 0.6);
+}
+
+/* ========== CADRE IMAGES (TRANSITION 4s) ========== */
+.hero-media {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+}
+.image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 2rem;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 25px 40px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.3), 0 0 0 4px rgba(99,102,241,0.08);
+  overflow: hidden;
+  animation: framePulse 5s infinite alternate;
+}
+@keyframes framePulse {
+  0% { box-shadow: 0 25px 40px -20px black, 0 0 0 1px rgba(99,102,241,0.3), 0 0 0 4px rgba(99,102,241,0.08); }
+  100% { box-shadow: 0 30px 50px -15px black, 0 0 0 2px rgba(168,85,247,0.5), 0 0 0 8px rgba(99,102,241,0.15); }
+}
+.frame-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.frame-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.8rem;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.8s cubic-bezier(0.23, 1, 0.32, 1), transform 2s ease-out;
+  will-change: opacity, transform;
+}
+.frame-img.active {
+  opacity: 1;
+  transform: scale(1);
+}
+.light-ray {
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+    transparent 0%,
+    rgba(168,85,247,0.2) 20%,
+    rgba(99,102,241,0.5) 45%,
+    rgba(168,85,247,0.2) 70%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: lightSweep 6s infinite linear;
+  z-index: 2;
+}
+@keyframes lightSweep {
+  0% { background-position: -200% 0; opacity: 0; }
+  30% { opacity: 0.5; }
+  70% { opacity: 0.7; }
+  100% { background-position: 200% 0; opacity: 0; }
+}
+.glass-morph {
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  background: radial-gradient(circle at 30% 40%, rgba(129,140,248,0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  animation: floatGlow 10s infinite alternate;
+}
+@keyframes floatGlow {
+  0% { transform: translate(0,0) scale(1); opacity: 0.3; }
+  100% { transform: translate(3%, 2%) scale(1.1); opacity: 0.7; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 5rem 0 4rem;
+  }
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-sub {
+    max-width: 100%;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+  .hero-media {
+    width: 90%;
+    max-width: 450px;
+  }
+}
+@media (max-width: 550px) {
+  .hero {
+    padding: 0 5%;
+  }
+  .btn-primary, .btn-ai {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+</style>
+
+<script>
+  // Animation des trois images (transition toutes les 4 secondes)
+  (function() {
+    const images = document.querySelectorAll('.frame-img');
+    if (images.length === 0) return;
+    let current = 0;
+    images[current].classList.add('active');
+    setInterval(() => {
+      let next = (current + 1) % images.length;
+      images[current].classList.remove('active');
+      images[next].classList.add('active');
+      current = next;
+    }, 4000); // 4 secondes
+  })();
+
+  // Défilement smooth (pour les boutons)
+  function scrollToSection(sectionId) {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+<section class="relative w-full py-16 md:py-20 overflow-hidden bg-gradient-to-b from-[#0a0c14] to-[#010103]">
+    <!-- Effet de grain subtil -->
+    <div class="absolute inset-0 opacity-30 pointer-events-none" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E&quot;); background-repeat: repeat;"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Badge -->
+        <div class="text-center mb-12">
+            <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10 text-indigo-300">
+                ✦ Ils nous font confiance ✦
+            </span>
+        </div>
+
+        <!-- Grille responsive : les logos s'étendent s'ils sont peu nombreux -->
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 md:gap-10 items-center justify-items-center">
+            <!-- Logo 1 -->
+            <div class="logo-animated w-full flex justify-center">
+                <img src="images/logo_poussinsarl.png" alt="Partenaire 1"
+                    class="h-[85px] w-auto max-w-full object-contain mix-blend-multiply">
+            </div>
+            <!-- Logo 2 -->
+            <div class="logo-animated w-full flex justify-center">
+                <img src="images/logo_pnpe.png" alt="Partenaire 2"
+                    class="h-[85px] w-auto max-w-full object-contain mix-blend-multiply">
+            </div>
+            <!-- Logo 3 -->
+            <div class="logo-animated w-full flex justify-center">
+                <img src="images/Logo_IUT_Douala.avif" alt="Partenaire 3"
+                    class="h-[85px] w-auto max-w-full object-contain mix-blend-multiply">
+            </div>
+            
+            <!-- Vous pouvez ajouter ou supprimer des logos ici -->
+        </div>
+
+        <!-- Ligne décorative -->
+        <div class="mt-16 text-center">
+            <div class="inline-flex items-center gap-3 text-[10px] font-mono text-indigo-400/50 tracking-wider">
+                <span class="w-6 h-px bg-indigo-500/30"></span>
+                INNOVATION & CONFIANCE
+                <span class="w-6 h-px bg-indigo-500/30"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+   /* Style amélioré pour la section des logos partenaires */
+.logo-animated {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03); /* léger fond pour contraster */
+    border-radius: 16px;
+    padding: 12px 16px;
+    transition: all 0.25s ease;
+    animation: softGlow 2.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.logo-animated img {
+    max-height: 70px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: brightness(0.95) contrast(1.05); /* améliore la lisibilité sur fond sombre */
+    transition: all 0.2s ease;
+}
+
+/* Ajustement de l'animation */
+@keyframes softGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 12px 2px rgba(99, 102, 241, 0.5);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+        transform: scale(1);
+    }
+}
+
+.logo-animated:hover {
+    animation: none;
+    box-shadow: 0 0 18px 4px rgba(168, 85, 247, 0.7);
+    transform: scale(1.05);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.logo-animated:hover img {
+    filter: brightness(1);
+}
+
+/* Ajustement de la grille */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .logo-animated img {
+        max-height: 55px;
+    }
+    .grid {
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
+</style>
+<!-- SERVICES (8 solutions originales) -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="s-label"><i class="fas fa-layer-group"></i> Nos solutions</div>
+      <h2 class="s-title">Ce que nous<br>concevons pour <span>vous</span></h2>
+      <p class="s-sub">Des solutions digitales clés-en-main, adaptées aux PME et entrepreneurs camerounais avec des résultats mesurables.</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">01</span>
+        <div class="srv-ico">🌐</div>
+        <h3>Site Web & Visibilité</h3>
+        <p>Votre entreprise trouvable sur Google en 3 jours. Site vitrine responsive + fiche Google Business optimisée + SEO local inclus.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">À partir de 75 000 FCFA</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">02</span>
+        <div class="srv-ico">💬</div>
+        <h3>WhatsApp Business Pro</h3>
+        <p>Vos clients reçoivent une réponse 24h/24. Catalogue produits, chatbot FAQ, messages automatiques et formation équipe.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">50 000 FCFA + 15 000/mois</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">03</span>
+        <div class="srv-ico">🛒</div>
+        <h3>E-Commerce Mobile Money</h3>
+        <p>Vendez en ligne et encaissez par MTN ou Orange Money dès le premier jour. Synchronisation WhatsApp et tableau de bord inclus.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">À partir de 200 000 FCFA</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">04</span>
+        <div class="srv-ico">🔍</div>
+        <h3>Référencement Google</h3>
+        <p>Premier sur Google dans votre ville. Audit SEO, optimisation technique, création de contenu et rapports mensuels transparents.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">25 000 FCFA/mois</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">05</span>
+        <div class="srv-ico">🤖</div>
+        <h3>Automatisation & IA</h3>
+        <p>L'intelligence artificielle au service de votre productivité. Chatbots, réponses auto, qualification de leads, rapports intelligents.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Sur devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">Sur devis</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">06</span>
+        <div class="srv-ico">🎨</div>
+        <h3>Branding & Identité</h3>
+        <p>Logo, charte graphique, kit complet de marque. Une identité visuelle forte qui inspire confiance et reconnaissance immédiate.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Sur devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">À partir de 45 000 FCFA</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">07</span>
+        <div class="srv-ico">☁️</div>
+        <h3>Hébergement & Infra</h3>
+        <p>Serveurs rapides, SSL, sauvegardes quotidiennes et 99.9% de disponibilité. Votre site ne dort jamais.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">À partir de 8 000 FCFA/mois</div>
+      </div>
+      <div class="srv-card reveal" data-tilt>
+        <span class="srv-num">08</span>
+        <div class="srv-ico">🔧</div>
+        <h3>Maintenance & Support</h3>
+        <p>Mises à jour, corrections, sécurité et support humain sur WhatsApp. Une vraie personne répond sous 2 heures.</p>
+        <span class="srv-link" onclick="scrollToSection('contact')">Demander un devis <i class="fas fa-arrow-right"></i></span>
+        <div class="srv-price">15 000 FCFA/mois</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJETS avec captures et lien de visite (sans overlay sombre, sans badges) -->
+<section class="section section-alt" id="projets">
+  <div class="wrap">
+    <div class="proj-header">
+      <div class="reveal">
+        <div class="s-label"><i class="fas fa-trophy"></i> Portfolio</div>
+        <h2 class="s-title">Nos <span>réalisations</span></h2>
+        <p class="s-sub">4+ projets livrés pour des PME camerounaises.</p>
+      </div>
+      <div class="proj-filters reveal">
+        <button class="pf-btn active" type="button" onclick="filterProj('all',this)">Tous</button>
+        <button class="pf-btn" type="button" onclick="filterProj('web',this)">Sites Web</button>
+        <button class="pf-btn" type="button" onclick="filterProj('ecom',this)">E-Commerce</button>
+        <button class="pf-btn" type="button" onclick="filterProj('brand',this)">Branding</button>
+        <button class="pf-btn" type="button" onclick="filterProj('mkt',this)">Marketing</button>
+      </div>
+    </div>
+    <div class="proj-grid" id="projGrid">
+      <!-- Carte 1 -->
+      <div class="proj-card featured reveal" data-cat="web mkt" data-tilt>
+        <div class="proj-img">
+          <img src="images/empire-longrich.png" alt="Capture site restaurant" class="proj-screenshot">
+          <a href="https://longrich-empire.netlify.app/" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Restaurant · Site Web + SEO</div>
+          <h3>Restaurant "Chez Maman"</h3>
+          <p>Page 1 Google pour "restaurant Édéa" en 3 semaines. +200% de commandes en ligne.</p>
+        </div>
+      </div>
+      <!-- Carte 2 -->
+      <div class="proj-card reveal" data-cat="ecom" data-tilt>
+        <div class="proj-img">
+          <img src="images/poussin-sarl.png" alt="Capture e-commerce mode" class="proj-screenshot">
+          <a href="https://poussin-sarl.vercel.app" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Mode · E-Commerce</div>
+          <h3>Boutique "Mode City"</h3>
+          <p>E-commerce avec paiement MTN. Page 1 Google en 3 semaines.</p>
+        </div>
+      </div>
+      <!-- Carte 3 -->
+      <div class="proj-card reveal" data-cat="mkt" data-tilt>
+        <div class="proj-img">
+          <img src="images/ecohabitat.png" alt="Capture SEO quincaillerie" class="proj-screenshot">
+          <a href="https://ecohabitat-fr.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Commerce · SEO</div>
+          <h3>Quincaillerie "Batimat"</h3>
+          <p>Fiche Google optimisée. +150 appels entrants par mois.</p>
+        </div>
+      </div>
+      <!-- Carte 4 -->
+      <div class="proj-card reveal" data-cat="web" data-tilt>
+        <div class="proj-img">
+          <img src="images/les-delices-d-edea.png" alt="Capture site clinique" class="proj-screenshot">
+          <a href="https://les-delices-d-edea.vercel.app" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Santé · WhatsApp Bot</div>
+          <h3>Clinique du Littoral</h3>
+          <p>Prise de rendez-vous en ligne + chatbot 24h/24.</p>
+        </div>
+      </div>
+      <!-- Carte 5 -->
+      <div class="proj-card featured reveal" data-cat="ecom web" data-tilt>
+        <div class="proj-img">
+          <img src="https://placehold.co/600x400/2d2d3a/ffffff?text=Residence+Les+Palmiers" alt="Capture hôtellerie" class="proj-screenshot">
+          <a href="https://exemple.com/palmiers" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Hôtellerie · Orange Money</div>
+          <h3>Résidence "Les Palmiers"</h3>
+          <p>Réservation en ligne avec paiement Orange Money.</p>
+        </div>
+      </div>
+      <!-- Carte 6 -->
+      <div class="proj-card reveal" data-cat="brand" data-tilt>
+        <div class="proj-img">
+          <img src="https://placehold.co/600x400/2d2d3a/ffffff?text=Ecole+Excellence" alt="Capture branding école" class="proj-screenshot">
+          <a href="https://exemple.com/ecole" target="_blank" rel="noopener noreferrer" class="proj-visit-btn">
+            <i class="fas fa-eye"></i> Visiter
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">// Éducation · Branding</div>
+          <h3>École "Excellence"</h3>
+          <p>Identité visuelle + site d'inscription. +35 nouvelles inscriptions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- MÉTHODE -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="method-grid">
+      <div class="reveal left">
+        <div class="s-label"><i class="fas fa-route"></i> Notre méthode</div>
+        <h2 class="s-title">Une méthode<br><span>claire, collaborative</span><br>et pédagogique.</h2>
+        <p style="color:var(--muted);margin-top:1.5rem;line-height:1.8">Nous avançons <strong style="color:#fff">avec vous</strong> et non à votre place. Délai moyen : <strong style="background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent">3–5 jours</strong>.</p>
+      </div>
+      <div class="method-steps">
+        <div class="m-step active reveal right"><div class="m-step-num">01</div><div class="m-step-content"><h3>Comprendre</h3><p>Votre activité, vos enjeux, vos clients et vos contraintes.</p><span class="m-step-tag">Brief + Audit gratuit</span></div></div>
+        <div class="m-step reveal right"><div class="m-step-num">02</div><div class="m-step-content"><h3>Construire</h3><p>Une solution sur mesure, robuste techniquement et cohérente visuellement.</p><span class="m-step-tag">Design + Développement</span></div></div>
+        <div class="m-step reveal right"><div class="m-step-num">03</div><div class="m-step-content"><h3>Transmettre</h3><p>Documenter, former et rendre votre équipe autonome.</p><span class="m-step-tag">Formation + Documentation</span></div></div>
+        <div class="m-step reveal right"><div class="m-step-num">04</div><div class="m-step-content"><h3>Accompagner</h3><p>Support WhatsApp dédié, mises à jour, optimisations continues.</p><span class="m-step-tag">Support + Maintenance</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENCE avec logo image -->
+<section class="section section-alt" id="agency">
+  <div class="wrap">
+    <div class="agency-section">
+      <div class="reveal left">
+        <!-- Remplacement du texte KN par un logo image -->
+        <div class="agency-logo-img">
+          <img src="images/logo.png" alt="Logo KN Agence" class="agency-logo">
+        </div>
+        <div class="val-list">
+          <div class="val-item"><div class="val-n">M</div><div><h4>Notre Mission</h4><p style="font-size:.78rem;color:var(--muted)">Rendre chaque PME camerounaise visible, compétitive et autonome sur le digital.</p></div></div>
+          <div class="val-item"><div class="val-n">V</div><div><h4>Notre Vision</h4><p style="font-size:.78rem;color:var(--muted)">Devenir l'agence digitale de référence en Afrique centrale.</p></div></div>
+        </div>
+      </div>
+      <div class="reveal right">
+        <div class="s-label"><i class="fas fa-building"></i> L'agence</div>
+        <h2 class="s-title">Une agence portée par<br>une vision <span>entrepreneuriale</span></h2>
+        <div class="val-list">
+          <div class="val-item"><div class="val-n">1</div><div><h4>Excellence</h4><p style="font-size:.78rem;color:var(--muted)">Chaque livrable est soigné comme notre propre produit.</p></div></div>
+          <div class="val-item"><div class="val-n">2</div><div><h4>Innovation</h4><p style="font-size:.78rem;color:var(--muted)">Les meilleures technologies au service de vos objectifs.</p></div></div>
+          <div class="val-item"><div class="val-n">3</div><div><h4>Transparence</h4><p style="font-size:.78rem;color:var(--muted)">Prix fixes, délais tenus, aucune surprise.</p></div></div>
+        </div>
+        <button class="btn-primary" type="button" style="margin-top:2rem" onclick="scrollToSection('contact')">Travailler avec nous <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CEO -->
+<section class="section" id="ceo">
+  <div class="wrap">
+    <div class="ceo-section reveal">
+      <div class="ceo-visual"><div class="ceo-circle">
+       <img src="images/Moi .png">
+
+      </div></div>
+      <div>
+        <div class="s-label"><i class="fas fa-user-tie"></i> Fondateur</div>
+        <div class="ceo-name">Nloka Victor</div>
+        <div class="ceo-title">CEO & Fondateur</div>
+        <p class="ceo-bio">Nloka Victor dirige l'agence avec une vision tournée vers l'innovation et la qualité. Convaincu que chaque PME mérite une présence digitale professionnelle, il démocratise l'accès aux services web en Afrique centrale.</p>
+        <button class="btn-ai" type="button" onclick="scrollToSection('contact')">Discutons de votre projet <i class="fas fa-arrow-up-right-from-square"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section section-alt" id="blog">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="s-label"><i class="fas fa-pen-fancy"></i> Blog & Ressources</div>
+      <h2 class="s-title">Conseils & <span>ressources digitales</span></h2>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card featured reveal" data-tilt>
+        <div class="blog-img"><div class="blog-img-inner" style="background:linear-gradient(135deg,rgba(58,12,163,.3),rgba(247,37,133,.2))">📈</div></div>
+        <div class="blog-body"><span class="blog-cat">SEO Local</span><h3>Comment être premier sur Google à Douala ou Édéa — Guide SEO local Cameroun</h3><div class="blog-meta"><span><i class="fas fa-calendar-alt"></i> Jan 2025</span><span><i class="fas fa-clock"></i> 8 min</span></div></div>
+      </div>
+      <div class="blog-card reveal" data-tilt>
+        <div class="blog-img"><div class="blog-img-inner" style="background:linear-gradient(135deg,rgba(67,97,238,.25),rgba(76,201,240,.15))">💬</div></div>
+        <div class="blog-body"><span class="blog-cat">WhatsApp</span><h3>5 automatisations WhatsApp qui doublent vos ventes</h3><div class="blog-meta"><span><i class="fas fa-clock"></i> 5 min</span></div></div>
+      </div>
+      <div class="blog-card reveal" data-tilt>
+        <div class="blog-img"><div class="blog-img-inner" style="background:linear-gradient(135deg,rgba(247,37,133,.15),rgba(114,9,183,.2))">💳</div></div>
+        <div class="blog-body"><span class="blog-cat">E-Commerce</span><h3>Mobile Money et e-commerce au Cameroun</h3><div class="blog-meta"><span><i class="fas fa-clock"></i> 6 min</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem">
+      <div class="s-label" style="justify-content:center"><i class="fas fa-paper-plane"></i> Contact</div>
+      <h2 class="s-title" style="text-align:center">Parlons de<br>votre <span>projet</span></h2>
+      <p class="s-sub" style="margin:0 auto">Réponse garantie sous 24h. Consultation gratuite.</p>
+    </div>
+    <div class="contact-layout">
+      <div class="reveal left">
+        <h3 style="font-family:var(--font-d);font-size:1.8rem;font-weight:700;margin-bottom:1rem">Nous sommes <span style="background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent">là pour vous.</span></h3>
+        <a class="ci-item" href="https://wa.me/237620819290" target="_blank" rel="noopener"><div class="ci-icon"><i class="fab fa-whatsapp"></i></div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val">+237 620 819 290</div></div></a>
+        <div class="ci-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="ci-lbl">Localisation</div><div class="ci-val">Édéa, Cameroun</div></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><div><div class="ci-lbl">Horaires</div><div class="ci-val">Lun–Sam · 8h–19h</div></div></div>
+      </div>
+      <div class="contact-form-wrap reveal right">
+        <div class="cf-title">Demande de devis gratuit</div>
+        <div class="cf-sub">Réponse sous 24h · Prix fixe garanti</div>
+        <form onsubmit="handleForm(event)">
+          <div class="fg-row fg">
+            <div class="fg"><label>Prénom & Nom</label><input type="text" required placeholder="Votre nom"></div>
+            <div class="fg"><label>Téléphone</label><input type="tel" required placeholder="+237 6XX XXX XXX"></div>
+          </div>
+          <div class="fg"><label>Service souhaité</label>
+            <select>
+              <option>Site Web & SEO — 75 000 FCFA</option>
+              <option>WhatsApp Business Pro</option>
+              <option>E-Commerce Mobile Money</option>
+              <option>Référencement Google</option>
+              <option>Branding & Identité</option>
+              <option>Automatisation & IA</option>
+            </select>
+          </div>
+          <div class="fg"><label>Message</label><textarea placeholder="Décrivez votre projet…"></textarea></div>
+          <button type="submit" class="cf-submit"><i class="fas fa-paper-plane"></i> Envoyer ma demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <h2>Votre entreprise mérite<br><span style="background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent">d'être trouvée.</span></h2>
+      <p>Consultation gratuite. Devis sous 24h. Livraison en 3–5 jours.</p>
+      <div class="cta-btns">
+        <button class="btn-ai" type="button" onclick="scrollToSection('contact')"><i class="fas fa-rocket"></i> Démarrer mon projet</button>
+        <a href="https://wa.me/237620819290" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp direct</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

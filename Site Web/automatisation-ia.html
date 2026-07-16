@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Automatisation & IA | KN Web Technology</title>
+  <meta name="description" content="Workflows intelligents, chatbots IA, automatisation des processus métier. Gagnez en productivité grâce à l'intelligence artificielle.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Styles identiques à la page "Site Web & Visibilité" */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #05050A;
+      color: #EAEAEF;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    :root {
+      --primary: #6366F1;
+      --accent: #FBBF24;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .kn-hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 30%, rgba(99,102,241,0.15), transparent 60%);
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+    .kn-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .kn-particle {
+      position: absolute;
+      background: rgba(99,102,241,0.4);
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: floatParticle 8s infinite alternate;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+      100% { transform: translateY(-40px) translateX(30px); opacity: 0.6; }
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99,102,241,0.12);
+      backdrop-filter: blur(2px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #A5B4FC;
+      border: 1px solid rgba(99,102,241,0.3);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366F1, #A855F7, #FBBF24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead-text {
+      font-size: 1.1rem;
+      color: #9CA3AF;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .solution-detail {
+      padding: 4rem 0;
+    }
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .solution-image img {
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.5);
+    }
+    .price-badge {
+      background: rgba(251,191,36,0.15);
+      color: var(--accent);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+    .feature-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .feature-list li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .feature-list i {
+      color: var(--primary);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(95deg, #6366F1, #A855F7);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(99,102,241,0.5);
+    }
+    .values-mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: rgba(15,23,42,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 2rem;
+      margin: 4rem 0;
+    }
+    .value-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .value-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .cta-glow {
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.2), transparent);
+      border-radius: 3rem;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 900px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .feature-list li {
+        justify-content: center;
+      }
+      .values-mission-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 0 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="kn-hero">
+  <div class="kn-particles" id="heroParticles"></div>
+  <div class="container" data-aos="fade-up">
+    <div class="tag"><i class="fas fa-robot"></i> Solution</div>
+    <h1 class="hero-title">Automatisation & <span class="gradient-text">IA</span></h1>
+    <p class="lead-text">Workflows intelligents, agents IA conversationnels, traitement automatisé des leads.</p>
+  </div>
+</section>
+
+<section class="solution-detail">
+  <div class="container">
+    <div class="solution-grid">
+      <div data-aos="fade-right">
+        <div class="price-badge">Sur devis</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">L'intelligence artificielle au service de votre productivité</h2>
+        <p style="color: #9CA3AF; margin-bottom: 1.5rem;">Automatisez vos tâches répétitives, qualifiez vos leads 24h/24 et améliorez votre efficacité opérationnelle grâce à des solutions IA sur mesure.</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Chatbot IA pour votre site ou WhatsApp</li>
+          <li><i class="fas fa-check-circle"></i> Automatisation de campagnes email / SMS</li>
+          <li><i class="fas fa-check-circle"></i> Intégration CRM avec synchronisation automatique</li>
+          <li><i class="fas fa-check-circle"></i> Assistant IA pour la génération de contenu</li>
+          <li><i class="fas fa-check-circle"></i> Analyse prédictive des ventes et comportement client</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Demander un devis <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Automatisation et IA">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Agence -->
+<section class="container">
+  <div class="values-mission-grid" data-aos="fade-up">
+    <div>
+      <div class="tag"><i class="fas fa-gem"></i> Valeurs</div>
+      <div class="value-item"><div class="value-number">·</div><div><h3>Innovation & Personnalisation</h3><p>Des solutions uniques, adaptées à chaque client.</p></div></div>
+      <div class="value-item"><div class="value-number">·</div><div><h3>Engagement & Impact Durable</h3><p>Des résultats concrets et transparents.</p></div></div>
+    </div>
+    <div>
+      <div class="tag"><i class="fas fa-bullseye"></i> Mission</div>
+      <div class="value-item"><div class="value-number">·</div><div><h3>Transformer par le digital</h3><p>Créer des expériences mémorables.</p></div></div>
+      <div class="value-item"><div class="value-number">·</div><div><h3>Solutions sur mesure</h3><p>Allier esthétique et efficacité.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="container">
+  <div class="cta-glow" data-aos="fade-up">
+    <h2>Prêt à intégrer l'IA dans vos processus ?</h2>
+    <p style="margin: 1rem 0 2rem;">Devis gratuit sous 24h. Une équipe dédiée pour concrétiser votre projet.</p>
+    <a href="https://wa.me/237620819290" class="btn-primary" target="_blank"><i class="fab fa-whatsapp"></i> Discuter sur WhatsApp</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+  function generateParticles(id) {
+    const c = document.getElementById(id);
+    if(!c) return;
+    for(let i=0;i<40;i++) {
+      let p = document.createElement('div');
+      p.classList.add('kn-particle');
+      let s = Math.random()*8+2;
+      p.style.width = s+'px'; p.style.height = s+'px';
+      p.style.left = Math.random()*100+'%';
+      p.style.top = Math.random()*100+'%';
+      p.style.animationDelay = Math.random()*5+'s';
+      p.style.animationDuration = Math.random()*6+4+'s';
+      c.appendChild(p);
+    }
+  }
+  generateParticles('heroParticles');
+</script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>KN WEB & TECHNOLOGY | Solutions digitales sur mesure</title>
+  <meta name="description" content="Sites web sur mesure, e‑commerce Mobile Money, automatisation IA et accompagnement stratégique. Des solutions performantes pour les entreprises camerounaises.">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #05050A;
+      color: #EAEAEF;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --secondary: #A855F7;
+      --accent: #FBBF24;
+      --surface: rgba(15, 23, 42, 0.65);
+      --border-glow: rgba(99, 102, 241, 0.4);
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-sm {
+      padding: 4rem 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: #A5B4FC;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .title-lg {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #6366F1, #A855F7, #FBBF24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead-text {
+      font-size: 1.1rem;
+      color: #9CA3AF;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(95deg, #6366F1, #A855F7);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      border: 1px solid rgba(165, 180, 252, 0.5);
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 500;
+      transition: 0.2s;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #A5B4FC;
+    }
+
+    /* ========== SECTION HERO avec nouvelles classes ========== */
+    .kn-hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.15), transparent 60%);
+      padding: 6rem 0 4rem;
+    }
+
+    .kn-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .kn-hero-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .kn-hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .kn-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .kn-particle {
+      position: absolute;
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: kn-floatParticle 8s infinite alternate;
+    }
+
+    @keyframes kn-floatParticle {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+      100% { transform: translateY(-40px) translateX(30px); opacity: 0.6; }
+    }
+
+    /* Logo cloud */
+    .logo-cloud {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      border-top: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .logo-item {
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      filter: grayscale(0.3);
+    }
+
+    .logo-item img {
+      height: 40px;
+      width: auto;
+      max-width: 120px;
+    }
+
+    .logo-item:hover {
+      opacity: 1;
+      filter: grayscale(0);
+      transform: scale(1.05);
+    }
+
+    /* Blocs solutions alternés */
+    .solution-block {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .solution-block:last-child {
+      border-bottom: none;
+    }
+
+    .solution-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .solution-reverse .solution-inner {
+      direction: rtl;
+    }
+
+    .solution-reverse .solution-inner > * {
+      direction: ltr;
+    }
+
+    .solution-image {
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .solution-block:hover .solution-image img {
+      transform: scale(1.03);
+    }
+
+    .solution-tag {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #A5B4FC;
+      margin-bottom: 1rem;
+    }
+
+    .solution-block h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .solution-block p {
+      color: #9CA3AF;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(251, 191, 36, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.2rem 0;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .feature-list i {
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    /* Valeurs / Mission */
+    .values-mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .cta-glow {
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.2), transparent);
+      border-radius: 3rem;
+      padding: 2.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      .section {
+        padding: 4rem 0;
+      }
+      .solution-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .solution-reverse .solution-inner {
+        direction: ltr;
+      }
+      .values-mission-grid {
+        grid-template-columns: 1fr;
+      }
+      .kn-hero-buttons {
+        justify-content: center;
+      }
+      .logo-grid {
+        gap: 1.5rem;
+      }
+      .logo-item img {
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="pgbar"></div>
+<div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
+<div id="site-header"></div>
+<!-- ========== HERO avec nouvelles classes ========== -->
+<section class="kn-hero">
+  <div class="kn-particles" id="knParticles"></div>
+  <div class="container kn-hero-content">
+    <div class="tag" data-aos="fade-up"><i class="fas fa-cube"></i> Solutions digitales</div>
+    <h1 class="kn-hero-title" data-aos="fade-up" data-aos-delay="100">
+      Des <span class="gradient-text">solutions sur mesure</span><br>pour votre croissance.
+    </h1>
+    <p class="lead-text" data-aos="fade-up" data-aos-delay="200">
+      Sites web, e‑commerce Mobile Money, automatisation IA, audit stratégique et accompagnement dédié. Tout ce qu’il vous faut pour dominer le digital.
+    </p>
+    <div class="kn-hero-buttons" data-aos="fade-up" data-aos-delay="300">
+      <a href="#solutions" class="btn-primary">Explorer nos offres <i class="fas fa-arrow-down"></i></a>
+      <a href="https://wa.me/237620819290" class="btn-outline-light" target="_blank"><i class="fab fa-whatsapp"></i> Discuter sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION LOGOS PARTENAIRES -->
+<div class="logo-cloud">
+  <div class="container">
+    <div class="logo-grid">
+      <div class="logo-item"><img src="https://placehold.co/200x60/2d2d3a/white?text=Logo+1" alt="Partenaire 1"></div>
+      <div class="logo-item"><img src="https://placehold.co/200x60/2d2d3a/white?text=Logo+2" alt="Partenaire 2"></div>
+      <div class="logo-item"><img src="https://placehold.co/200x60/2d2d3a/white?text=Logo+3" alt="Partenaire 3"></div>
+      <div class="logo-item"><img src="https://placehold.co/200x60/2d2d3a/white?text=Logo+4" alt="Partenaire 4"></div>
+      <div class="logo-item"><img src="https://placehold.co/200x60/2d2d3a/white?text=Logo+5" alt="Partenaire 5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTIONS (8 blocs alternés texte/image) -->
+<section class="section" id="solutions">
+  <div class="container">
+    <div class="tag" data-aos="fade-up"><i class="fas fa-layer-group"></i> Notre savoir-faire</div>
+    <h2 class="title-lg" data-aos="fade-up">Ce que nous <span class="gradient-text">concevons</span> pour vous</h2>
+  </div>
+
+  <!-- Solution 1 : Site Web & Visibilité (image à droite) -->
+  <div class="solution-block" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-globe"></i> Vitrine / E-commerce</div>
+        <h3>Site Web & Visibilité</h3>
+        <p>Votre entreprise trouvable sur Google en 3 jours. Site vitrine responsive, fiche Google Business optimisée et SEO local inclus.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> À partir de 75 000 FCFA</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Design moderne et responsive</li>
+          <li><i class="fas fa-check-circle"></i> Optimisation SEO intégrée</li>
+          <li><i class="fas fa-check-circle"></i> Formulaire de contact + carte interactive</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Demander un devis <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Site web responsive">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 2 : WhatsApp Business Pro (image à gauche) -->
+  <div class="solution-block solution-reverse" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fab fa-whatsapp"></i> Communication client</div>
+        <h3>WhatsApp Business Pro</h3>
+        <p>Catalogue interactif, chatbot FAQ, messages automatiques. Vos clients reçoivent une réponse 24h/24.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> 50 000 FCFA + 15 000/mois</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Catalogue produits avec prix</li>
+          <li><i class="fas fa-check-circle"></i> Messages automatiques (accueil, FAQ, rappel)</li>
+          <li><i class="fas fa-check-circle"></i> Formation de votre équipe incluse</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Découvrir l'offre <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&h=400&fit=crop" alt="WhatsApp Business Pro">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 3 : E-Commerce Mobile Money (image à droite) -->
+  <div class="solution-block" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-shopping-cart"></i> Paiement Mobile Money</div>
+        <h3>E‑Commerce Mobile Money</h3>
+        <p>Vendez en ligne et encaissez par MTN ou Orange Money dès le premier jour. Synchronisation WhatsApp et tableau de bord inclus.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> À partir de 200 000 FCFA</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Catalogue produits illimité</li>
+          <li><i class="fas fa-check-circle"></i> Paiement Orange Money / MTN sécurisé</li>
+          <li><i class="fas fa-check-circle"></i> Dashboard administrateur complet</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Lancer ma boutique <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed2f5c0b6?w=600&h=400&fit=crop" alt="E-commerce Mobile Money">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 4 : Référencement Google (image à gauche) -->
+  <div class="solution-block solution-reverse" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-chart-line"></i> SEO local & national</div>
+        <h3>Référencement Google</h3>
+        <p>Audit SEO technique, optimisation contenu, création de backlinks locaux. Rapport mensuel transparent.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> 25 000 FCFA/mois</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Audit SEO technique initial</li>
+          <li><i class="fas fa-check-circle"></i> Optimisation on‑page et contenu</li>
+          <li><i class="fas fa-check-circle"></i> Suivi des positions et rapport mensuel</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Améliorer mon référencement <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=600&h=400&fit=crop" alt="SEO local">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 5 : Automatisation & IA (image à droite) -->
+  <div class="solution-block" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-robot"></i> Intelligence artificielle</div>
+        <h3>Automatisation & IA</h3>
+        <p>Workflows intelligents (n8n, Zapier), agents IA conversationnels, traitement automatisé des leads.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> Sur devis</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Chatbot IA pour votre site ou WhatsApp</li>
+          <li><i class="fas fa-check-circle"></i> Automatisation des tâches répétitives</li>
+          <li><i class="fas fa-check-circle"></i> Intégration avec vos outils métiers</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Automatiser mes processus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Automatisation IA">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 6 : Branding & Identité (image à gauche) -->
+  <div class="solution-block solution-reverse" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-palette"></i> Identité visuelle</div>
+        <h3>Branding & Identité</h3>
+        <p>Logo, charte graphique, pack identité complet. Une image forte qui inspire confiance.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> À partir de 45 000 FCFA</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Logo unique (3 propositions)</li>
+          <li><i class="fas fa-check-circle"></i> Charte graphique complète</li>
+          <li><i class="fas fa-check-circle"></i> Kit de documents (cartes de visite, etc.)</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Créer mon identité <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=400&fit=crop" alt="Branding">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 7 : Hébergement & Infra (image à droite) -->
+  <div class="solution-block" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-cloud"></i> Infogérance</div>
+        <h3>Hébergement & Infra</h3>
+        <p>Serveurs ultra-rapides, SSL, sauvegardes quotidiennes, 99.9% de disponibilité.</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> À partir de 8 000 FCFA/mois</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Hébergement SSD ultra rapide</li>
+          <li><i class="fas fa-check-circle"></i> Certificat SSL inclus</li>
+          <li><i class="fas fa-check-circle"></i> Sauvegardes automatiques quotidiennes</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Migrer vers un hébergement pro <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop" alt="Hébergement cloud">
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution 8 : Maintenance & Support (image à gauche) -->
+  <div class="solution-block solution-reverse" data-aos="fade-up">
+    <div class="container solution-inner">
+      <div class="solution-text">
+        <div class="solution-tag"><i class="fas fa-headset"></i> Support technique</div>
+        <h3>Maintenance & Support</h3>
+        <p>Mises à jour, correctifs sécurité, assistance WhatsApp prioritaire (réponse sous 2h).</p>
+        <div class="price-badge"><i class="fas fa-tag"></i> 15 000 FCFA/mois</div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Mises à jour de sécurité</li>
+          <li><i class="fas fa-check-circle"></i> Surveillance 24h/24</li>
+          <li><i class="fas fa-check-circle"></i> Support WhatsApp dédié</li>
+        </ul>
+        <a href="#contact" class="btn-outline-light">Choisir la tranquillité <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-image">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop" alt="Support technique">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION AGENCE (valeurs + mission) -->
+<section class="section">
+  <div class="container">
+    <div class="values-mission-grid" data-aos="fade-up">
+      <div>
+        <div class="tag"><i class="fas fa-gem"></i> Valeurs</div>
+        <div class="value-item">
+          <div class="value-number">·</div>
+          <div><h3 style="font-size:1.2rem; font-weight:700;">Innovation & Personnalisation</h3><p style="color:#9CA3AF;">Des solutions uniques, adaptées à chaque client et aux dernières tendances technologiques.</p></div>
+        </div>
+        <div class="value-item">
+          <div class="value-number">·</div>
+          <div><h3 style="font-size:1.2rem; font-weight:700;">Engagement & Impact Durable</h3><p style="color:#9CA3AF;">Des résultats concrets, transparents, conçus pour un impact à long terme.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="tag"><i class="fas fa-bullseye"></i> Mission</div>
+        <div class="value-item">
+          <div class="value-number">·</div>
+          <div><h3 style="font-size:1.2rem; font-weight:700;">Transformer par le digital</h3><p style="color:#9CA3AF;">Exploiter la puissance du digital pour créer des expériences mémorables et renforcer l'engagement.</p></div>
+        </div>
+        <div class="value-item">
+          <div class="value-number">·</div>
+          <div><h3 style="font-size:1.2rem; font-weight:700;">Solutions sur mesure & performantes</h3><p style="color:#9CA3AF;">Allier esthétique et efficacité pour des résultats durables et une relation de confiance.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="section-sm">
+  <div class="container cta-glow" data-aos="fade-up">
+    <h2 class="title-lg" style="margin-bottom:0.5rem;">Prêt à passer à l'action ?</h2>
+    <p style="margin-bottom: 2rem; font-size:1.1rem; color:#B9C3D4;">Devis gratuit sous 24h. Une équipe dédiée pour concrétiser votre projet.</p>
+    <a href="https://wa.me/237620819290" class="btn-primary" target="_blank"><i class="fab fa-whatsapp"></i> Discuter sur WhatsApp</a>
+  </div>
+</section>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-out-cubic',
+  });
+
+  // Génération de particules pour la nouvelle classe kn-particles
+  function generateParticles() {
+    const container = document.getElementById('knParticles');
+    if (!container) return;
+    const particlesCount = 40;
+    for (let i = 0; i < particlesCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('kn-particle');
+      particle.style.width = Math.random() * 8 + 2 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      particle.style.animationDuration = Math.random() * 6 + 4 + 's';
+      container.appendChild(particle);
+    }
+  }
+  generateParticles();
+
+  // Effet tilt sur les images des solutions
+  const solutionImages = document.querySelectorAll('.solution-image');
+  solutionImages.forEach(imgDiv => {
+    imgDiv.addEventListener('mousemove', (e) => {
+      const rect = imgDiv.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      imgDiv.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${y * -5}deg)`;
+    });
+    imgDiv.addEventListener('mouseleave', () => {
+      imgDiv.style.transform = '';
+    });
+  });
+</script>
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

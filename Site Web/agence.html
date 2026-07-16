@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KN Web Technology | Agence digitale – Édéa, Cameroun</title>
+<meta name="description" content="Agence web basée à Édéa. Création de sites, e-commerce, SEO, IA. Équipe passionnée, accompagnement sur tout le territoire camerounais.">
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome 6 & Google Fonts -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<!-- Leaflet CSS/JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0c14;
+    color: #e2e8f0;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  :root {
+    --indigo: #6366f1;
+    --violet: #a855f7;
+    --gold: #fbbf24;
+    --muted: #94a3b8;
+    --grad-full: linear-gradient(135deg, #6366f1, #a855f7);
+    --grad-gold: linear-gradient(135deg, #fbbf24, #f59e0b);
+  }
+  ::selection {
+    background: var(--indigo);
+    color: white;
+  }
+  .section {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  /* Badges & titres */
+  .s-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(99,102,241,0.15);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #a5b4fc;
+    border: 1px solid rgba(99,102,241,0.3);
+    margin-bottom: 1rem;
+  }
+  .s-title {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .s-title span {
+    background: var(--grad-full);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--grad-full);
+    padding: 0.8rem 1.8rem;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(99,102,241,0.5);
+  }
+  /* Hero améliorée */
+  .hero-agence {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-content {
+    flex: 1;
+    min-width: 280px;
+  }
+  .hero-image {
+    flex: 1;
+    min-width: 280px;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 30px 45px -20px rgba(0,0,0,0.6);
+    position: relative;
+    height: 400px;
+  }
+  .hero-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 1.2s cubic-bezier(0.23,1,0.32,1);
+    opacity: 0;
+    border-radius: 2rem;
+  }
+  .hero-image img.active {
+    opacity: 1;
+  }
+  /* Équipe */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .team-card {
+    background: rgba(15,23,42,0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    border: 1px solid rgba(99,102,241,0.2);
+    padding: 1.8rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
+  }
+  .team-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(99,102,241,0.6);
+    box-shadow: 0 25px 35px -15px rgba(0,0,0,0.5);
+    background: rgba(15,23,42,0.7);
+  }
+  .team-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--grad-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .team-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .team-role {
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  .team-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .team-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .team-social a {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    font-size: 1rem;
+    color: #cbd5e1;
+  }
+  .team-social a:hover {
+    background: var(--indigo);
+    color: white;
+    transform: scale(1.1);
+  }
+  /* À propos / valeurs-mission style amélioré */
+  .about-section {
+    background: radial-gradient(ellipse at 30% 40%, rgba(99,102,241,0.1), transparent);
+  }
+  .values-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .value-card, .mission-card {
+    background: rgba(15,23,42,0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(99,102,241,0.2);
+    transition: 0.4s;
+  }
+  .value-card:hover, .mission-card:hover {
+    border-color: var(--indigo);
+    transform: translateY(-5px);
+  }
+  .value-card h3, .mission-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .value-card ul {
+    list-style: none;
+  }
+  .value-card li {
+    margin: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  /* Méthode */
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .method-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .m-step {
+    display: flex;
+    gap: 1.5rem;
+    background: rgba(15,23,42,0.4);
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(99,102,241,0.2);
+    transition: all 0.3s;
+  }
+  .m-step:hover {
+    border-color: var(--indigo);
+    transform: translateX(8px);
+    background: rgba(15,23,42,0.7);
+  }
+  .m-step-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--indigo);
+    line-height: 1;
+  }
+  /* Carte interactive */
+  .map-container {
+    margin-top: 2rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 1px solid rgba(99,102,241,0.3);
+    box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
+  }
+  #camerounMap {
+    height: 480px;
+    width: 100%;
+    background: #0f172a;
+  }
+  .city-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+  .city-badge {
+    background: rgba(99,102,241,0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+  .city-badge:hover {
+    background: var(--indigo);
+    transform: scale(1.05);
+  }
+  /* Clients */
+  .clients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .client-item {
+    background: rgba(255,255,255,0.03);
+    padding: 0.5rem 1.2rem;
+    border-radius: 60px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(99,102,241,0.2);
+    transition: 0.3s;
+  }
+  .client-item:hover {
+    background: var(--indigo);
+    transform: translateY(-2px);
+  }
+  /* Contact */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .ci-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .ci-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(99,102,241,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--indigo);
+  }
+  .contact-form-wrap {
+    background: rgba(15,23,42,0.6);
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(99,102,241,0.2);
+    backdrop-filter: blur(8px);
+  }
+  .fg { margin-bottom: 1rem; }
+  .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  input, select, textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #0a0c14;
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 1rem;
+    color: white;
+    outline: none;
+    transition: 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+  }
+  .cf-submit {
+    background: var(--grad-full);
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+  }
+  .cf-submit:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+  /* Animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.2,0.9,0.4,1.1);
+  }
+  .fade-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Flottants */
+  .float-wa {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: #25d366;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    z-index: 100;
+    transition: 0.3s;
+  }
+  .float-wa:hover {
+    transform: scale(1.08);
+    background: #128C7E;
+  }
+  .float-top {
+    position: fixed;
+    bottom: 96px;
+    left: 24px;
+    background: var(--indigo);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: 0.3s;
+  }
+  .float-top:hover {
+    transform: scale(1.08);
+    background: var(--violet);
+  }
+  @media (max-width: 800px) {
+    .hero-agence, .method-grid, .contact-layout, .values-mission-grid {
+      grid-template-columns: 1fr;
+      flex-direction: column;
+    }
+    .fg-row {
+      grid-template-columns: 1fr;
+    }
+    .section {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="pgbar"></div>
+<div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
+<div id="site-header"></div>
+
+<!-- Hero Section -->
+<section class="section">
+  <div class="wrap hero-agence">
+    <div class="hero-content fade-up">
+      <div class="s-label"><i class="fas fa-users"></i> L'Agence · KN Web Technology</div>
+      <h1>Une équipe <span>dynamique et passionnée</span></h1>
+      <p style="font-size:1.1rem; margin:1.5rem 0; color:var(--muted); line-height:1.6">
+        Nous sommes des experts dédiés à la transformation digitale des entreprises au Cameroun. 
+        Notre force : une équipe jeune, créative et rigoureuse, qui place la réussite de nos clients au cœur de chaque projet.
+      </p>
+      <a href="#contact" class="btn-primary">Travailler avec nous <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-image" id="heroSlider">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&h=500&fit=crop" alt="Équipe 1" class="active">
+      <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=700&h=500&fit=crop" alt="Équipe 2">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&h=500&fit=crop" alt="Équipe 3">
+      <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=700&h=500&fit=crop" alt="Équipe 4">
+    </div>
+  </div>
+</section>
+
+<!-- À propos / Vision & Mission -->
+<section class="section about-section">
+  <div class="wrap">
+    <div class="agency-header fade-up" style="text-align:center">
+      <div class="s-label" style="justify-content:center"><i class="fas fa-building"></i> Notre philosophie</div>
+      <h2 class="s-title">Une agence qui relie <span>design, code, IA et pédagogie</span></h2>
+      <p style="max-width:800px; margin:0 auto; color:var(--muted);">Chez KN Web Technology, on conçoit des expériences numériques utiles, élégantes et pensées pour durer. Notre approche repose sur un équilibre simple : un design juste, un développement solide, l'intelligence artificielle quand elle apporte un vrai gain, et une pédagogie claire.</p>
+    </div>
+    <div class="values-mission-grid">
+      <div class="value-card fade-up">
+        <h3><i class="fas fa-gem" style="color:var(--gold)"></i> Nos valeurs</h3>
+        <ul>
+          <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Innovation & Personnalisation</li>
+          <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Engagement & Impact Durable</li>
+          <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Transparence & Pédagogie</li>
+        </ul>
+      </div>
+      <div class="mission-card fade-up">
+        <h3><i class="fas fa-bullseye" style="color:var(--gold)"></i> Notre mission</h3>
+        <p>Transformer par le digital – créer des expériences mémorables qui renforcent l'engagement de chaque marque. Concevoir des solutions sur mesure, alliant esthétique et efficacité pour des résultats durables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Équipe avec vraies photos -->
+<section class="section">
+  <div class="wrap">
+    <div style="text-align:center" class="fade-up">
+      <div class="s-label" style="justify-content:center"><i class="fas fa-heart"></i> Rencontrez l'équipe</div>
+      <h2 class="s-title">Des talents au service de <span>votre croissance</span></h2>
+    </div>
+    <div class="team-grid" id="teamGrid">
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="images/Moi .png" alt="Victor"></div>
+        <div class="team-name">Nloka Victor</div>
+        <div class="team-role">CEO & Fondateur</div>
+        <div class="team-desc">Visionnaire, Etudiant-entrepreneur ,  Devellopeur Web & mobile </div>
+        <div class="team-social"><a href="https://wa.me/237640288619"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah"></div>
+        <div class="team-name">Sarah D.</div>
+        <div class="team-role">Lead Developer</div>
+        <div class="team-desc">Full‑stack, architecte de solutions performantes.</div>
+        <div class="team-social"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michaël"></div>
+        <div class="team-name">Michaël T.</div>
+        <div class="team-role">SEO & Content Manager</div>
+        <div class="team-desc">Expert en référencement local, top 1 Google.</div>
+        <div class="team-social"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Léa"></div>
+        <div class="team-name">Léa K.</div>
+        <div class="team-role">UI/UX Designer</div>
+        <div class="team-desc">Interfaces intuitives et élégantes, expérience utilisateur optimale.</div>
+        <div class="team-social"><a href="#"><i class="fab fa-behance"></i></a><a href="#"><i class="fab fa-dribbble"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Méthode de travail -->
+<section class="section section-white" style="background:#0f172a;">
+  <div class="wrap">
+    <div class="method-grid">
+      <div class="fade-up">
+        <div class="s-label"><i class="fas fa-route"></i> Comment nous travaillons</div>
+        <h2 class="s-title">De l'idée à la <span>livraison</span></h2>
+        <p>Un processus clair en 4 étapes. Délai moyen : <strong style="color:var(--indigo)">3–5 jours</strong> de la validation du devis à la mise en ligne.</p>
+      </div>
+      <div class="method-steps">
+        <div class="m-step fade-up"><div class="m-step-num">01</div><div><h3>Comprendre</h3><p>Brief + audit gratuit de votre situation digitale.</p></div></div>
+        <div class="m-step fade-up"><div class="m-step-num">02</div><div><h3>Construire</h3><p>Design + développement avec validation à chaque étape.</p></div></div>
+        <div class="m-step fade-up"><div class="m-step-num">03</div><div><h3>Transmettre</h3><p>Formation + documentation pour votre autonomie.</p></div></div>
+        <div class="m-step fade-up"><div class="m-step-num">04</div><div><h3>Accompagner</h3><p>Support WhatsApp, mises à jour et optimisations continues.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Carte interactive (courant vers toutes les zones) -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label"><i class="fas fa-map-marked-alt"></i> Notre présence</div>
+    <h2 class="s-title">Basés à Édéa, <span>actifs dans tout le Cameroun</span></h2>
+    <div class="map-container fade-up" id="mapContainer">
+      <div id="camerounMap"></div>
+    </div>
+    <div class="city-list" id="cityList"></div>
+  </div>
+</section>
+
+<!-- Ils nous font confiance (logos élégants) -->
+<section class="section" style="background:#0f172a;">
+  <div class="wrap">
+    <div class="text-center mb-8 fade-up">
+      <div class="s-label" style="justify-content:center"><i class="fas fa-handshake"></i> Références</div>
+      <h2 class="s-title">Ils nous <span>font confiance</span></h2>
+    </div>
+    <div class="clients-grid fade-up">
+      <div class="client-item"><i class="fas fa-utensils"></i> Chez Maman</div>
+      <div class="client-item"><i class="fas fa-tshirt"></i> Mode City</div>
+      <div class="client-item"><i class="fas fa-tools"></i> Batimat</div>
+      <div class="client-item"><i class="fas fa-hospital-user"></i> Clinique du Littoral</div>
+      <div class="client-item"><i class="fas fa-hotel"></i> Les Palmiers</div>
+      <div class="client-item"><i class="fas fa-graduation-cap"></i> École Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:3rem" class="fade-up">
+      <div class="s-label" style="justify-content:center"><i class="fas fa-paper-plane"></i> Contact</div>
+      <h2 class="s-title">Parlons de votre <span>projet</span></h2>
+      <p class="s-sub" style="margin:0 auto">Réponse garantie sous 24h. Consultation gratuite, aucun engagement.</p>
+    </div>
+    <div class="contact-layout">
+      <div class="fade-up">
+        <h3 style="font-size:1.8rem;margin-bottom:1rem">Nous sommes <em>là pour vous.</em></h3>
+        <p style="margin-bottom:2rem">Basés à Édéa, nous travaillons avec des clients dans tout le Cameroun.</p>
+        <a class="ci-item" href="https://wa.me/237620819290" target="_blank"><div class="ci-icon"><i class="fab fa-whatsapp"></i></div><div><div class="ci-lbl">WhatsApp direct</div><div class="ci-val">+237 620 819 290</div></div></a>
+        <div class="ci-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="ci-lbl">Localisation</div><div class="ci-val">Édéa, Région Littoral, Cameroun</div></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><div><div class="ci-lbl">Horaires</div><div class="ci-val">Lun–Sam · 8h00–19h00</div></div></div>
+      </div>
+      <div class="contact-form-wrap fade-up">
+        <div class="cf-title">Demande de devis gratuit</div>
+        <div class="cf-sub">Réponse sous 24h · Aucun engagement · Prix fixe garanti</div>
+        <form onsubmit="event.preventDefault(); alert('✅ Demande envoyée ! Nous vous répondrons sous 24h.');">
+          <div class="fg-row fg"><div class="fg"><label>Prénom & Nom</label><input type="text" placeholder="Marie-Diane Ekanga" required></div><div class="fg"><label>WhatsApp / Téléphone</label><input type="tel" placeholder="+237 6XX XXX XXX" required></div></div>
+          <div class="fg"><label>Secteur d'activité</label><select><option>Restaurant / Alimentation</option><option>Commerce / Boutique</option><option>Santé / Clinique</option><option>Hôtellerie / Tourisme</option><option>BTP / Construction</option><option>Éducation / Formation</option><option>Services professionnels</option><option>Autre</option></select></div>
+          <div class="fg"><label>Service souhaité</label><select><option>Site Web & SEO — à partir de 75 000 FCFA</option><option>WhatsApp Business Pro — 50 000 FCFA</option><option>E-Commerce Mobile Money — à partir de 200 000 FCFA</option><option>Référencement Google — 25 000 FCFA/mois</option><option>Branding & Identité visuelle</option><option>Automatisation & IA</option></select></div>
+          <div class="fg"><label>Votre message</label><textarea placeholder="Décrivez votre activité et vos objectifs digitaux…" rows="3"></textarea></div>
+          <button type="submit" class="cf-submit"><i class="fas fa-paper-plane"></i> Envoyer ma demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA finale -->
+<section class="section" style="background:linear-gradient(135deg, #0f172a, #0a0c14); text-align:center">
+  <div class="wrap fade-up">
+    <h2 style="font-size:2rem; margin-bottom:1rem">Prêt à transformer votre entreprise ?</h2>
+    <p style="margin-bottom:2rem">Discutons de vos objectifs et construisons ensemble votre succès digital.</p>
+    <a href="#contact" class="btn-primary"><i class="fas fa-rocket"></i> Démarrer mon projet</a>
+  </div>
+</section>
+
+<a href="https://wa.me/237620819290" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="float-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  // Carrousel hero
+  const images = document.querySelectorAll('#heroSlider img');
+  let currentIndex = 0;
+  function rotateImages() {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].classList.add('active');
+  }
+  setInterval(rotateImages, 4200);
+
+  // GSAP animations
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.fade-up').forEach(el => {
+    gsap.fromTo(el, { autoAlpha: 0, y: 35 }, {
+      duration: 0.9, y: 0, autoAlpha: 1,
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+    });
+  });
+
+  // ---------- Carte interactive Leaflet avec animation "courant" et liens ----------
+  const cities = {
+    "Édéa": [3.8048, 10.1382, "Siège social"],
+    "Douala": [4.0511, 9.7679, "Capitale économique"],
+    "Yaoundé": [3.8480, 11.5021, "Capitale politique"],
+    "Bafoussam": [5.4776, 10.4176, "Ouest Cameroun"],
+    "Garoua": [9.2999, 13.3927, "Nord"],
+    "Kribi": [2.9379, 9.9095, "Port en eau profonde"],
+    "Limbé": [4.0121, 9.2078, "Ville balnéaire"],
+    "Bertoua": [4.5792, 13.6837, "Est"],
+    "Ngaoundéré": [7.3167, 13.5833, "Adamaoua"],
+    "Maroua": [10.591, 14.3159, "Extrême-Nord"]
+  };
+  const center = cities["Édéa"];
+  const map = L.map('camerounMap').setView(center, 6.5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB'
+  }).addTo(map);
+  // Marqueur spécial Édéa (or)
+  const edeaIcon = L.divIcon({ html: '<i class="fas fa-map-marker-alt" style="font-size:28px; color:#fbbf24; filter:drop-shadow(0 2px 4px black);"></i>', iconSize: [28,28], className: 'custom-marker' });
+  const edeaMarker = L.marker(center, { icon: edeaIcon }).addTo(map).bindPopup('<b>Édéa</b><br>Siège social').openPopup();
+  // Ajouter tous les autres marqueurs avec liens cliquables (popup)
+  for (let [name, coords] of Object.entries(cities)) {
+    if (name !== "Édéa") {
+      const popupContent = `<b>${name}</b><br>${coords[2]}<br><a href="https://www.google.com/maps/search/?api=1&query=${coords[0]},${coords[1]}" target="_blank" style="color:#fbbf24;">Voir sur Google Maps →</a>`;
+      L.marker([coords[0], coords[1]]).addTo(map).bindPopup(popupContent);
+    }
+  }
+  // Tracer des polylignes depuis Édéa vers chaque autre ville
+  const lines = [];
+  for (let [name, coords] of Object.entries(cities)) {
+    if (name !== "Édéa") {
+      const line = L.polyline([center, [coords[0], coords[1]]], { color: '#6366f1', weight: 2.5, opacity: 0.6, dashArray: '8, 6' }).addTo(map);
+      lines.push({ from: center, to: [coords[0], coords[1]] });
+    }
+  }
+  // Animation "courant" : petit cercle qui se déplace le long de chaque ligne
+  function animateCurrentLine({ from, to }) {
+    const start = L.latLng(from[0], from[1]);
+    const end = L.latLng(to[0], to[1]);
+    const duration = 3800; // 3.8 secondes par trajet
+    let startTime = performance.now();
+    const circle = L.circleMarker(start, { radius: 5, color: '#fbbf24', weight: 2, fillOpacity: 0.9, opacity: 0.9 }).addTo(map);
+    function step(now) {
+      const elapsed = now - startTime;
+      let t = Math.min(1, elapsed / duration);
+      const lat = start.lat + (end.lat - start.lat) * t;
+      const lng = start.lng + (end.lng - start.lng) * t;
+      circle.setLatLng([lat, lng]);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        map.removeLayer(circle);
+        setTimeout(() => animateCurrentLine({ from, to }), 400); // redémarrage avec court délai
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  // Lancer une animation pour chaque ligne (décalage pour fluidité)
+  setTimeout(() => {
+    lines.forEach((line, idx) => {
+      setTimeout(() => animateCurrentLine(line), idx * 600);
+    });
+  }, 800);
+
+  // Générer les badges villes cliquables (zoom sur la ville)
+  const cityListDiv = document.getElementById('cityList');
+  for (let [name, coords] of Object.entries(cities)) {
+    const badge = document.createElement('span');
+    badge.className = 'city-badge';
+    badge.innerHTML = `<i class="fas fa-map-pin"></i> ${name}`;
+    badge.addEventListener('click', () => {
+      map.setView([coords[0], coords[1]], 9);
+      map.closePopup();
+      L.popup().setLatLng([coords[0], coords[1]]).setContent(`<b>${name}</b><br>${coords[2]}`).openOn(map);
+    });
+    cityListDiv.appendChild(badge);
+  }
+</script>
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
