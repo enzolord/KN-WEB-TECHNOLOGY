@@ -201,7 +201,7 @@
       <div class="footer-brand">
         <a href="${isHome ? '#hero' : 'index.html'}" class="footer-logo-wrap">
           <div class="logo-circle-small"><img src="images/logo/logo.png" alt="KN Web Technology" class="footer-logo-img"></div>
-          <div class="footer-brand-text"><span class="footer-brand-name">KN WEB & TECHNOLOGY</span><span class="footer-brand-tagline">Votre partenaire digital</span></div>
+          <div class="footer-brand-text"><span class="footer-brand-name">KN WEB & TECHNOLOGY</span><span class="footer-brand-tagline">Le digital au service de votre croissance</span></div>
         </a>
         <p>L'agence digitale de référence pour les PME camerounaises. Sites web, SEO, WhatsApp Business, e-commerce Mobile Money — des solutions qui rapportent de vrais clients.</p>
         <div class="footer-social">
