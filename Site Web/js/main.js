@@ -181,3 +181,4 @@ function initSite() {
   })();
 document.addEventListener('kn:layout-ready', initSite);
 if (document.getElementById('navbar')) initSite();
+

@@ -1,0 +1,642 @@
+<?php
+// Traitement du formulaire de contact
+$success = $error = false;
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_contact'])) {
+    // Protection honeypot (anti-spam simple)
+    if (!empty($_POST['website'])) {
+        // Bot détecté – on ignore silencieusement
+        $success = false;
+        $error = true;
+    } else {
+        $to = "contact@knwebtechnology.com";
+        $name = htmlspecialchars(trim($_POST['name']));
+        $email = htmlspecialchars(trim($_POST['email']));
+        $phone = htmlspecialchars(trim($_POST['phone']));
+        $service = htmlspecialchars(trim($_POST['service']));
+        $message = htmlspecialchars(trim($_POST['message']));
+        
+        // Validation de base
+        if (empty($name) || empty($email) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = true;
+        } else {
+            $subject = "Nouvelle demande de contact - $service";
+            $headers = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            $headers .= "From: $email\r\n";
+            $headers .= "Reply-To: $email\r\n";
+            
+            $body = "
+            <html>
+            <body style='font-family: Arial, sans-serif; line-height: 1.6;'>
+                <h2 style='color:#6366F1;'>📬 Nouvelle demande de contact</h2>
+                <p><strong>Nom :</strong> $name</p>
+                <p><strong>Email :</strong> $email</p>
+                <p><strong>Téléphone :</strong> $phone</p>
+                <p><strong>Service :</strong> $service</p>
+                <p><strong>Message :</strong><br>".nl2br($message)."</p>
+                <hr>
+                <p><strong>IP :</strong> ".$_SERVER['REMOTE_ADDR']."</p>
+                <p><strong>Date :</strong> ".date('d/m/Y H:i:s')."</p>
+            </body>
+            </html>
+            ";
+            
+            // Envoi avec vérification
+            if (mail($to, $subject, $body, $headers)) {
+                $success = true;
+            } else {
+                $error = true;
+            }
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="fr-CM">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- Balises SEO principales – domaine .com -->
+  <title>KN WEB & TECHNOLOGY | Contactez-nous – Agence digitale à Douala, Yaoundé, Édéa</title>
+  <meta name="description" content="Contactez notre équipe d'experts en solutions digitales. Basés à Édéa, nous accompagnons les entreprises à Douala, Yaoundé et dans tout le Cameroun. Devis gratuit, réponse sous 24h.">
+  <meta name="keywords" content="contact agence digitale Douala, contact agence web Yaoundé, devis site web Édéa, WhatsApp Business Cameroun, e-commerce Mobile Money contact, référencement Google Douala">
+  <meta name="author" content="KN WEB & TECHNOLOGY">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="revisit-after" content="7 days">
+  <link rel="canonical" href="https://knwebtechnology.com/contact">
+  <link rel="alternate" hreflang="fr-CM" href="https://knwebtechnology.com/contact">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://knwebtechnology.com/contact">
+  <meta property="og:title" content="KN WEB & TECHNOLOGY | Contactez notre agence digitale">
+  <meta property="og:description" content="Devis gratuit, réponse sous 24h. Experts en création de sites web, e-commerce Mobile Money, SEO et IA à Douala, Yaoundé, Édéa.">
+  <meta property="og:image" content="https://knwebtechnology.com/images/og-contact.jpg">
+  <meta property="og:site_name" content="KN WEB & TECHNOLOGY">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KN WEB & TECHNOLOGY – Contactez-nous">
+  <meta name="twitter:description" content="Besoin d'un site web, d'une boutique en ligne ou d'une stratégie SEO ? Contactez notre équipe.">
+  <meta name="twitter:image" content="https://knwebtechnology.com/images/twitter-contact.jpg">
+
+  <!-- Préconnexion -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Données structurées JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contactez KN WEB & TECHNOLOGY",
+    "description": "Page de contact de l'agence digitale KN WEB & TECHNOLOGY basée à Édéa, Cameroun, active à Douala et Yaoundé.",
+    "url": "https://knwebtechnology.com/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "KN WEB & TECHNOLOGY",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Édéa",
+        "addressLocality": "Édéa",
+        "addressRegion": "Littoral",
+        "addressCountry": "CM"
+      },
+      "telephone": "+237620819290",
+      "email": "contact@knwebtechnology.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+237620819290",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      }
+    }
+  }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #05050A;
+      color: #EAEAEF;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    :root {
+      --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --secondary: #A855F7;
+      --accent: #FBBF24;
+      --surface: rgba(15, 23, 42, 0.65);
+      --transition-smooth: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    /* Hero avec particules */
+    .kn-hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.15), transparent 60%);
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+    .kn-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .kn-particle {
+      position: absolute;
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: kn-floatParticle 8s infinite alternate;
+    }
+    @keyframes kn-floatParticle {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+      100% { transform: translateY(-40px) translateX(30px); opacity: 0.6; }
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #A5B4FC;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366F1, #A855F7, #FBBF24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead-text {
+      font-size: 1.1rem;
+      color: #9CA3AF;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    /* Contact Grid */
+    .contact-section {
+      padding: 4rem 0;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .info-card {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      transition: var(--transition-smooth);
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(99, 102, 241, 0.15);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+    .info-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .contact-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .contact-list li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .contact-list i {
+      width: 24px;
+      color: var(--primary);
+    }
+    /* Formulaire */
+    .form-card {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #CBD5E1;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #0A0C14;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 0.8rem;
+      color: white;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+    .btn-submit {
+      background: linear-gradient(95deg, #6366F1, #A855F7);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+    .alert {
+      padding: 1rem;
+      border-radius: 0.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .alert-success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid #10B981;
+      color: #10B981;
+    }
+    .alert-error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #EF4444;
+      color: #EF4444;
+    }
+    /* Champ honeypot (caché) */
+    .honeypot {
+      display: none;
+    }
+    /* Map interactive */
+    .map-container {
+      margin-top: 2rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    #camerounMap {
+      height: 450px;
+      width: 100%;
+      background: #0f172a;
+    }
+    .city-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .city-badge {
+      background: rgba(99, 102, 241, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .city-badge:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+    }
+    /* CTA avec particules */
+    .kn-cta {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 4rem 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.2), transparent);
+      margin: 2rem 0;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(95deg, #6366F1, #A855F7);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+    }
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .contact-grid > div:first-child { order: 2; }
+      .contact-grid > div:last-child { order: 1; }
+      .container {
+        padding: 0 1.5rem;
+      }
+      #camerounMap {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body data-page="contact">
+<div id="pgbar"></div>
+<div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
+<div id="site-header"></div>
+
+<!-- Hero avec particules -->
+<section class="kn-hero">
+  <div class="kn-particles" id="heroParticles"></div>
+  <div class="container" data-aos="fade-up">
+    <div class="tag"><i class="fas fa-paper-plane"></i> Contactez-nous</div>
+    <h1 class="hero-title">Parlons de votre <span class="gradient-text">projet digital</span></h1>
+    <p class="lead-text">Que vous ayez un projet précis ou une simple idée, notre équipe est là pour vous écouter et vous conseiller. Réponse garantie sous 24h – à Douala, Yaoundé, Édéa et dans tout le Cameroun.</p>
+  </div>
+</section>
+
+<!-- Section Contact avec formulaire -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Informations de contact -->
+      <div data-aos="fade-right">
+        <div class="info-card">
+          <div class="info-header">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="info-title">Notre Agence</h3>
+          </div>
+          <div class="info-detail">
+            <p>KN Web Technology est basée à Édéa, Région du Littoral. Nous accompagnons les entreprises camerounaises et internationales dans leur transformation digitale, avec une présence renforcée à Douala et Yaoundé.</p>
+            <ul class="contact-list">
+              <li><i class="fas fa-location-dot"></i> Édéa, Cameroun (Siège) – Interventions à Douala, Yaoundé et partout au Cameroun</li>
+              <li><i class="fas fa-phone-alt"></i> +237 620 819 290</li>
+              <li><i class="fas fa-envelope"></i> contact@knwebtechnology.com</li>
+              <li><i class="fab fa-whatsapp"></i> WhatsApp : +237 620 819 290</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-header">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <h3 class="info-title">Horaires & Disponibilité</h3>
+          </div>
+          <ul class="contact-list">
+            <li><i class="fas fa-calendar-day"></i> Lundi - Vendredi : 8h00 – 19h00</li>
+            <li><i class="fas fa-calendar-week"></i> Samedi : 9h00 – 14h00 (télétravail)</li>
+            <li><i class="fas fa-headset"></i> Support Urgence : 7j/7 via WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Formulaire de contact -->
+      <div data-aos="fade-left">
+        <div class="form-card">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Écrivez-nous</h3>
+          <p style="color: #9CA3AF; margin-bottom: 1.5rem;">Remplissez le formulaire ci-dessous et nous vous répondrons sous 24h.</p>
+          
+          <?php if(isset($success) && $success === true): ?>
+            <div class="alert alert-success">✅ Votre message a été envoyé avec succès ! Nous vous répondrons très rapidement.</div>
+          <?php elseif(isset($error) && $error === true): ?>
+            <div class="alert alert-error">❌ Une erreur s'est produite. Veuillez réessayer ou nous contacter directement par WhatsApp.</div>
+          <?php endif; ?>
+
+          <form id="contactForm" method="POST" action="">
+            <!-- Champ honeypot anti-spam -->
+            <div class="honeypot">
+              <label for="website">Website</label>
+              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label>Nom complet *</label>
+              <input type="text" name="name" required placeholder="Jean Dupont" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" required placeholder="jean@exemple.com" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+            </div>
+            <div class="form-group">
+              <label>Téléphone</label>
+              <input type="tel" name="phone" placeholder="+237 6XX XXX XXX" value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
+            </div>
+            <div class="form-group">
+              <label>Service souhaité</label>
+              <select name="service">
+                <option value="">Sélectionnez un service</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Site Web & SEO') ? 'selected' : ''; ?>>Site Web & SEO</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='WhatsApp Business Pro') ? 'selected' : ''; ?>>WhatsApp Business Pro</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='E-Commerce Mobile Money') ? 'selected' : ''; ?>>E-Commerce Mobile Money</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Référencement Google') ? 'selected' : ''; ?>>Référencement Google</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Automatisation & IA') ? 'selected' : ''; ?>>Automatisation & IA</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Branding & Identité') ? 'selected' : ''; ?>>Branding & Identité</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Hébergement & Maintenance') ? 'selected' : ''; ?>>Hébergement & Maintenance</option>
+                <option <?php echo (isset($_POST['service']) && $_POST['service']=='Autre demande') ? 'selected' : ''; ?>>Autre demande</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message *</label>
+              <textarea name="message" rows="5" required placeholder="Décrivez votre projet ou votre besoin..."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+            </div>
+            <button type="submit" name="submit_contact" class="btn-submit"><i class="fas fa-paper-plane"></i> Envoyer ma demande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte interactive -->
+    <div class="map-container" data-aos="fade-up">
+      <div id="camerounMap"></div>
+    </div>
+    <div class="city-list" id="cityList"></div>
+  </div>
+</section>
+
+<!-- CTA avec particules -->
+<section class="kn-cta">
+  <div class="kn-particles" id="ctaParticles"></div>
+  <div class="container" data-aos="fade-up">
+    <h2 class="hero-title" style="font-size: 1.8rem;">Prêt à discuter de votre projet ?</h2>
+    <p style="color: #9CA3AF; margin-bottom: 2rem;">Devis gratuit et sans engagement. Réponse sous 24h.</p>
+    <a href="https://wa.me/237620819290" class="btn-primary" target="_blank"><i class="fab fa-whatsapp"></i> Démarrer la conversation</a>
+  </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+
+  // Génération de particules pour le hero et la CTA
+  function generateParticles(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const count = 40;
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('kn-particle');
+      const size = Math.random() * 8 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      particle.style.animationDuration = Math.random() * 6 + 4 + 's';
+      container.appendChild(particle);
+    }
+  }
+  generateParticles('heroParticles');
+  generateParticles('ctaParticles');
+
+  // ---------- CARTE INTERACTIVE ----------
+  const cities = {
+    "Édéa": [3.8048, 10.1382, "Siège social – Notre base"],
+    "Douala": [4.0511, 9.7679, "Capitale économique – Nos bureaux"],
+    "Yaoundé": [3.8480, 11.5021, "Capitale politique – Interventions régulières"],
+    "Bafoussam": [5.4776, 10.4176, "Ouest Cameroun"],
+    "Garoua": [9.2999, 13.3927, "Nord"],
+    "Kribi": [2.9379, 9.9095, "Port en eau profonde"],
+    "Limbé": [4.0121, 9.2078, "Ville balnéaire"],
+    "Bertoua": [4.5792, 13.6837, "Est"],
+    "Ngaoundéré": [7.3167, 13.5833, "Adamaoua"],
+    "Maroua": [10.591, 14.3159, "Extrême-Nord"]
+  };
+  const center = cities["Édéa"];
+  const map = L.map('camerounMap').setView(center, 6.5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB'
+  }).addTo(map);
+  // Marqueur spécial Édéa (or)
+  const edeaIcon = L.divIcon({ html: '<i class="fas fa-map-marker-alt" style="font-size:28px; color:#fbbf24; filter:drop-shadow(0 2px 4px black);"></i>', iconSize: [28,28], className: 'custom-marker' });
+  L.marker(center, { icon: edeaIcon }).addTo(map).bindPopup('<b>Édéa</b><br>Siège social').openPopup();
+  // Ajouter tous les autres marqueurs
+  for (let [name, coords] of Object.entries(cities)) {
+    if (name !== "Édéa") {
+      const popupContent = `<b>${name}</b><br>${coords[2]}<br><a href="https://www.google.com/maps/search/?api=1&query=${coords[0]},${coords[1]}" target="_blank" style="color:#fbbf24; text-decoration:none;">Voir sur Google Maps →</a>`;
+      L.marker([coords[0], coords[1]]).addTo(map).bindPopup(popupContent);
+    }
+  }
+  // Tracer les polylignes depuis Édéa
+  const lines = [];
+  for (let [name, coords] of Object.entries(cities)) {
+    if (name !== "Édéa") {
+      L.polyline([center, [coords[0], coords[1]]], { color: '#6366f1', weight: 2.5, opacity: 0.6, dashArray: '8, 6' }).addTo(map);
+      lines.push({ from: center, to: [coords[0], coords[1]] });
+    }
+  }
+  // Animation "courant"
+  function animateCurrentLine({ from, to }) {
+    const start = L.latLng(from[0], from[1]);
+    const end = L.latLng(to[0], to[1]);
+    const duration = 3800;
+    let startTime = performance.now();
+    const circle = L.circleMarker(start, { radius: 5, color: '#fbbf24', weight: 2, fillOpacity: 0.9, opacity: 0.9 }).addTo(map);
+    function step(now) {
+      const elapsed = now - startTime;
+      let t = Math.min(1, elapsed / duration);
+      const lat = start.lat + (end.lat - start.lat) * t;
+      const lng = start.lng + (end.lng - start.lng) * t;
+      circle.setLatLng([lat, lng]);
+      if (t < 1) requestAnimationFrame(step);
+      else { map.removeLayer(circle); setTimeout(() => animateCurrentLine({ from, to }), 400); }
+    }
+    requestAnimationFrame(step);
+  }
+  setTimeout(() => { lines.forEach((line, idx) => { setTimeout(() => animateCurrentLine(line), idx * 600); }); }, 800);
+  // Badges cliquables
+  const cityListDiv = document.getElementById('cityList');
+  for (let [name, coords] of Object.entries(cities)) {
+    const badge = document.createElement('span');
+    badge.className = 'city-badge';
+    badge.innerHTML = `<i class="fas fa-map-pin"></i> ${name}`;
+    badge.addEventListener('click', () => {
+      map.setView([coords[0], coords[1]], 9);
+      map.closePopup();
+      L.popup().setLatLng([coords[0], coords[1]]).setContent(`<b>${name}</b><br>${coords[2]}`).openOn(map);
+    });
+    cityListDiv.appendChild(badge);
+  }
+</script>
+
+<div id="site-footer"></div>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

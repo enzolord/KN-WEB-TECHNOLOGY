@@ -1,19 +1,75 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CM">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comment nous travaillons | KN Web Technology</title>
-<meta name="description" content="Découvrez notre méthode de travail, nos processus transparents et notre engagement qualité. FAQ détaillée sur nos services digitaux.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+<!-- Balises SEO -->
+<title>Comment nous travaillons | KN Web Technology – Méthode agile pour sites web à Douala, Yaoundé, Édéa</title>
+<meta name="description" content="Découvrez notre méthode de travail transparente et notre processus en 6 étapes. Audit, design, développement, formation, support – pour les entreprises à Douala, Yaoundé, Édéa et partout au Cameroun. FAQ détaillée.">
+<meta name="keywords" content="méthode de travail agence digitale Douala, processus création site web Yaoundé, développement web Édéa, agence web Cameroun, méthode agile développement">
+<meta name="author" content="KN WEB & TECHNOLOGY">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://knwebtechnology.cm/comment-nous-travaillons">
+<link rel="alternate" hreflang="fr-CM" href="https://knwebtechnology.cm/comment-nous-travaillons">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://knwebtechnology.cm/comment-nous-travaillons">
+<meta property="og:title" content="Notre méthode de travail | KN Web Technology – Agence digitale Cameroun">
+<meta property="og:description" content="Processus clair en 6 étapes : de l'audit au support. Une approche transparente pour vos projets digitaux à Douala, Yaoundé, Édéa.">
+<meta property="og:image" content="https://knwebtechnology.cm/images/og-method.jpg">
+<meta property="og:site_name" content="KN WEB & TECHNOLOGY">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notre méthode de travail – KN Web Technology">
+<meta name="twitter:description" content="Processus transparent en 6 étapes pour vos projets web au Cameroun.">
+<meta name="twitter:image" content="https://knwebtechnology.cm/images/twitter-method.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Préconnexion -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-<!-- Leaflet pour la carte -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Données structurées -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Notre méthode de travail",
+  "description": "Processus en 6 étapes pour la création de solutions digitales au Cameroun",
+  "step": [
+    {"@type": "HowToStep", "name": "Audit & Brief", "text": "Analyse de vos besoins, objectifs et contraintes"},
+    {"@type": "HowToStep", "name": "Stratégie & Design", "text": "Maquettes, parcours utilisateur, validation"},
+    {"@type": "HowToStep", "name": "Développement", "text": "Code propre, responsive, livraisons itératives"},
+    {"@type": "HowToStep", "name": "Tests & Recette", "text": "Validation fonctionnelle, corrections, optimisation"},
+    {"@type": "HowToStep", "name": "Formation & Transfert", "text": "Documentation, formation de votre équipe"},
+    {"@type": "HowToStep", "name": "Support Évolutif", "text": "Maintenance, mises à jour, conseils stratégiques"}
+  ]
+}
+</script>
+
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -29,10 +85,50 @@
     --gold: #fbbf24;
     --muted: #94a3b8;
     --grad-full: linear-gradient(135deg, #6366f1, #a855f7);
+    --nav-h: 88px; /* Hauteur de la navbar, à ajuster si besoin */
   }
   a, a:link, a:visited, a:hover { text-decoration: none; color: inherit; }
-  .section { padding: 5rem 2rem; }
-  .wrap { max-width: 1280px; margin: 0 auto; }
+  
+  /* Section hero avec padding-top pour éviter le chevauchement avec la navbar */
+  .hero-section {
+    padding-top: calc(var(--nav-h) + 3rem);
+    padding-bottom: 3rem;
+  }
+  
+  .section { 
+    padding: 5rem 2rem; 
+    position: relative; 
+    overflow: hidden; 
+  }
+  .wrap { 
+    max-width: 1280px; 
+    margin: 0 auto; 
+    position: relative; 
+    z-index: 2; 
+  }
+  
+  /* Animation de particules */
+  .particles-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    background: rgba(99, 102, 241, 0.25);
+    border-radius: 50%;
+    filter: blur(3px);
+    animation: floatParticle 12s infinite alternate;
+  }
+  @keyframes floatParticle {
+    0% { transform: translateY(0px) translateX(0px); opacity: 0.1; }
+    100% { transform: translateY(-50px) translateX(40px); opacity: 0.5; }
+  }
+  
   .s-label {
     display: inline-flex;
     align-items: center;
@@ -52,6 +148,7 @@
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
+    color: #ffffff;
   }
   .s-title span {
     background: var(--grad-full);
@@ -70,8 +167,10 @@
     transition: 0.3s;
     border: none;
     cursor: pointer;
+    color: white;
   }
   .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(99,102,241,0.4); }
+  
   /* Process steps */
   .process-grid {
     display: grid;
@@ -80,24 +179,26 @@
     margin: 3rem 0;
   }
   .step-card {
-    background: rgba(15,23,42,0.5);
+    background: rgba(15,23,42,0.6);
     backdrop-filter: blur(8px);
     border-radius: 1.5rem;
     padding: 1.8rem;
     text-align: center;
-    border: 1px solid rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.3);
     transition: 0.3s;
   }
-  .step-card:hover { transform: translateY(-5px); border-color: var(--indigo); }
+  .step-card:hover { transform: translateY(-5px); border-color: var(--indigo); background: rgba(15,23,42,0.8); }
   .step-num { font-size: 2.5rem; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem; }
-  .step-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-  /* FAQ accordéon */
+  .step-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: white; }
+  .step-desc { font-size: 0.85rem; color: #cbd5e1; }
+  
+  /* FAQ */
   .faq-grid { margin-top: 2rem; }
   .faq-item {
-    background: rgba(15,23,42,0.4);
+    background: rgba(15,23,42,0.5);
     border-radius: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.25);
     overflow: hidden;
   }
   .faq-question {
@@ -107,22 +208,24 @@
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    background: rgba(15,23,42,0.6);
+    color: white;
+    background: rgba(15,23,42,0.7);
     transition: 0.2s;
   }
-  .faq-question:hover { background: rgba(99,102,241,0.1); }
+  .faq-question:hover { background: rgba(99,102,241,0.15); }
   .faq-question i { transition: transform 0.3s; color: var(--indigo); }
   .faq-answer {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
     padding: 0 1.5rem;
-    color: var(--muted);
+    color: #cbd5e1;
     line-height: 1.6;
   }
   .faq-item.active .faq-answer { max-height: 300px; padding: 0 1.5rem 1.2rem 1.5rem; }
   .faq-item.active .faq-question i { transform: rotate(180deg); }
-  /* Section Agence (identique à la page agence) */
+  
+  /* Section Agence */
   .agency-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -130,8 +233,12 @@
     margin-bottom: 3rem;
   }
   .val-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
-  .val-item { display: flex; gap: 1rem; }
+  .val-item { display: flex; gap: 1rem; background: rgba(15,23,42,0.4); padding: 1rem; border-radius: 1rem; transition: 0.2s; }
+  .val-item:hover { background: rgba(99,102,241,0.1); transform: translateX(5px); }
   .val-n { font-size: 2rem; font-weight: 800; color: var(--indigo); line-height: 1; }
+  .val-item h4 { color: white; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .val-item p { color: #cbd5e1; font-size: 0.85rem; }
+  
   .method-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -142,14 +249,17 @@
   .method-steps { display: flex; flex-direction: column; gap: 1.2rem; }
   .m-step {
     display: flex; gap: 1.5rem;
-    background: rgba(15,23,42,0.4);
+    background: rgba(15,23,42,0.5);
     padding: 1.2rem;
     border-radius: 1.2rem;
-    border: 1px solid rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.25);
     transition: 0.3s;
   }
-  .m-step:hover { border-color: var(--indigo); transform: translateX(8px); background: rgba(15,23,42,0.7); }
+  .m-step:hover { border-color: var(--indigo); transform: translateX(8px); background: rgba(15,23,42,0.8); }
   .m-step-num { font-size: 2rem; font-weight: 800; color: var(--indigo); line-height: 1; }
+  .m-step h3 { color: white; margin-bottom: 0.3rem; }
+  .m-step p { color: #cbd5e1; font-size: 0.9rem; }
+  
   /* Carte interactive */
   .map-container { border-radius: 2rem; overflow: hidden; border: 1px solid rgba(99,102,241,0.3); margin: 2rem 0; }
   #camerounMap { height: 420px; width: 100%; background: #0f172a; }
@@ -167,52 +277,59 @@
     font-size: 0.75rem;
     cursor: pointer;
     transition: 0.2s;
+    color: #cbd5e1;
   }
-  .city-badge:hover { background: var(--indigo); transform: scale(1.05); }
+  .city-badge:hover { background: var(--indigo); transform: scale(1.05); color: white; }
+  
   .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2,0.9,0.4,1.1); }
   .fade-up.revealed { opacity: 1; transform: translateY(0); }
+  
   @media (max-width: 800px) {
     .section { padding: 3rem 1.5rem; }
+    .hero-section { padding-top: calc(var(--nav-h) + 1.5rem); }
     .agency-grid, .method-grid { grid-template-columns: 1fr; gap: 2rem; }
     .faq-question { font-size: 0.9rem; padding: 1rem; }
   }
 </style>
 </head>
 <body>
- <div id="pgbar"></div>
+<div id="pgbar"></div>
 <div id="toast"><i class="fas fa-check-circle"></i><span id="tmsg"></span></div>
 <div id="site-header"></div>
-<!-- Hero -->
-<section class="section">
+
+<!-- Hero avec particules et espacement corrigé -->
+<section class="hero-section">
+  <div class="particles-bg" id="heroParticles"></div>
   <div class="wrap fade-up">
     <div class="s-label"><i class="fas fa-route"></i> Notre méthode</div>
     <h1 class="s-title">Comment nous <span>travaillons</span></h1>
-    <p style="font-size:1.1rem; max-width:700px; color:var(--muted);">Une approche claire, itérative et transparente. De la première idée à la mise en ligne, nous vous accompagnons pas à pas.</p>
+    <p style="font-size:1.1rem; max-width:700px; color:#cbd5e1;">Une approche claire, itérative et transparente. De la première idée à la mise en ligne, nous vous accompagnons pas à pas – que vous soyez à Douala, Yaoundé, Édéa ou partout au Cameroun.</p>
   </div>
 </section>
 
 <!-- Processus en 6 étapes -->
 <section class="section" style="padding-top:0">
+  <div class="particles-bg" id="processParticles"></div>
   <div class="wrap">
     <div class="process-grid">
-      <div class="step-card fade-up"><div class="step-num">01</div><div class="step-title">Audit & Brief</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Analyse de vos besoins, objectifs et contraintes.</div></div>
-      <div class="step-card fade-up"><div class="step-num">02</div><div class="step-title">Stratégie & Design</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Maquettes, parcours utilisateur, validation.</div></div>
-      <div class="step-card fade-up"><div class="step-num">03</div><div class="step-title">Développement</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Code propre, responsive, livraisons itératives.</div></div>
-      <div class="step-card fade-up"><div class="step-num">04</div><div class="step-title">Tests & Recette</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Validation fonctionnelle, corrections, optimisation.</div></div>
-      <div class="step-card fade-up"><div class="step-num">05</div><div class="step-title">Formation & Transfert</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Documentation, formation de votre équipe.</div></div>
-      <div class="step-card fade-up"><div class="step-num">06</div><div class="step-title">Support Évolutif</div><div class="step-desc" style="font-size:0.85rem; color:var(--muted);">Maintenance, mises à jour, conseils stratégiques.</div></div>
+      <div class="step-card fade-up"><div class="step-num">01</div><div class="step-title">Audit & Brief</div><div class="step-desc">Analyse de vos besoins, objectifs et contraintes.</div></div>
+      <div class="step-card fade-up"><div class="step-num">02</div><div class="step-title">Stratégie & Design</div><div class="step-desc">Maquettes, parcours utilisateur, validation.</div></div>
+      <div class="step-card fade-up"><div class="step-num">03</div><div class="step-title">Développement</div><div class="step-desc">Code propre, responsive, livraisons itératives.</div></div>
+      <div class="step-card fade-up"><div class="step-num">04</div><div class="step-title">Tests & Recette</div><div class="step-desc">Validation fonctionnelle, corrections, optimisation.</div></div>
+      <div class="step-card fade-up"><div class="step-num">05</div><div class="step-title">Formation & Transfert</div><div class="step-desc">Documentation, formation de votre équipe.</div></div>
+      <div class="step-card fade-up"><div class="step-num">06</div><div class="step-title">Support Évolutif</div><div class="step-desc">Maintenance, mises à jour, conseils stratégiques.</div></div>
     </div>
   </div>
 </section>
 
 <!-- FAQ (20 questions) -->
 <section class="section" style="background:#0f172a;">
+  <div class="particles-bg" id="faqParticles"></div>
   <div class="wrap">
     <div class="s-label"><i class="fas fa-question-circle"></i> Foire aux questions</div>
     <h2 class="s-title">Vous avez des <span>questions ?</span></h2>
-    <p style="margin-bottom:2rem; color:var(--muted);">Retrouvez les réponses aux interrogations les plus fréquentes sur notre méthode, nos délais et nos engagements.</p>
+    <p style="margin-bottom:2rem; color:#cbd5e1;">Retrouvez les réponses aux interrogations les plus fréquentes sur notre méthode, nos délais et nos engagements – pour les entreprises à Douala, Yaoundé, Édéa et partout au Cameroun.</p>
     <div class="faq-grid fade-up" id="faqContainer">
-      <!-- 20 questions/réponses -->
       <div class="faq-item"><div class="faq-question">Quel est le délai moyen de réalisation d’un site vitrine ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Comptez entre 5 et 10 jours ouvrés selon la complexité. Un site simple (3-5 pages) peut être livré en 5 jours.</div></div>
       <div class="faq-item"><div class="faq-question">Proposez-vous des contrats de maintenance ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, nous avons des formules mensuelles incluant mises à jour, sauvegardes et support prioritaire (à partir de 15 000 FCFA/mois).</div></div>
       <div class="faq-item"><div class="faq-question">Quels modes de paiement acceptez-vous ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nous acceptons les virements bancaires, Mobile Money (Orange Money, MTN) et paiements par carte via facture Stripe.</div></div>
@@ -225,7 +342,7 @@
       <div class="faq-item"><div class="faq-question">Acceptez-vous les projets à l’international ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, nous travaillons en français et en anglais, avec des clients en Afrique, Europe et Amérique du Nord.</div></div>
       <div class="faq-item"><div class="faq-question">Quel est le coût moyen d’un site e-commerce Mobile Money ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">À partir de 200 000 FCFA, incluant catalogue produits, paiement Orange Money/MTN et formation.</div></div>
       <div class="faq-item"><div class="faq-question">Puis-je intégrer un chatbot sur mon site ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Bien sûr. Nous développons des chatbots IA (WhatsApp, Messenger ou web) adaptés à vos besoins.</div></div>
-      <div class="faq-item"><div class="faq-question">Faites-vous du référencement local ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, nous optimisons votre fiche Google Business et les pages pour les recherches géolocalisées.</div></div>
+      <div class="faq-item"><div class="faq-question">Faites-vous du référencement local ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, nous optimisons votre fiche Google Business et les pages pour les recherches géolocalisées (Douala, Yaoundé, Édéa, etc.).</div></div>
       <div class="faq-item"><div class="faq-question">Combien coûte une stratégie de contenu mensuelle ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nos packs commencent à 25 000 FCFA pour 2 articles de blog et 4 posts pour réseaux sociaux.</div></div>
       <div class="faq-item"><div class="faq-question">Proposez-vous des services d’automatisation des processus ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, nous créons des automatisations sur mesure (Zapier, Make, scripts personnalisés).</div></div>
       <div class="faq-item"><div class="faq-question">Quelle est votre politique de confidentialité ?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nous ne revendons aucune donnée. Tous vos accès restent confidentiels et sont protégés.</div></div>
@@ -237,14 +354,14 @@
   </div>
 </section>
 
-<!-- SECTION AGENCE (identique à celle de la page agence) -->
+<!-- SECTION AGENCE -->
 <section class="section">
+  <div class="particles-bg" id="agencyParticles"></div>
   <div class="wrap">
     <div class="fade-up" style="text-align:center; margin-bottom:2rem;">
       <div class="s-label" style="justify-content:center"><i class="fas fa-building"></i> Notre agence</div>
       <h2 class="s-title">KN Web Technology <span>en bref</span></h2>
     </div>
-    <!-- Valeurs & Mission -->
     <div class="agency-grid">
       <div class="fade-up">
         <h3 class="s-title" style="font-size:1.8rem;">Nos <span>valeurs</span></h3>
@@ -264,12 +381,11 @@
       </div>
     </div>
 
-    <!-- Méthode de travail -->
     <div class="method-grid fade-up">
       <div>
         <div class="s-label"><i class="fas fa-route"></i> Approche</div>
         <h2 class="s-title" style="font-size:1.8rem;">De l'idée à la <span>livraison</span></h2>
-        <p>Un processus clair en 4 étapes. Délai moyen : <strong style="color:var(--indigo)">3–5 jours</strong>.</p>
+        <p style="color:#cbd5e1;">Un processus clair en 4 étapes. Délai moyen : <strong style="color:var(--gold)">3–5 jours</strong>.</p>
       </div>
       <div class="method-steps">
         <div class="m-step"><div class="m-step-num">01</div><div><h3>Comprendre</h3><p>Brief + audit gratuit de votre situation digitale.</p></div></div>
@@ -279,11 +395,11 @@
       </div>
     </div>
 
-    <!-- Carte interactive (identique page agence) -->
+    <!-- Carte interactive -->
     <div class="fade-up">
       <div class="s-label"><i class="fas fa-map-marked-alt"></i> Présence</div>
       <h2 class="s-title">Basés à Édéa, <span>actifs dans tout le Cameroun</span></h2>
-      <div class="map-container" id="mapContainer">
+      <div class="map-container">
         <div id="camerounMap"></div>
       </div>
       <div class="city-list" id="cityList"></div>
@@ -292,6 +408,29 @@
 </section>
 
 <script>
+  // Génération des particules pour chaque section
+  function generateParticles(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const count = 35;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      const size = Math.random() * 6 + 2;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 5 + 's';
+      p.style.animationDuration = Math.random() * 10 + 6 + 's';
+      container.appendChild(p);
+    }
+  }
+  generateParticles('heroParticles');
+  generateParticles('processParticles');
+  generateParticles('faqParticles');
+  generateParticles('agencyParticles');
+
   // Accordéon FAQ
   document.querySelectorAll('.faq-question').forEach(question => {
     question.addEventListener('click', () => {
@@ -309,7 +448,7 @@
     });
   });
 
-  // Carte interactive Leaflet (identique page agence)
+  // Carte Leaflet
   const cities = {
     "Édéa": [3.8048, 10.1382, "Siège social"],
     "Douala": [4.0511, 9.7679, "Capitale économique"],
@@ -327,16 +466,13 @@
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB'
   }).addTo(map);
-  // Marqueur Édéa
   const edeaIcon = L.divIcon({ html: '<i class="fas fa-map-marker-alt" style="font-size:28px; color:#fbbf24; filter:drop-shadow(0 2px 4px black);"></i>', iconSize: [28,28], className: 'custom-marker' });
   L.marker(center, { icon: edeaIcon }).addTo(map).bindPopup('<b>Édéa</b><br>Siège social').openPopup();
-  // Autres marqueurs
   for (let [name, coords] of Object.entries(cities)) {
     if (name !== "Édéa") {
       L.marker([coords[0], coords[1]]).addTo(map).bindPopup(`<b>${name}</b><br>${coords[2]}`);
     }
   }
-  // Polylignes
   const lines = [];
   for (let [name, coords] of Object.entries(cities)) {
     if (name !== "Édéa") {
@@ -344,7 +480,6 @@
       lines.push({ from: center, to: [coords[0], coords[1]] });
     }
   }
-  // Animation "courant"
   function animateCurrentLine({ from, to }) {
     const start = L.latLng(from[0], from[1]);
     const end = L.latLng(to[0], to[1]);
@@ -363,8 +498,6 @@
     requestAnimationFrame(step);
   }
   setTimeout(() => { lines.forEach((line, idx) => { setTimeout(() => animateCurrentLine(line), idx * 600); }); }, 800);
-
-  // Badges cliquables
   const cityListDiv = document.getElementById('cityList');
   for (let [name, coords] of Object.entries(cities)) {
     const badge = document.createElement('span');
@@ -378,8 +511,8 @@
     cityListDiv.appendChild(badge);
   }
 </script>
-<div id="site-footer"></div>
 
+<div id="site-footer"></div>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 </body>

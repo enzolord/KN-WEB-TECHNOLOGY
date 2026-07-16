@@ -1,15 +1,72 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CM">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Nos réalisations | KN Web Technology – Agence digitale Cameroun</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- Balises SEO principales – domaine .com -->
+  <title>Nos réalisations | KN Web Technology – Agence digitale Cameroun – Projets web à Douala, Yaoundé, Édéa</title>
+  <meta name="description" content="Découvrez nos réalisations : sites web, e-commerce Mobile Money, SEO et branding pour les PME camerounaises. Exemples concrets de projets digitaux à Douala, Yaoundé, Édéa et partout au Cameroun. +6 projets livrés avec succès.">
+  <meta name="keywords" content="portfolio agence digitale Douala, réalisations site web Yaoundé, e-commerce Édéa, référencement Google Cameroun, création site web Douala, projets web Yaoundé, agence web Cameroun, site vitrine pas cher, boutique en ligne Mobile Money">
+  <meta name="author" content="KN WEB & TECHNOLOGY">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="revisit-after" content="7 days">
+  <link rel="canonical" href="https://knwebtechnology.com/projets.html">
+  <link rel="alternate" hreflang="fr-CM" href="https://knwebtechnology.com/projets.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://knwebtechnology.com/projets.html">
+  <meta property="og:title" content="Nos réalisations – KN Web Technology | Projets digitaux au Cameroun">
+  <meta property="og:description" content="Découvrez nos réalisations de sites web, e-commerce Mobile Money, SEO et branding pour les entreprises camerounaises à Douala, Yaoundé, Édéa.">
+  <meta property="og:image" content="https://knwebtechnology.com/images/og-projets.jpg">
+  <meta property="og:site_name" content="KN WEB & TECHNOLOGY">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nos réalisations – KN Web Technology">
+  <meta name="twitter:description" content="Portfolio de projets digitaux réalisés par notre agence au Cameroun.">
+  <meta name="twitter:image" content="https://knwebtechnology.com/images/twitter-projets.jpg">
+
+  <!-- Préconnexion -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="Découvrez nos réalisations : sites web, e-commerce, applications et stratégies digitales pour les PME camerounaises. Exemples concrets de nos projets.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Données structurées JSON-LD enrichies -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Réalisations KN WEB & TECHNOLOGY",
+    "description": "Portfolio de projets digitaux réalisés par notre agence au Cameroun (Douala, Yaoundé, Édéa)",
+    "numberOfItems": 6,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Empire - Longrich", "description": "E-commerce bien-être et santé avec SEO – +200% de commandes", "url": "https://longrich-empire.netlify.app/"},
+      {"@type": "ListItem", "position": 2, "name": "Alexa Shop", "description": "Boutique e-commerce mode avec paiement MTN Mobile Money", "url": "https://alexa-shop.vercel.app"},
+      {"@type": "ListItem", "position": 3, "name": "Ecohabitat", "description": "Site web rénovation avec SEO local – +150 demandes/mois", "url": "https://ecohabitat-fr.vercel.app/"},
+      {"@type": "ListItem", "position": 4, "name": "Les délices d'Édéa", "description": "Site restaurant avec réservations en ligne et chatbot WhatsApp", "url": "https://les-delices-d-edea.vercel.app"},
+      {"@type": "ListItem", "position": 5, "name": "Poussin Sarl", "description": "Site aviculture avec réservation de poussins d'un jour", "url": "https://poussin-sarl.vercel.app"},
+      {"@type": "ListItem", "position": 6, "name": "Ousmashe", "description": "Site terroir & saveur avec e-commerce WhatsApp – +150% de commandes", "url": "https://ousmashe.vercel.app"}
+    ]
+  }
+  </script>
+
   <style>
+    /* ========== STYLES GLOBAUX ========== */
     * {
       margin: 0;
       padding: 0;
@@ -24,9 +81,12 @@
     }
     :root {
       --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --secondary: #A855F7;
       --accent: #FBBF24;
       --muted: #9CA3AF;
-      --surface: rgba(15, 23, 42, 0.5);
+      --surface: rgba(15, 23, 42, 0.65);
+      --transition-smooth: all 0.5s cubic-bezier(0.2,0.9,0.4,1.1);
     }
     .container {
       max-width: 1280px;
@@ -35,6 +95,7 @@
     }
     .section {
       padding: 4rem 0;
+      position: relative;
     }
     .s-label {
       display: inline-flex;
@@ -62,12 +123,19 @@
       background-clip: text;
       color: transparent;
     }
-    /* Hero avec fond animé */
+    .s-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    /* Hero améliorée */
     .projets-hero {
       position: relative;
       overflow: hidden;
       background: radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.15), transparent 70%);
-      padding: 6rem 0 2rem;
+      padding: 6rem 0 3rem;
       text-align: center;
     }
     .hero-particles {
@@ -93,6 +161,45 @@
     .hero-content {
       position: relative;
       z-index: 2;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(95deg, #6366F1, #A855F7);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(99,102,241,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(99,102,241,0.6);
+      color: #CBD5E1;
+    }
+    .btn-outline:hover {
+      background: rgba(99,102,241,0.1);
+      border-color: var(--primary);
+      transform: translateY(-3px);
     }
     /* Filtres */
     .filter-bar {
@@ -188,12 +295,71 @@
       gap: 0.8rem;
       color: var(--accent);
     }
-    /* Aucun résultat */
     .no-results {
       text-align: center;
       grid-column: 1 / -1;
       padding: 3rem;
       color: var(--muted);
+    }
+    /* Section CTA animée (comme sur la page agence) */
+    .cta-animated-bg {
+      position: relative;
+      background: linear-gradient(135deg, #0f172a, #0a0c14);
+      overflow: hidden;
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .cta-animated-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(99,102,241,0.35) 3%, transparent 4%),
+                        radial-gradient(circle at 80% 70%, rgba(168,85,247,0.3) 2.5%, transparent 3.5%),
+                        radial-gradient(circle at 40% 80%, rgba(251,191,36,0.2) 2%, transparent 3%);
+      background-size: 70px 70px, 90px 90px, 120px 120px;
+      animation: floatParticlesCTA 25s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes floatParticlesCTA {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 120px 120px, -100px 100px, 80px -80px; }
+    }
+    .cta-animated-bg .container {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+    }
+    /* Bouton retour en haut (à droite) */
+    .scroll-top-right {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: none;
+      outline: none;
+    }
+    .scroll-top-right.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .scroll-top-right:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+      box-shadow: 0 6px 20px rgba(99,102,241,0.5);
     }
     @media (max-width: 780px) {
       .projets-grid {
@@ -202,19 +368,34 @@
       .container {
         padding: 0 1.5rem;
       }
+      .scroll-top-right {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body data-page="projets">
   <div id="site-header"></div>
 
-  <!-- Hero avec fond animé -->
+  <!-- Hero enrichi avec CTA -->
   <section class="projets-hero">
     <div class="hero-particles" id="heroParticles"></div>
     <div class="container hero-content" data-aos="fade-up">
       <div class="s-label"><i class="fas fa-trophy"></i> Portfolio</div>
-      <h1 class="s-title">Nos <span>réalisations</span></h1>
-      <p class="s-sub" style="max-width:700px; margin:0 auto; color:var(--muted);">Découvrez des projets concrets qui ont propulsé nos clients vers le succès digital.</p>
+      <h1 class="s-title">Nos <span>réalisations</span> qui font la différence</h1>
+      <p class="s-sub" style="max-width:700px; margin:0 auto; color:var(--muted);">
+        Depuis notre création, nous avons accompagné des dizaines d’entreprises à Douala, Yaoundé, Édéa et dans tout le Cameroun. 
+        Voici une sélection de projets web, e‑commerce Mobile Money, SEO et branding qui ont généré des résultats concrets pour nos clients. 
+        Chaque réalisation est le fruit d’une collaboration étroite et d’une expertise technique pointue.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projetsGrid" class="btn-primary" onclick="document.getElementById('projetsGrid').scrollIntoView({behavior:'smooth'}); return false;"><i class="fas fa-arrow-down"></i> Voir nos projets</a>
+        <a href="contact.html" class="btn-outline"><i class="fas fa-paper-plane"></i> Demander un devis</a>
+      </div>
     </div>
   </section>
 
@@ -236,13 +417,30 @@
     </div>
   </section>
 
+  <!-- Section CTA animée -->
+  <section class="cta-animated-bg">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom:1rem;">Vous avez un projet ? <span style="color:var(--accent)">Réalisons-le ensemble</span></h2>
+      <p style="margin-bottom:2rem; color:var(--muted);">Que vous soyez à Douala, Yaoundé, Édéa ou ailleurs, contactez-nous pour un devis gratuit et sans engagement. Réponse sous 24h.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="contact.html" class="btn-primary"><i class="fas fa-rocket"></i> Démarrer mon projet</a>
+        <a href="https://wa.me/237620819290" class="btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp direct</a>
+      </div>
+    </div>
+  </section>
+
   <div id="site-footer"></div>
+
+  <!-- Bouton retour en haut (à droite) -->
+  <button id="scrollTopBtn" class="scroll-top-right" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
 
-    // Génération des particules
+    // Génération des particules hero
     function generateParticles() {
       const container = document.getElementById('heroParticles');
       if (!container) return;
@@ -262,88 +460,61 @@
     }
     generateParticles();
 
-    // Base de données des projets (à personnaliser)
+    // ========== PROJETS (données enrichies) ==========
     const projets = [
       {
         id: 1,
-        title: "Restaurant Chez Maman",
-        category: "web",
-        description: "Site vitrine moderne avec réservation en ligne et SEO local. +200% de commandes en 3 mois.",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
-        link: "https://exemple.com/chez-maman",
-        linkText: "Voir le site"
-      },
-      {
-        id: 2,
-        title: "Mode City",
+        title: "Empire - Longrich",
         category: "ecommerce",
-        description: "Boutique e‑commerce avec paiement MTN Mobile Money. Catalogue de 500+ produits.",
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
-        link: "https://exemple.com/mode-city",
-        linkText: "Visiter la boutique"
-      },
-      {
-        id: 3,
-        title: "Quincaillerie Batimat",
-        category: "marketing",
-        description: "Stratégie SEO locale + fiche Google Business. +150 appels/mois et premier résultat pour 'quincaillerie Édéa'.",
-        image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&fit=crop",
-        link: "https://exemple.com/batimat",
-        linkText: "Découvrir"
-      },
-      {
-        id: 4,
-        title: "Clinique du Littoral",
-        category: "web",
-        description: "Site institutionnel avec prise de rendez-vous en ligne et chatbot WhatsApp.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop",
-        link: "https://exemple.com/clinique",
-        linkText: "Voir le projet"
-      },
-      {
-        id: 5,
-        title: "Résidence Les Palmiers",
-        category: "ecommerce",
-        description: "Plateforme de réservation d'hébergements avec paiement Orange Money et synchronisation calendrier.",
-        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
-        link: "https://exemple.com/palmiers",
-        linkText: "Explorer"
-      },
-      {
-        id: 6,
-        title: "École Excellence",
-        category: "branding",
-        description: "Identité visuelle complète (logo, charte, supports) + site d’inscription en ligne. +35 nouvelles inscriptions.",
-        image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
-        link: "https://exemple.com/ecole",
-        linkText: "Découvrir l'identité"
-      },
-      {
-        id: 7,
-        title: "AgroPlus Cameroun",
-        category: "web",
-        description: "Site vitrine avec catalogue produits agricoles et formulaire de contact optimisé.",
-        image: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=600&h=400&fit=crop",
-        link: "https://exemple.com/agroplus",
+        description: "E-commerce bien-être et santé. Page 1 Google pour 'Empire longrich' en 3 semaines. +200% de commandes en ligne grâce à l'intégration Mobile Money et au SEO local.",
+        image: "images/empire-longrich.png",
+        link: "https://longrich-empire.netlify.app/",
         linkText: "Visiter"
       },
       {
-        id: 8,
-        title: "Beauté & Nature",
+        id: 2,
+        title: "Alexa Shop",
         category: "ecommerce",
-        description: "Boutique de cosmétiques naturels avec paiement Mobile Money et panier d'achat intelligent.",
-        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=400&fit=crop",
-        link: "https://exemple.com/beaute",
-        linkText: "Voir la boutique"
+        description: "Boutique e-commerce mode avec paiement MTN Mobile Money. Page 1 Google en 3 semaines. Interface fluide et catalogue produit dynamique.",
+        image: "images/alexa-shop.png",
+        link: "https://alexa-shop.vercel.app",
+        linkText: "Visiter"
       },
       {
-        id: 9,
-        title: "Construction Habitat",
+        id: 3,
+        title: "Ecohabitat",
         category: "marketing",
-        description: "Campagne Google Ads + SEO local. Triplement des demandes de devis en 2 mois.",
-        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
-        link: "https://exemple.com/habitat",
-        linkText: "Lire l'étude de cas"
+        description: "Site web de rénovation optimisé SEO. +150 demandes de devis reçues par mois. Stratégie de contenu et backlinks locaux.",
+        image: "images/ecohabitat.png",
+        link: "https://ecohabitat-fr.vercel.app/",
+        linkText: "Visiter"
+      },
+      {
+        id: 4,
+        title: "Les délices d'Édéa",
+        category: "web",
+        description: "Site restaurant avec réservations en ligne et chatbot WhatsApp 24h/24. Augmentation de 80% des commandes à emporter.",
+        image: "images/les-delices-d-edea.png",
+        link: "https://les-delices-d-edea.vercel.app",
+        linkText: "Visiter"
+      },
+      {
+        id: 5,
+        title: "Poussin Sarl",
+        category: "web",
+        description: "Site aviculture : réservation de poussins d'un jour en ligne, conseils (support PDF et vidéo). Gestion de stock et alertes SMS.",
+        image: "images/poussin-sarl.png",
+        link: "https://poussin-sarl.vercel.app",
+        linkText: "Visiter"
+      },
+      {
+        id: 6,
+        title: "Ousmashe",
+        category: "ecommerce",
+        description: "Site terroir & saveur. Identité visuelle complète + e-commerce avec commandes via WhatsApp. +150% de commandes en 2 mois.",
+        image: "images/ousmashe.png",
+        link: "https://ousmashe.vercel.app",
+        linkText: "Visiter"
       }
     ];
 
@@ -362,19 +533,19 @@
       grid.innerHTML = filtered.map(projet => `
         <div class="projet-card" data-aos="fade-up" data-aos-delay="100">
           <div class="projet-image">
-            <img src="${projet.image}" alt="${projet.title}">
+            <img src="${projet.image}" alt="${projet.title} - Réalisation KN Web Technology pour une entreprise camerounaise" loading="lazy">
           </div>
           <div class="projet-content">
             <span class="projet-category">${getCategoryLabel(projet.category)}</span>
             <h3 class="projet-title">${projet.title}</h3>
             <p class="projet-description">${projet.description}</p>
-            <a href="${projet.link}" target="_blank" rel="noopener" class="projet-link">${projet.linkText} <i class="fas fa-arrow-right"></i></a>
+            <a href="${projet.link}" target="_blank" rel="noopener noreferrer" class="projet-link">${projet.linkText} <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       `).join("");
     }
 
-    // Filtres
+    // Gestion des filtres
     const filterBtns = document.querySelectorAll(".filter-btn");
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -386,6 +557,19 @@
     });
 
     renderProjets("all");
+
+    // ========== BOUTON RETOUR EN HAUT (AFFICHAGE AU SCROLL) ==========
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
   <script src="js/layout.js"></script>
 </body>
