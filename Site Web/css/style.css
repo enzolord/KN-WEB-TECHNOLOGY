@@ -990,7 +990,7 @@ body::before {
 
 /* Responsive général */
 @media (max-width: 768px) {
-  .logo-circle, .logo-circle-small { width: 80px; height: 80px; }
+  .logo-circle, .logo-circle-small { width: 60px; height: 60px; }
   .brand-name, .footer-brand-name { font-size: 0.85rem; }
   .brand-tagline, .footer-brand-tagline { font-size: 0.6rem; }
   .hero h1 { font-size: 2.5rem; }
