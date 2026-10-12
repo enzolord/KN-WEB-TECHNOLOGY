@@ -1,0 +1,110 @@
+# Configuration Apache pour héberger le site React sur un hébergement mutualisé (LWS, cPanel…)
+# À uploader tel quel à la racine (public_html) avec le contenu de dist/.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Les redirections ci-dessous ne concernent QUE le site principal
+  # (knwebtechnology.com et www.) : les sous-domaines (hosting., invoice.,
+  # nnve., knmarketing.…) ne sont jamais redirigés vers le site principal.
+
+  # 1. Anciennes URL de l'ancien site (.html/.php) → nouvelles pages, en 301
+  #    (Google transfère le référencement ; aucune ancienne page ne tombe en 404).
+  #    Liste à maintenir avec public/_redirects et vercel.json.
+  #    (sur un autre domaine, les 52 règles suivantes sont sautées)
+  RewriteCond %{HTTP_HOST} !^(www\.)?knwebtechnology\.com$ [NC]
+  RewriteRule ^ - [S=52]
+  # (seulement si demandé par le visiteur, pas après la réécriture interne vers index.html)
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteRule ^index\.html$ https://knwebtechnology.com/ [NC,R=301,L]
+  RewriteRule ^index\.php$ https://knwebtechnology.com/ [NC,R=301,L]
+  RewriteRule ^default_index\.html$ https://knwebtechnology.com/ [NC,R=301,L]
+  RewriteRule ^agence\.html$ https://knwebtechnology.com/agence [NC,R=301,L]
+  RewriteRule ^solutions\.html$ https://knwebtechnology.com/solutions [NC,R=301,L]
+  RewriteRule ^projets\.html$ https://knwebtechnology.com/projets [NC,R=301,L]
+  RewriteRule ^blog\.html$ https://knwebtechnology.com/blog [NC,R=301,L]
+  RewriteRule ^contact\.html$ https://knwebtechnology.com/contact [NC,R=301,L]
+  RewriteRule ^cgv\.html$ https://knwebtechnology.com/cgv [NC,R=301,L]
+  RewriteRule ^mentions-legales\.html$ https://knwebtechnology.com/mentions-legales [NC,R=301,L]
+  RewriteRule ^politique-confidentialite\.html$ https://knwebtechnology.com/politique-confidentialite [NC,R=301,L]
+  RewriteRule ^contact\.php$ https://knwebtechnology.com/contact [NC,R=301,L]
+  RewriteRule ^process$ https://knwebtechnology.com/comment-nous-travaillons [NC,R=301,L]
+  RewriteRule ^process\.html$ https://knwebtechnology.com/comment-nous-travaillons [NC,R=301,L]
+  RewriteRule ^comment-nous-travaillons\.html$ https://knwebtechnology.com/comment-nous-travaillons [NC,R=301,L]
+  RewriteRule ^Mention\ legale\.html$ https://knwebtechnology.com/mentions-legales [NC,R=301,L]
+  RewriteRule ^politique\ de\ confidentialite\.html$ https://knwebtechnology.com/politique-confidentialite [NC,R=301,L]
+  RewriteRule ^site-web-vitrine$ https://knwebtechnology.com/solutions/site-web-vitrine [NC,R=301,L]
+  RewriteRule ^site-web-vitrine\.html$ https://knwebtechnology.com/solutions/site-web-vitrine [NC,R=301,L]
+  RewriteRule ^whatsapp-business-pro$ https://knwebtechnology.com/solutions/whatsapp-business-pro [NC,R=301,L]
+  RewriteRule ^whatsapp-business-pro\.html$ https://knwebtechnology.com/solutions/whatsapp-business-pro [NC,R=301,L]
+  RewriteRule ^ecommerce-mobile-money$ https://knwebtechnology.com/solutions/ecommerce-mobile-money [NC,R=301,L]
+  RewriteRule ^ecommerce-mobile-money\.html$ https://knwebtechnology.com/solutions/ecommerce-mobile-money [NC,R=301,L]
+  RewriteRule ^referencement-google$ https://knwebtechnology.com/solutions/referencement-google [NC,R=301,L]
+  RewriteRule ^referencement-google\.html$ https://knwebtechnology.com/solutions/referencement-google [NC,R=301,L]
+  RewriteRule ^branding-identite$ https://knwebtechnology.com/solutions/branding-identite [NC,R=301,L]
+  RewriteRule ^branding-identite\.html$ https://knwebtechnology.com/solutions/branding-identite [NC,R=301,L]
+  RewriteRule ^automatisation-ia$ https://knwebtechnology.com/solutions/automatisation-ia [NC,R=301,L]
+  RewriteRule ^automatisation-ia\.html$ https://knwebtechnology.com/solutions/automatisation-ia [NC,R=301,L]
+  RewriteRule ^hebergement-infra$ https://knwebtechnology.com/solutions/hebergement-infra [NC,R=301,L]
+  RewriteRule ^hebergement-infra\.html$ https://knwebtechnology.com/solutions/hebergement-infra [NC,R=301,L]
+  RewriteRule ^maintenance-support$ https://knwebtechnology.com/solutions/maintenance-support [NC,R=301,L]
+  RewriteRule ^maintenance-support\.html$ https://knwebtechnology.com/solutions/maintenance-support [NC,R=301,L]
+  RewriteRule ^consulting-audit$ https://knwebtechnology.com/solutions/consulting-audit [NC,R=301,L]
+  RewriteRule ^consulting-audit\.html$ https://knwebtechnology.com/solutions/consulting-audit [NC,R=301,L]
+  RewriteRule ^app-web$ https://knwebtechnology.com/solutions/app-web [NC,R=301,L]
+  RewriteRule ^app-web\.html$ https://knwebtechnology.com/solutions/app-web [NC,R=301,L]
+  RewriteRule ^applications-web-saas$ https://knwebtechnology.com/solutions/app-web [NC,R=301,L]
+  RewriteRule ^applications-web-saas\.html$ https://knwebtechnology.com/solutions/app-web [NC,R=301,L]
+  RewriteRule ^communication$ https://knwebtechnology.com/solutions/branding-identite [NC,R=301,L]
+  RewriteRule ^communication\.html$ https://knwebtechnology.com/solutions/branding-identite [NC,R=301,L]
+  RewriteRule ^service-web\.html$ https://knwebtechnology.com/solutions/site-web-vitrine [NC,R=301,L]
+  RewriteRule ^service-seo\.html$ https://knwebtechnology.com/solutions/referencement-google [NC,R=301,L]
+  RewriteRule ^service-ecommerce\.html$ https://knwebtechnology.com/solutions/ecommerce-mobile-money [NC,R=301,L]
+  RewriteRule ^service-ia\.html$ https://knwebtechnology.com/solutions/automatisation-ia [NC,R=301,L]
+  RewriteRule ^service-bots\.html$ https://knwebtechnology.com/solutions/whatsapp-business-pro [NC,R=301,L]
+  RewriteRule ^service-design\.html$ https://knwebtechnology.com/solutions/branding-identite [NC,R=301,L]
+  RewriteRule ^service-mobile\.html$ https://knwebtechnology.com/solutions/app-web [NC,R=301,L]
+  RewriteRule ^service-digital\.html$ https://knwebtechnology.com/solutions/consulting-audit [NC,R=301,L]
+  RewriteRule ^materiel\.html$ https://knwebtechnology.com/solutions [NC,R=301,L]
+  RewriteRule ^templates\.html$ https://knwebtechnology.com/projets [NC,R=301,L]
+  RewriteRule ^assistant\.html$ https://knwebtechnology.com/ [NC,R=301,L]
+
+  # 2. Adresse unique : https://knwebtechnology.com (sans www), comme les
+  #    balises canonical de l'ancien site → www et http redirigés en 301.
+  RewriteCond %{HTTP_HOST} ^www\.knwebtechnology\.com$ [NC]
+  RewriteRule ^ https://knwebtechnology.com%{REQUEST_URI} [L,R=301]
+
+  # Forcer HTTPS (tous les domaines)
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 3. Application monopage : toute URL qui n'est pas un vrai fichier renvoie index.html
+  # (indispensable pour que /blog/mon-article ou /admin fonctionnent au rechargement)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# Cache : les fichiers de /assets ont un nom unique à chaque build → cache 1 an.
+# index.html ne doit jamais être mis en cache, sinon les mises à jour n'apparaissent pas.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

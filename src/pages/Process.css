@@ -1,0 +1,46 @@
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: transform 0.35s var(--ease-out), border-color 0.35s;
+}
+.step-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-strong);
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.6rem;
+}
+.step-title {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.agency-brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+@media (max-width: 800px) {
+  .agency-brief-grid {
+    grid-template-columns: 1fr;
+  }
+}

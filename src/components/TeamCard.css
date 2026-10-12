@@ -1,0 +1,127 @@
+/* Team card — same anatomy as ProjectCard: portrait with zoom, social links
+   as glass buttons over the photo, uppercase role as eyebrow, clamped bio. */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+
+.team-card-media {
+  position: relative;
+  aspect-ratio: 4/4.6;
+  overflow: hidden;
+  background: var(--bg-alt);
+  flex-shrink: 0;
+}
+.team-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s var(--ease-out);
+}
+.team-card:hover .team-card-media img {
+  transform: scale(1.05);
+}
+
+/* Soft scrim so the social buttons stay legible on any photo */
+.team-card-media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(5, 5, 15, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.team-card-social {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  display: flex;
+  gap: 0.45rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+.team-card-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(5, 5, 15, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s var(--ease-out);
+}
+.team-card-social a:hover {
+  background: var(--primary);
+  transform: scale(1.08);
+}
+.team-card-social a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.team-card:hover .team-card-media::after,
+.team-card:focus-within .team-card-media::after {
+  opacity: 1;
+}
+.team-card:hover .team-card-social,
+.team-card:focus-within .team-card-social {
+  opacity: 1;
+  transform: none;
+}
+
+/* Touch screens have no hover: keep the links visible */
+@media (hover: none) {
+  .team-card-media::after,
+  .team-card-social {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.team-card-body {
+  flex: 1;
+  padding: 1.35rem 1.4rem 1.6rem;
+}
+
+.team-card-role {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.team-card-body h3 {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0.45rem 0 0.55rem;
+}
+
+.team-card-body p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-card-media img,
+  .team-card-social {
+    transition: none;
+  }
+}

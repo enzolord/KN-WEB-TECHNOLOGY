@@ -1,0 +1,66 @@
+/* Filter chip styles live in src/styles/utilities.css (shared with Blog.jsx) */
+
+.projects-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+/* The 704.5 x 484.34px exact card size only fits two-up once the viewport is
+   wide enough to hold both cards plus gap without overflowing; below that we
+   fall back to a fluid 2-column (then 1-column) grid so nothing ever scrolls
+   horizontally or gets clipped. */
+@media (min-width: 1560px) {
+  .projects-grid-2col {
+    grid-template-columns: repeat(2, 704.5px);
+  }
+}
+
+@media (max-width: 980px) {
+  .projects-grid-2col {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.projects-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.75rem;
+}
+
+.projects-page-nav,
+.projects-page-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.projects-page-nav:hover:not(:disabled),
+.projects-page-num:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.projects-page-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.projects-page-num.is-active {
+  background: var(--grad-brand);
+  border-color: transparent;
+  color: #fff;
+}

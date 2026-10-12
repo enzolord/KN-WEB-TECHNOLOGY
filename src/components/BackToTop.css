@@ -1,0 +1,27 @@
+.back-to-top-float {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px -8px rgba(15, 18, 45, 0.3);
+  z-index: 880;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 640px) {
+  .back-to-top-float {
+    width: 40px;
+    height: 40px;
+    bottom: 18px;
+    left: 18px;
+  }
+}

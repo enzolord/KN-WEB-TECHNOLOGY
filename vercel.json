@@ -1,0 +1,298 @@
+{
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/seo?path=/sitemap.xml"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/api/seo?path=/blog/:slug"
+    },
+    {
+      "source": "/solutions/:slug",
+      "destination": "/api/seo?path=/solutions/:slug"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.knwebtechnology.com"
+        }
+      ],
+      "destination": "https://knwebtechnology.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/default_index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/agence.html",
+      "destination": "/agence",
+      "permanent": true
+    },
+    {
+      "source": "/solutions.html",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/projets.html",
+      "destination": "/projets",
+      "permanent": true
+    },
+    {
+      "source": "/blog.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/cgv.html",
+      "destination": "/cgv",
+      "permanent": true
+    },
+    {
+      "source": "/mentions-legales.html",
+      "destination": "/mentions-legales",
+      "permanent": true
+    },
+    {
+      "source": "/politique-confidentialite.html",
+      "destination": "/politique-confidentialite",
+      "permanent": true
+    },
+    {
+      "source": "/contact.php",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/process",
+      "destination": "/comment-nous-travaillons",
+      "permanent": true
+    },
+    {
+      "source": "/process.html",
+      "destination": "/comment-nous-travaillons",
+      "permanent": true
+    },
+    {
+      "source": "/comment-nous-travaillons.html",
+      "destination": "/comment-nous-travaillons",
+      "permanent": true
+    },
+    {
+      "source": "/Mention%20legale.html",
+      "destination": "/mentions-legales",
+      "permanent": true
+    },
+    {
+      "source": "/politique%20de%20confidentialite.html",
+      "destination": "/politique-confidentialite",
+      "permanent": true
+    },
+    {
+      "source": "/site-web-vitrine",
+      "destination": "/solutions/site-web-vitrine",
+      "permanent": true
+    },
+    {
+      "source": "/site-web-vitrine.html",
+      "destination": "/solutions/site-web-vitrine",
+      "permanent": true
+    },
+    {
+      "source": "/whatsapp-business-pro",
+      "destination": "/solutions/whatsapp-business-pro",
+      "permanent": true
+    },
+    {
+      "source": "/whatsapp-business-pro.html",
+      "destination": "/solutions/whatsapp-business-pro",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-mobile-money",
+      "destination": "/solutions/ecommerce-mobile-money",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-mobile-money.html",
+      "destination": "/solutions/ecommerce-mobile-money",
+      "permanent": true
+    },
+    {
+      "source": "/referencement-google",
+      "destination": "/solutions/referencement-google",
+      "permanent": true
+    },
+    {
+      "source": "/referencement-google.html",
+      "destination": "/solutions/referencement-google",
+      "permanent": true
+    },
+    {
+      "source": "/branding-identite",
+      "destination": "/solutions/branding-identite",
+      "permanent": true
+    },
+    {
+      "source": "/branding-identite.html",
+      "destination": "/solutions/branding-identite",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation-ia",
+      "destination": "/solutions/automatisation-ia",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation-ia.html",
+      "destination": "/solutions/automatisation-ia",
+      "permanent": true
+    },
+    {
+      "source": "/hebergement-infra",
+      "destination": "/solutions/hebergement-infra",
+      "permanent": true
+    },
+    {
+      "source": "/hebergement-infra.html",
+      "destination": "/solutions/hebergement-infra",
+      "permanent": true
+    },
+    {
+      "source": "/maintenance-support",
+      "destination": "/solutions/maintenance-support",
+      "permanent": true
+    },
+    {
+      "source": "/maintenance-support.html",
+      "destination": "/solutions/maintenance-support",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-audit",
+      "destination": "/solutions/consulting-audit",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-audit.html",
+      "destination": "/solutions/consulting-audit",
+      "permanent": true
+    },
+    {
+      "source": "/app-web",
+      "destination": "/solutions/app-web",
+      "permanent": true
+    },
+    {
+      "source": "/app-web.html",
+      "destination": "/solutions/app-web",
+      "permanent": true
+    },
+    {
+      "source": "/applications-web-saas",
+      "destination": "/solutions/app-web",
+      "permanent": true
+    },
+    {
+      "source": "/applications-web-saas.html",
+      "destination": "/solutions/app-web",
+      "permanent": true
+    },
+    {
+      "source": "/communication",
+      "destination": "/solutions/branding-identite",
+      "permanent": true
+    },
+    {
+      "source": "/communication.html",
+      "destination": "/solutions/branding-identite",
+      "permanent": true
+    },
+    {
+      "source": "/service-web.html",
+      "destination": "/solutions/site-web-vitrine",
+      "permanent": true
+    },
+    {
+      "source": "/service-seo.html",
+      "destination": "/solutions/referencement-google",
+      "permanent": true
+    },
+    {
+      "source": "/service-ecommerce.html",
+      "destination": "/solutions/ecommerce-mobile-money",
+      "permanent": true
+    },
+    {
+      "source": "/service-ia.html",
+      "destination": "/solutions/automatisation-ia",
+      "permanent": true
+    },
+    {
+      "source": "/service-bots.html",
+      "destination": "/solutions/whatsapp-business-pro",
+      "permanent": true
+    },
+    {
+      "source": "/service-design.html",
+      "destination": "/solutions/branding-identite",
+      "permanent": true
+    },
+    {
+      "source": "/service-mobile.html",
+      "destination": "/solutions/app-web",
+      "permanent": true
+    },
+    {
+      "source": "/service-digital.html",
+      "destination": "/solutions/consulting-audit",
+      "permanent": true
+    },
+    {
+      "source": "/materiel.html",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/templates.html",
+      "destination": "/projets",
+      "permanent": true
+    },
+    {
+      "source": "/assistant.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/CGV.html",
+      "destination": "/cgv",
+      "permanent": true
+    }
+  ]
+}

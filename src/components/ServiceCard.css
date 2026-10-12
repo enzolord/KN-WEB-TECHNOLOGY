@@ -1,0 +1,155 @@
+/* Service card — aligned on the ProjectCard redesign:
+   flex column so every card in a row has its footer on the same baseline,
+   clamped description, whole card clickable via the stretched title link. */
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.6rem 1.4rem;
+  overflow: hidden;
+}
+
+/* Brand accent line that draws in on hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--grad-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.service-card:hover::before,
+.service-card:focus-within::before {
+  transform: scaleX(1);
+}
+
+.service-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.35rem;
+}
+
+.service-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--grad-brand-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s var(--ease-out), background 0.4s, color 0.4s;
+}
+.service-card:hover .service-card-icon {
+  background: var(--grad-brand);
+  color: #fff;
+  transform: scale(1.06) rotate(-4deg);
+}
+
+.service-card-number {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  padding-top: 0.15rem;
+}
+
+.service-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-body h3 {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+
+.service-card-link {
+  color: inherit;
+  transition: color 0.25s;
+}
+.service-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+.service-card:hover .service-card-link {
+  color: var(--primary);
+}
+.service-card-link:focus-visible {
+  outline: none;
+}
+.service-card-link:focus-visible::after {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+  border-radius: var(--radius);
+}
+
+.service-card-body p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.service-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.service-card-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.35;
+  min-width: 0;
+}
+.service-card-price small {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.service-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  transition: gap 0.3s var(--ease-out);
+}
+.service-card:hover .service-card-cta {
+  gap: 0.65rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card::before,
+  .service-card-icon,
+  .service-card-cta {
+    transition: none;
+  }
+}

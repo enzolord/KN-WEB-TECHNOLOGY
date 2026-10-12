@@ -1,0 +1,47 @@
+.announcement-bar {
+  background: var(--grad-brand);
+  color: #fff;
+  position: relative;
+  z-index: 1001;
+}
+
+.announcement-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.6rem clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.announcement-inner p {
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.announcement-link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #fff;
+}
+
+.announcement-inner button {
+  position: absolute;
+  right: clamp(0.75rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

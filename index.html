@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="theme-color" content="#05050f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfe" media="(prefers-color-scheme: light)" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>KN WEB &amp; TECHNOLOGY — Agence Digitale Cameroun</title>
+    <meta
+      name="description"
+      content="Agence digitale basée à Édéa, Cameroun, avec interventions à Douala et Yaoundé. Création de sites web, e-commerce Mobile Money, WhatsApp Business, référencement Google. Livraison 3–5 jours, devis gratuit."
+    />
+
+    <!-- Applies the saved theme (and language) before React mounts, avoiding a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('kn-theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        // Same idea for the UI language (FR by default, EN if chosen before)
+        try {
+          if (localStorage.getItem('kn-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hb-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.hb-orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.55), transparent 70%);
+  animation: hbDrift1 16s ease-in-out infinite;
+}
+.hb-orb-2 {
+  width: 360px;
+  height: 360px;
+  top: 10%;
+  right: -120px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.45), transparent 70%);
+  animation: hbDrift2 20s ease-in-out infinite;
+}
+.hb-orb-3 {
+  width: 280px;
+  height: 280px;
+  bottom: -120px;
+  left: 30%;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.4), transparent 70%);
+  animation: hbDrift3 18s ease-in-out infinite;
+}
+
+.hb-grid {
+  position: absolute;
+  inset: -2px;
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
+  opacity: 0.5;
+}
+
+.hb-ring {
+  position: absolute;
+  top: 50%;
+  right: 6%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px dashed var(--border-strong);
+  opacity: 0.4;
+  transform: translateY(-50%);
+  animation: hbSpin 40s linear infinite;
+}
+.hb-ring::before {
+  content: '';
+  position: absolute;
+  inset: 34px;
+  border-radius: 50%;
+  border: 1px dashed var(--border-strong);
+}
+
+@keyframes hbDrift1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+@keyframes hbDrift2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 40px) scale(1.1);
+  }
+}
+@keyframes hbDrift3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(26px, -24px) scale(1.06);
+  }
+}
+@keyframes hbSpin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .hb-ring {
+    display: none;
+  }
+  .hb-orb {
+    filter: blur(44px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hb-orb,
+  .hb-ring {
+    animation: none;
+  }
+}
