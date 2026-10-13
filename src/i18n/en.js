@@ -44,6 +44,7 @@ const en = {
     freeQuote: 'Free quote',
     allSolutions: 'See all solutions',
     allSolutionsShort: 'All solutions',
+    darkMode: 'Dark mode',
   },
 
   footer: {

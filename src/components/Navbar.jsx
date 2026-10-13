@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaXmark, FaChevronDown, FaArrowRight } from 'react-icons/fa6';
+import { FaBars, FaXmark, FaChevronDown, FaChevronRight, FaArrowRight } from 'react-icons/fa6';
 import { mainNav } from '../data/nav';
 import { useServices } from '../hooks/useContent';
 import { ServiceIcon } from './IconMap';
@@ -35,8 +35,10 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    document.body.classList.toggle('mobile-menu-open', mobileOpen);
     return () => {
       document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
     };
   }, [mobileOpen]);
 
@@ -132,59 +134,92 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            key="backdrop"
+            className="mobile-backdrop"
+            aria-hidden="true"
+            onClick={() => setMobileOpen(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          />
+        )}
+        {mobileOpen && (
+          <motion.div
+            key="panel"
             className="mobile-panel"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="container mobile-panel-inner">
-              {mainNav.map((item) =>
-                item.megaMenu ? (
-                  <div key={item.path} className="mobile-solutions-group">
-                    <button
-                      type="button"
-                      className={`mobile-link mobile-solutions-trigger ${mobileSolutionsOpen ? 'is-open' : ''}`}
-                      onClick={() => setMobileSolutionsOpen((v) => !v)}
-                      aria-expanded={mobileSolutionsOpen}
-                    >
-                      {t(`nav.${item.key}`)}
-                      <FaChevronDown size={12} className="mobile-solutions-chevron" />
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {mobileSolutionsOpen && (
-                        <motion.div
-                          className="mobile-services"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                          {services.map((s) => (
-                            <Link key={s.slug} to={`/solutions/${s.slug}`} className="mobile-service-link">
-                              <ServiceIcon name={s.icon} size={13} /> {s.title}
+            <nav className="container mobile-panel-inner" aria-label={t('a11y.mainNav')}>
+              <ul className="mobile-nav-list">
+                {mainNav.map((item) =>
+                  item.megaMenu ? (
+                    <li key={item.path} className="mobile-solutions-group">
+                      <button
+                        type="button"
+                        className={`mobile-link mobile-solutions-trigger ${mobileSolutionsOpen ? 'is-open' : ''} ${
+                          location.pathname.startsWith('/solutions') ? 'is-active' : ''
+                        }`}
+                        onClick={() => setMobileSolutionsOpen((v) => !v)}
+                        aria-expanded={mobileSolutionsOpen}
+                      >
+                        <span>{t(`nav.${item.key}`)}</span>
+                        <FaChevronDown size={13} className="mobile-link-icon mobile-solutions-chevron" />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {mobileSolutionsOpen && (
+                          <motion.div
+                            className="mobile-services"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                          >
+                            <div className="mobile-services-grid">
+                              {services.map((s) => (
+                                <Link key={s.slug} to={`/solutions/${s.slug}`} className="mobile-service-link">
+                                  <span className="mobile-service-icon">
+                                    <ServiceIcon name={s.icon} size={14} />
+                                  </span>
+                                  <span className="mobile-service-title">{s.title}</span>
+                                </Link>
+                              ))}
+                            </div>
+                            <Link to="/solutions" className="mobile-service-all">
+                              {t('nav.allSolutionsShort')} <FaArrowRight size={12} />
                             </Link>
-                          ))}
-                          <Link to="/solutions" className="mobile-service-link mobile-service-all">
-                            {t('nav.allSolutionsShort')} <FaArrowRight size={11} />
-                          </Link>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <NavLink key={item.path} to={item.path} className="mobile-link">
-                    {t(`nav.${item.key}`)}
-                  </NavLink>
-                )
-              )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  ) : (
+                    <li key={item.path}>
+                      <NavLink
+                        to={item.path}
+                        end={item.path === '/'}
+                        className={({ isActive }) => `mobile-link ${isActive ? 'is-active' : ''}`}
+                      >
+                        <span>{t(`nav.${item.key}`)}</span>
+                        <FaChevronRight size={12} className="mobile-link-icon" />
+                      </NavLink>
+                    </li>
+                  )
+                )}
+              </ul>
+
               <div className="mobile-panel-footer">
-                <ThemeToggle />
+                <div className="mobile-theme-row">
+                  <span>{t('nav.darkMode')}</span>
+                  <ThemeToggle />
+                </div>
                 <Link to="/contact" className="btn btn-primary btn-block">
-                  {t('nav.freeQuote')}
+                  {t('nav.freeQuote')} <FaArrowRight size={13} />
                 </Link>
               </div>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

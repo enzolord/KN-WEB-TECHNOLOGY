@@ -48,6 +48,7 @@ const fr = {
     freeQuote: 'Devis gratuit',
     allSolutions: 'Voir toutes les solutions',
     allSolutionsShort: 'Toutes les solutions',
+    darkMode: 'Mode sombre',
   },
 
   footer: {
