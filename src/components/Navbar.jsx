@@ -114,6 +114,11 @@ export default function Navbar() {
           <Link to="/contact" className="btn btn-primary btn-sm hide-mobile">
             {t('nav.freeQuote')}
           </Link>
+          {/* Mobile: language + theme stay visible next to the burger */}
+          <div className="navbar-mobile-quick">
+            <LanguageSwitcher />
+            <ThemeToggle compact />
+          </div>
           <button
             className="mobile-toggle"
             onClick={() => setMobileOpen((v) => !v)}
@@ -175,8 +180,6 @@ export default function Navbar() {
                 )
               )}
               <div className="mobile-panel-footer">
-                <LanguageSwitcher />
-                <ThemeToggle />
                 <Link to="/contact" className="btn btn-primary btn-block">
                   {t('nav.freeQuote')}
                 </Link>

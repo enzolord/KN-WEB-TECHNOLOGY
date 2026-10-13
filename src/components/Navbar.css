@@ -56,9 +56,28 @@
   color: transparent;
 }
 
-@media (max-width: 420px) {
+/* Phones: the header also holds FR/EN + theme + burger, so the brand
+   name goes on two lines, and only the logo mark remains on very small screens. */
+@media (max-width: 480px) {
+  .navbar .brand-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2em;
+  }
   .brand-name {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+  }
+  .navbar-actions,
+  .navbar-mobile-quick {
+    gap: 0.45rem;
+  }
+  .navbar-inner {
+    gap: 0.75rem;
+  }
+}
+@media (max-width: 349px) {
+  .navbar .brand-text {
+    display: none;
   }
 }
 
@@ -163,6 +182,12 @@
   align-items: center;
   gap: 0.7rem;
   flex-shrink: 0;
+}
+
+.navbar-mobile-quick {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .mobile-toggle {
@@ -272,6 +297,9 @@
     display: none;
   }
   .mobile-toggle {
+    display: flex;
+  }
+  .navbar-mobile-quick {
     display: flex;
   }
   .hide-mobile {

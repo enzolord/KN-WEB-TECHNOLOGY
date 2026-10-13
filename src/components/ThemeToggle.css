@@ -39,3 +39,26 @@
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #fff;
 }
+
+/* Compact variant (mobile header): round icon button, same size as the burger */
+.theme-toggle-compact {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.theme-toggle-compact:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.theme-toggle-compact:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
