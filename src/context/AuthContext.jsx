@@ -54,10 +54,21 @@ export function AuthProvider({ children }) {
             '(Supabase → Project Settings → API → Project URL).',
         };
       }
-      if (/invalid login credentials/i.test(error.message || '')) {
-        return { error: 'Email ou mot de passe incorrect.' };
-      }
-      return { error: error.message };
+      const MESSAGES = {
+        invalid_credentials: 'Email ou mot de passe incorrect.',
+        email_not_confirmed:
+          "Cet email n'est pas confirmé. Dans Supabase → Authentication → Users, confirmez l'utilisateur (ou recréez-le avec « Auto Confirm User »).",
+        email_provider_disabled:
+          'La connexion par email est désactivée dans Supabase. Activez-la : Authentication → Sign In / Providers → Email (laissez seulement « Allow new users to sign up » désactivé).',
+        user_banned: 'Ce compte est bloqué dans Supabase (Authentication → Users).',
+        validation_failed: "L'email ou le mot de passe n'a pas un format valide.",
+        over_request_rate_limit: 'Trop de tentatives. Patientez quelques minutes avant de réessayer.',
+      };
+      if (MESSAGES[error.code]) return { error: MESSAGES[error.code] };
+      if (/invalid login credentials/i.test(error.message || '')) return { error: MESSAGES.invalid_credentials };
+      if (/email logins are disabled/i.test(error.message || '')) return { error: MESSAGES.email_provider_disabled };
+      if (/email not confirmed/i.test(error.message || '')) return { error: MESSAGES.email_not_confirmed };
+      return { error: `${error.message}${error.code ? ` (code : ${error.code})` : ''}` };
     } catch {
       return { error: "Impossible de joindre Supabase. Vérifiez votre connexion internet et l'adresse VITE_SUPABASE_URL." };
     }

@@ -28,9 +28,10 @@ affichera un écran d'installation tant que Supabase n'est pas connecté (étape
    tables, la sécurité RLS, et le bucket de stockage `media`).
 3. Exécutez ensuite `supabase/seed.sql` dans le même éditeur : il remplit le
    dashboard avec le contenu réel du site (vous pourrez tout modifier ensuite).
-4. Dans **Authentication → Providers → Email**, désactivez
-   « Allow new users to sign up » (le dashboard n'a pas de page d'inscription
-   publique — c'est voulu).
+4. Dans **Authentication → Sign In / Providers**, laissez le fournisseur
+   **Email activé** (sinon la connexion admin échoue avec une erreur 422) et
+   désactivez seulement « Allow new users to sign up » (le dashboard n'a pas de
+   page d'inscription publique — c'est voulu).
 5. Dans **Authentication → Users → Add user**, créez votre propre compte
    (email + mot de passe) : c'est votre identifiant pour vous connecter à
    `/admin`.
