@@ -43,8 +43,24 @@ export function AuthProvider({ children }) {
       return { error: "Supabase n'est pas encore configuré (voir .env)." };
     }
     const supabase = await getSupabase();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error?.message || null };
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (!error) return { error: null };
+      // Network failure (wrong Supabase URL, offline, blocked…) rather than bad credentials
+      if (error.name === 'AuthRetryableFetchError' || /fetch|network/i.test(error.message || '')) {
+        return {
+          error:
+            "Impossible de joindre Supabase. Vérifiez votre connexion internet et l'adresse VITE_SUPABASE_URL " +
+            '(Supabase → Project Settings → API → Project URL).',
+        };
+      }
+      if (/invalid login credentials/i.test(error.message || '')) {
+        return { error: 'Email ou mot de passe incorrect.' };
+      }
+      return { error: error.message };
+    } catch {
+      return { error: "Impossible de joindre Supabase. Vérifiez votre connexion internet et l'adresse VITE_SUPABASE_URL." };
+    }
   }, []);
 
   const signOut = useCallback(async () => {

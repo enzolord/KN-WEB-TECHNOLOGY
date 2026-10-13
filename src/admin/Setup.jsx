@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { supabaseConfigError } from '../lib/supabaseClient';
 import './admin.css';
 
 export default function Setup() {
@@ -6,6 +7,14 @@ export default function Setup() {
     <div className="admin-auth-screen">
       <div className="admin-auth-card admin-setup-card">
         <h2 style={{ marginBottom: '0.5rem' }}>Connectez Supabase</h2>
+        {supabaseConfigError && (
+          <div className="form-status error" style={{ marginBottom: '1rem' }}>
+            <span>
+              <strong>Adresse Supabase incorrecte.</strong> {supabaseConfigError} Après correction (fichier{' '}
+              <code>.env</code> ou variables de l'hébergeur), refaites un build et redéployez.
+            </span>
+          </div>
+        )}
         <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
           Le tableau de bord a besoin d'un projet Supabase pour stocker le contenu (blog, services,
           équipe, bannières…). En attendant, le site public fonctionne déjà avec son contenu par
