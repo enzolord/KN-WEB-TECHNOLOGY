@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand-col">
           <Link to="/" className="brand" aria-label={t('a11y.homeLink')}>
-            <img src={logoIcon} alt="" width="34" height="34" />
+            <img src={logoIcon} alt="" width="40" height="40" />
             <span className="brand-text">
               <span className="brand-name">KN WEB</span>
               <span className="brand-name">TECHNOLOGY</span>
