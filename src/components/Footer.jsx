@@ -25,7 +25,7 @@ export default function Footer() {
             <img src={logoIcon} alt="" width="40" height="40" />
             <span className="brand-text">
               <span className="brand-name">KN WEB</span>
-              <span className="brand-name">TECHNOLOGY</span>
+              <span className="brand-name">&amp; TECHNOLOGY</span>
             </span>
           </Link>
           <p className="footer-desc">{t('footer.desc')}</p>

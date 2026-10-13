@@ -47,7 +47,7 @@ export default function Navbar() {
           <img src={logoIcon} alt="" width="40" height="40" className="brand-icon" />
           <span className="brand-text">
             <span className="brand-name">KN WEB</span>
-            <span className="brand-name">TECHNOLOGY</span>
+            <span className="brand-name">&amp; TECHNOLOGY</span>
           </span>
         </Link>
 
@@ -114,10 +114,9 @@ export default function Navbar() {
           <Link to="/contact" className="btn btn-primary btn-sm hide-mobile">
             {t('nav.freeQuote')}
           </Link>
-          {/* Mobile: language + theme stay visible next to the burger */}
+          {/* Mobile: the language switch stays visible next to the burger; the theme toggle is in the menu */}
           <div className="navbar-mobile-quick">
             <LanguageSwitcher />
-            <ThemeToggle compact />
           </div>
           <button
             className="mobile-toggle"
@@ -180,6 +179,7 @@ export default function Navbar() {
                 )
               )}
               <div className="mobile-panel-footer">
+                <ThemeToggle />
                 <Link to="/contact" className="btn btn-primary btn-block">
                   {t('nav.freeQuote')}
                 </Link>

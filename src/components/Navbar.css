@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  gap: 0.4em;
+  gap: 0.28em;
   line-height: 1;
   font-family: var(--font-display);
   white-space: nowrap;
@@ -56,28 +56,46 @@
   color: transparent;
 }
 
-/* Phones: the header also holds FR/EN + theme + burger, so the brand
-   name goes on two lines, and only the logo mark remains on very small screens. */
+/* Phones: logo + full name + FR/EN + burger on a single line.
+   Sizes scale with the screen width so everything fits down to 320px. */
 @media (max-width: 480px) {
-  .navbar .brand-text {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2em;
+  .navbar-inner {
+    gap: 0.5rem;
+  }
+  .brand {
+    gap: 0.4rem;
+    min-width: 0;
+  }
+  .brand-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .brand-text {
+    gap: 0.26em;
   }
   .brand-name {
-    font-size: 0.8rem;
+    font-size: clamp(0.66rem, 3.3vw, 0.84rem);
   }
   .navbar-actions,
   .navbar-mobile-quick {
-    gap: 0.45rem;
+    gap: 0.4rem;
   }
-  .navbar-inner {
-    gap: 0.75rem;
+  .navbar-mobile-quick .lang-switch {
+    --lang-btn-w: 26px;
+    height: 26px;
+    padding: 2px;
   }
-}
-@media (max-width: 349px) {
-  .navbar .brand-text {
-    display: none;
+  .navbar-mobile-quick .lang-switch-thumb {
+    top: 2px;
+    left: 2px;
+    height: 20px;
+  }
+  .navbar-mobile-quick .lang-switch-btn {
+    font-size: 0.6rem;
+  }
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
   }
 }
 
