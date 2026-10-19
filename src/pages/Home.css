@@ -161,6 +161,26 @@
   opacity: 1;
 }
 
+/* Desktop: bigger screenshots, aligned with the headline rather than
+   centred on the whole text column (which pushed them too low). */
+@media (min-width: 961px) {
+  .hero-media {
+    align-self: start;
+    margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  }
+  .frame-bar {
+    height: 44px;
+  }
+  .frame-url {
+    font-size: 0.78rem;
+  }
+}
+@media (min-width: 1200px) {
+  .hero-inner {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
 /* Mobile / tablet: screenshots move up, right under the intro text,
    instead of sitting below the buttons and the stats. */
 @media (max-width: 960px) {
