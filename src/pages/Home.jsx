@@ -49,6 +49,22 @@ export default function Home() {
   const agencyValues = t('home.agency.values');
   const activeFrame = useFrameRotator(heroImages.length);
 
+  // Address shown in the mock browser bar: the project's real domain when the
+  // caption matches a project, otherwise the caption itself.
+  const normalize = (s = '') => s.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g, '');
+  const frameLabel = (frame) => {
+    if (!frame) return '';
+    const match = projects.find((p) => p.link && normalize(p.title) === normalize(frame.caption));
+    if (match) {
+      try {
+        return new URL(match.link).hostname;
+      } catch {
+        /* ignore */
+      }
+    }
+    return frame.caption || '';
+  };
+
   const featuredProjects = projects.slice(0, 3);
   const latestArticles = articles.slice(0, 3);
 
@@ -79,20 +95,20 @@ export default function Home() {
         <HeroBackdrop />
         <div className="container hero-inner">
           <div className="hero-text">
-            <Reveal>
+            <Reveal className="hero-t-label">
               <div className="hero-label">
                 <span className="hero-dot" /> {t('home.hero.label')}
               </div>
             </Reveal>
-            <Reveal delay={0.08}>
+            <Reveal delay={0.08} className="hero-t-title">
               <h1>
                 <Rich text={t('home.hero.title')} highlight="em" />
               </h1>
             </Reveal>
-            <Reveal delay={0.16}>
+            <Reveal delay={0.16} className="hero-t-sub">
               <p className="hero-sub">{t('home.hero.sub')}</p>
             </Reveal>
-            <Reveal delay={0.24}>
+            <Reveal delay={0.24} className="hero-t-btns">
               <div className="hero-btns">
                 <a href="#services" className="btn btn-primary">
                   <FaArrowDown size={13} /> {t('home.hero.ctaServices')}
@@ -103,7 +119,7 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.32}>
+            <Reveal delay={0.32} className="hero-t-stats">
               <div className="stats-bar">
                 <StatCounter value={services.length || 9} label={t('home.hero.stats.solutions')} />
                 <StatCounter value={6} label={t('home.hero.stats.cities')} />
@@ -113,14 +129,28 @@ export default function Home() {
             </Reveal>
           </div>
 
+          {/* Project screenshots in a browser window, shown in full (no zoom/crop
+              of the sides). On mobile this sits right under the intro text. */}
           <Reveal direction="left" delay={0.2} className="hero-media">
             <div className="image-frame">
+              <div className="frame-bar" aria-hidden="true">
+                <span className="frame-dots">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="frame-url">{frameLabel(heroImages[activeFrame])}</span>
+              </div>
               <div className="frame-inner">
                 {heroImages.map((frame, i) => (
-                  <div
+                  <img
                     key={frame.id}
+                    src={frame.image}
+                    alt={frame.caption || ''}
                     className={`frame-img ${i === activeFrame ? 'is-active' : ''}`}
-                    style={{ backgroundImage: `url(${frame.image})` }}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    width="900"
+                    height="450"
                   />
                 ))}
               </div>

@@ -1,36 +1,39 @@
-import photo1 from '../assets/images/commentaires/1.webp';
-import photo2 from '../assets/images/commentaires/2.webp';
-import photo3 from '../assets/images/commentaires/3.webp';
-
-// Placeholder examples — replace with real client testimonials from the
-// admin dashboard (Témoignages) as soon as they're available. Clearly
-// labelled so nobody mistakes these for genuine client quotes.
+// Client feedback as reported by the clients themselves (October 2026).
+// `rating: 0` = no star rating given by the client → no stars are displayed.
+// `photo: null` → an initials badge is shown instead of a photo.
 export const testimonials = [
   {
     id: 1,
-    authorName: 'Exemple à remplacer',
-    authorRole: 'Gérant·e — Entreprise à Douala',
-    photo: photo1,
+    authorName: 'Alexa Shop',
+    authorRole: 'Boutique de mode en ligne',
+    photo: null,
     message:
-      "Exemple de témoignage : décrivez ici le résultat obtenu grâce à KN WEB & TECHNOLOGY (plus de visibilité, plus de commandes, un site livré rapidement…).",
-    rating: 5,
+      "Un accompagnement d'une vraie qualité. Notre boutique a été livrée en seulement 4 jours, et nos ventes ont été multipliées par 4 sur les trois premiers mois.",
+    rating: 0,
   },
   {
     id: 2,
-    authorName: 'Exemple à remplacer',
-    authorRole: 'Fondateur·rice — Entreprise à Yaoundé',
-    photo: photo2,
+    authorName: 'Empire Longrich',
+    authorRole: 'E-commerce bien-être & santé',
+    photo: null,
     message:
-      "Exemple de témoignage : remplacez ce texte par un vrai retour client depuis le tableau de bord admin, section Témoignages.",
-    rating: 5,
+      "Nos commandes ont été multipliées. Nous avons apprécié la rapidité de livraison du site et la réactivité de l'équipe à chaque problème.",
+    rating: 0,
   },
   {
     id: 3,
-    authorName: 'Exemple à remplacer',
-    authorRole: 'Responsable — Entreprise à Édéa',
-    photo: photo3,
-    message:
-      "Exemple de témoignage : un message court et concret (délai, accompagnement, résultat) convertit mieux qu'un texte générique.",
-    rating: 5,
+    authorName: "Les Délices d'Édéa",
+    authorRole: 'Restaurant à Édéa',
+    photo: null,
+    message: 'Depuis la mise en ligne de notre site, nos commandes à emporter ont augmenté de 80 %.',
+    rating: 0,
+  },
+  {
+    id: 4,
+    authorName: 'Ecohabitat',
+    authorRole: 'Rénovation',
+    photo: null,
+    message: 'Nous recevons aujourd’hui plus de 150 demandes de devis par mois grâce à notre site.',
+    rating: 0,
   },
 ];

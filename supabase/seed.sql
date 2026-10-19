@@ -73,14 +73,16 @@ insert into hero_images (image_url, caption, sort_order) values
   ('/seed-images/empire-longrich.webp', 'Empire Longrich', 5)
 on conflict do nothing;
 
--- TÉMOIGNAGES (exemples à remplacer par de vrais avis clients)
+-- TÉMOIGNAGES (retours réels des clients ; rating 0 = pas de note, pas d'étoiles)
 insert into testimonials (author_name, author_role, photo_url, message, rating, sort_order) values
-  ('Exemple à remplacer', 'Gérant·e — Entreprise à Douala', '/seed-images/commentaire-1.webp',
-    'Exemple de témoignage : décrivez ici le résultat obtenu grâce à KN WEB & TECHNOLOGY (plus de visibilité, plus de commandes, un site livré rapidement…).', 5, 1),
-  ('Exemple à remplacer', 'Fondateur·rice — Entreprise à Yaoundé', '/seed-images/commentaire-2.webp',
-    'Exemple de témoignage : remplacez ce texte par un vrai retour client depuis le tableau de bord admin, section Témoignages.', 5, 2),
-  ('Exemple à remplacer', 'Responsable — Entreprise à Édéa', '/seed-images/commentaire-3.webp',
-    'Exemple de témoignage : un message court et concret (délai, accompagnement, résultat) convertit mieux qu''un texte générique.', 5, 3)
+  ('Alexa Shop', 'Boutique de mode en ligne', null,
+    'Un accompagnement d''une vraie qualité. Notre boutique a été livrée en seulement 4 jours, et nos ventes ont été multipliées par 4 sur les trois premiers mois.', 0, 1),
+  ('Empire Longrich', 'E-commerce bien-être & santé', null,
+    'Nos commandes ont été multipliées. Nous avons apprécié la rapidité de livraison du site et la réactivité de l''équipe à chaque problème.', 0, 2),
+  ('Les Délices d''Édéa', 'Restaurant à Édéa', null,
+    'Depuis la mise en ligne de notre site, nos commandes à emporter ont augmenté de 80 %.', 0, 3),
+  ('Ecohabitat', 'Rénovation', null,
+    'Nous recevons aujourd''hui plus de 150 demandes de devis par mois grâce à notre site.', 0, 4)
 on conflict do nothing;
 
 -- ARTICLES DE BLOG (read_time à null = temps de lecture calculé automatiquement)

@@ -81,7 +81,13 @@ export default function TestimonialsManager() {
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-faint)' }}>{row.author_role}</div>
                     </td>
                     <td>
-                      {row.rating || 5} <FaStar size={11} style={{ color: 'var(--gold)' }} />
+                      {row.rating >= 1 ? (
+                        <>
+                          {row.rating} <FaStar size={11} style={{ color: 'var(--gold)' }} />
+                        </>
+                      ) : (
+                        <span style={{ color: 'var(--text-faint)' }}>—</span>
+                      )}
                     </td>
                     <td>
                       <span className={`admin-badge ${row.is_active ? 'ok' : 'off'}`}>
@@ -138,10 +144,10 @@ export default function TestimonialsManager() {
             <textarea required rows={4} value={form.message} onChange={(e) => setField('message', e.target.value)} />
           </div>
           <div className="form-group">
-            <label>Note (1 à 5)</label>
+            <label>Note (1 à 5 — 0 si le client n'a pas donné de note : aucune étoile affichée)</label>
             <input
               type="number"
-              min="1"
+              min="0"
               max="5"
               value={form.rating}
               onChange={(e) => setField('rating', Number(e.target.value))}
