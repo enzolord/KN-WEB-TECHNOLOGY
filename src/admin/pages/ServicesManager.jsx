@@ -14,6 +14,7 @@ const emptyForm = {
   title: '',
   short_desc: '',
   price_label: '',
+  price_eur_label: '',
   price_value: '',
   image_url: '',
   hero_title: '',
@@ -76,6 +77,9 @@ export default function ServicesManager() {
       const payload = {
         ...form,
         slug: form.slug ? slugify(form.slug) : slugify(form.title),
+        // Only sent when filled, so saving still works if the column hasn't
+        // been added yet (supabase/update-prix-euros.sql)
+        price_eur_label: form.price_eur_label ? form.price_eur_label : undefined,
         price_value: form.price_value === '' ? null : Number(form.price_value),
         features: form.features.filter((f) => f.trim() !== ''),
       };
@@ -213,8 +217,16 @@ export default function ServicesManager() {
 
           <div className="form-row">
             <div className="form-group">
-              <label>Prix affiché</label>
+              <label>Prix affiché (Afrique, FCFA)</label>
               <input value={form.price_label} onChange={(e) => setField('price_label', e.target.value)} placeholder="À partir de 75 000 FCFA" />
+            </div>
+            <div className="form-group">
+              <label>Prix affiché hors Afrique (euros)</label>
+              <input
+                value={form.price_eur_label || ''}
+                onChange={(e) => setField('price_eur_label', e.target.value)}
+                placeholder="À partir de 1 900 € HT"
+              />
             </div>
             <div className="form-group">
               <label>Prix (valeur numérique, optionnel)</label>

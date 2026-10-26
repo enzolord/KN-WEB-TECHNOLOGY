@@ -3,10 +3,13 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { ServiceIcon } from './IconMap';
 import Reveal from './Reveal';
 import { useT } from '../i18n/LanguageContext';
+import { useCurrency } from '../context/CurrencyContext';
 import './ServiceCard.css';
 
 export default function ServiceCard({ service, index = 0 }) {
   const t = useT();
+  const { pick } = useCurrency();
+  const price = pick(service.price, service.priceEur);
   const href = `/solutions/${service.slug}`;
 
   return (
@@ -34,10 +37,10 @@ export default function ServiceCard({ service, index = 0 }) {
       </div>
 
       <div className="service-card-footer">
-        {service.price && (
+        {price && (
           <span className="service-card-price">
             <small>{t('cards.service.priceLabel')}</small>
-            {service.price}
+            {price}
           </span>
         )}
         <span className="service-card-cta" aria-hidden="true">

@@ -21,6 +21,7 @@ const en = {
     themeToLight: 'Switch to light mode',
     themeToDark: 'Switch to dark mode',
     language: 'Site language',
+    currencyLabel: 'Price currency',
     switchTo: 'Switch to {name}',
     backToTop: 'Back to top of page',
     backToTopShort: 'Back to top',
@@ -45,6 +46,7 @@ const en = {
     allSolutions: 'See all solutions',
     allSolutionsShort: 'All solutions',
     darkMode: 'Dark mode',
+    currency: 'Currency',
   },
 
   footer: {
@@ -167,6 +169,8 @@ const en = {
     answers: {
       pricing:
         'Our prices start at 40,000 FCFA depending on the service (audit, showcase website, e-commerce, SEO, etc.). The exact quote depends on your project — the easiest way is to message us on WhatsApp for a free estimate within 24 hours.',
+      pricingEur:
+        "Our prices start at €119/month excl. VAT (maintenance) and €990 excl. VAT (audit), depending on the service (showcase website from €1,900, e-commerce from €3,900, SEO from €690/month…). The exact quote depends on your project — the easiest way is to message us on WhatsApp for a free estimate within 24 hours.",
       delay: 'Most of our showcase websites are delivered within 3 to 5 business days once the content is approved.',
       zone:
         "We're based in Edea and work across Cameroon (Douala, Yaounde, Bafoussam, Kribi, Limbe…) as well as internationally with the diaspora and clients abroad — everything works smoothly remotely.",

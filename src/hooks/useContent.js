@@ -68,6 +68,8 @@ export function useServices() {
       title: r.title,
       shortDesc: r.short_desc,
       price: r.price_label,
+      // Euro price: from /admin when set, otherwise the default grid (src/data/services.js)
+      priceEur: r.price_eur_label || staticServices.find((s) => s.slug === r.slug)?.priceEur || null,
       priceValue: r.price_value,
       image: r.image_url,
       heroTitle: r.hero_title,

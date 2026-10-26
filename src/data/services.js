@@ -9,6 +9,8 @@ import maintenance from '../assets/images/services/maintenance.webp';
 import appWeb from '../assets/images/services/app-web.webp';
 import consultingAudit from '../assets/images/services/consulting-audit.webp';
 
+// `price`    : tarif affiché en Afrique (FCFA)
+// `priceEur` : tarif affiché hors Afrique (grille européenne, HT) — voir CurrencyContext
 export const services = [
   {
     slug: 'site-web-vitrine',
@@ -18,6 +20,7 @@ export const services = [
     shortDesc:
       'Votre entreprise trouvable sur Google en 3 jours. Site vitrine responsive + fiche Google Business optimisée + SEO local inclus.',
     price: 'À partir de 75 000 FCFA',
+    priceEur: 'À partir de 1 900 € HT',
     priceValue: 75000,
     image: siteWeb,
     heroTitle: 'Votre entreprise ',
@@ -45,6 +48,7 @@ export const services = [
     shortDesc:
       'Vos clients reçoivent une réponse 24h/24. Catalogue produits, chatbot FAQ, messages automatiques et formation équipe.',
     price: '50 000 FCFA + 15 000/mois',
+    priceEur: '690 € HT + 79 €/mois',
     priceValue: 50000,
     image: whatsapp,
     heroTitle: 'Automatisez votre relation client avec ',
@@ -72,6 +76,7 @@ export const services = [
     shortDesc:
       'Vendez en ligne et encaissez par MTN ou Orange Money dès le premier jour. Synchronisation WhatsApp et tableau de bord inclus.',
     price: 'À partir de 200 000 FCFA',
+    priceEur: 'À partir de 3 900 € HT',
     priceValue: 200000,
     image: mobileMoney,
     heroTitle: 'Lancez votre boutique en ligne avec ',
@@ -99,6 +104,7 @@ export const services = [
     shortDesc:
       'Premier sur Google dans votre ville. Audit SEO, optimisation technique, création de contenu et rapports mensuels transparents.',
     price: '25 000 FCFA/mois',
+    priceEur: 'À partir de 690 € HT/mois',
     priceValue: 25000,
     image: seo,
     heroTitle: 'Apparaissez en ',
@@ -126,6 +132,7 @@ export const services = [
     shortDesc:
       'Logo, charte graphique, kit complet de marque. Une identité visuelle forte qui inspire confiance et reconnaissance immédiate.',
     price: 'À partir de 45 000 FCFA',
+    priceEur: 'À partir de 1 200 € HT',
     priceValue: 45000,
     image: branding,
     heroTitle: 'Créez une marque ',
@@ -153,6 +160,7 @@ export const services = [
     shortDesc:
       "L'intelligence artificielle au service de votre productivité. Chatbots, réponses auto, qualification de leads, rapports intelligents.",
     price: 'Sur devis',
+    priceEur: 'Sur devis',
     priceValue: null,
     image: automatisation,
     heroTitle: "L'intelligence artificielle au service de votre ",
@@ -180,6 +188,7 @@ export const services = [
     shortDesc:
       'Serveurs rapides, SSL, sauvegardes quotidiennes et 99.9% de disponibilité. Votre site ne dort jamais.',
     price: 'À partir de 8 000 FCFA/mois',
+    priceEur: 'À partir de 29 € HT/mois',
     priceValue: 8000,
     image: hebergement,
     heroTitle: 'Un hébergement ',
@@ -207,6 +216,7 @@ export const services = [
     shortDesc:
       'Mises à jour, corrections, sécurité et support humain sur WhatsApp. Une vraie personne répond sous 2 heures.',
     price: '15 000 FCFA/mois',
+    priceEur: 'À partir de 119 € HT/mois',
     priceValue: 15000,
     image: maintenance,
     heroTitle: 'Votre site toujours ',
@@ -234,6 +244,7 @@ export const services = [
     shortDesc:
       'Portails clients, tableaux de bord et plateformes SaaS sur mesure, scalables et sécurisées pour piloter votre activité.',
     price: 'À partir de 200 000 FCFA',
+    priceEur: 'À partir de 12 000 € HT',
     priceValue: 200000,
     image: appWeb,
     heroTitle: 'Des outils digitaux puissants pour ',
@@ -261,6 +272,7 @@ export const services = [
     shortDesc:
       "Un regard extérieur et expert sur votre présence digitale : audit complet, recommandations claires et plan d'action priorisé.",
     price: 'À partir de 40 000 FCFA',
+    priceEur: 'À partir de 990 € HT',
     priceValue: 40000,
     image: consultingAudit,
     heroTitle: 'Un diagnostic clair pour ',

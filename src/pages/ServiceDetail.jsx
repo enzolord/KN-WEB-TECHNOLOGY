@@ -7,6 +7,7 @@ import HeroBackdrop from '../components/HeroBackdrop';
 import { useServices } from '../hooks/useContent';
 import { waLink } from '../data/services';
 import { useT } from '../i18n/LanguageContext';
+import { useCurrency } from '../context/CurrencyContext';
 import Rich from '../i18n/Rich';
 import './ServiceDetail.css';
 
@@ -14,6 +15,7 @@ export default function ServiceDetail() {
   const { slug } = useParams();
   const { data: services, loading } = useServices();
   const t = useT();
+  const { pick } = useCurrency();
   const service = services.find((s) => s.slug === slug);
 
   if (!loading && !service) return <Navigate to="/solutions" replace />;
@@ -51,7 +53,7 @@ export default function ServiceDetail() {
             <p className="section-sub" style={{ marginBottom: '1.5rem' }}>
               {service.lead}
             </p>
-            <div className="price-badge">{service.price}</div>
+            <div className="price-badge">{pick(service.price, service.priceEur)}</div>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
               <a href={waLink(service.waMessage)} target="_blank" rel="noreferrer" className="btn btn-whatsapp">
                 <FaWhatsapp size={15} /> {t('serviceDetail.quote')}

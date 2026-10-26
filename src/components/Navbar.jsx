@@ -7,6 +7,8 @@ import { useServices } from '../hooks/useContent';
 import { ServiceIcon } from './IconMap';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
+import CurrencySwitcher from './CurrencySwitcher';
+import { useCurrency } from '../context/CurrencyContext';
 import { useT } from '../i18n/LanguageContext';
 import logoIcon from '../assets/images/logo/logo-icon-64.webp';
 import './Navbar.css';
@@ -19,6 +21,7 @@ export default function Navbar() {
   const { data: services } = useServices();
   const location = useLocation();
   const t = useT();
+  const { pick, showSelector } = useCurrency();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -86,7 +89,7 @@ export default function Navbar() {
                             </span>
                             <span>
                               <strong>{s.title}</strong>
-                              <small>{s.price}</small>
+                              <small>{pick(s.price, s.priceEur)}</small>
                             </span>
                           </Link>
                         ))}
@@ -111,6 +114,7 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar-actions">
+          {showSelector && <CurrencySwitcher className="hide-mobile" />}
           <LanguageSwitcher className="hide-mobile" />
           <ThemeToggle className="hide-mobile" />
           <Link to="/contact" className="btn btn-primary btn-sm hide-mobile">
@@ -211,6 +215,12 @@ export default function Navbar() {
               </ul>
 
               <div className="mobile-panel-footer">
+                {showSelector && (
+                  <div className="mobile-theme-row">
+                    <span>{t('nav.currency')}</span>
+                    <CurrencySwitcher />
+                  </div>
+                )}
                 <div className="mobile-theme-row">
                   <span>{t('nav.darkMode')}</span>
                   <ThemeToggle />

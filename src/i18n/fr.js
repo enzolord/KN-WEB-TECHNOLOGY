@@ -25,6 +25,7 @@ const fr = {
     themeToLight: 'Activer le mode clair',
     themeToDark: 'Activer le mode sombre',
     language: 'Langue du site',
+    currencyLabel: 'Devise des tarifs',
     switchTo: 'Passer en {name}',
     backToTop: 'Retour en haut de la page',
     backToTopShort: 'Retour en haut',
@@ -49,6 +50,7 @@ const fr = {
     allSolutions: 'Voir toutes les solutions',
     allSolutionsShort: 'Toutes les solutions',
     darkMode: 'Mode sombre',
+    currency: 'Devise',
   },
 
   footer: {
@@ -171,6 +173,8 @@ const fr = {
     answers: {
       pricing:
         'Nos tarifs démarrent à 40 000 FCFA selon le service choisi (audit, site vitrine, e-commerce, SEO, etc.). Le devis exact dépend de votre projet — le plus simple est de nous écrire sur WhatsApp pour un chiffrage gratuit sous 24h.',
+      pricingEur:
+        "Nos tarifs démarrent à 119 € HT/mois (maintenance) et 990 € HT (audit), selon le service choisi (site vitrine à partir de 1 900 € HT, e-commerce à partir de 3 900 € HT, SEO à partir de 690 € HT/mois…). Le devis exact dépend de votre projet — le plus simple est de nous écrire sur WhatsApp pour un chiffrage gratuit sous 24h.",
       delay: 'La plupart de nos sites vitrines sont livrés en 3 à 5 jours ouvrés après validation du contenu.',
       zone:
         "Nous sommes basés à Édéa et intervenons dans tout le Cameroun (Douala, Yaoundé, Bafoussam, Kribi, Limbé…) ainsi qu'à l'international pour la diaspora et les clients hors du pays — tout se fait très bien à distance.",

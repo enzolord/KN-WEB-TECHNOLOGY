@@ -36,6 +36,7 @@ create table if not exists services (
   title text not null,
   short_desc text,
   price_label text,
+  price_eur_label text, -- tarif affiché hors Afrique (euros)
   price_value numeric,
   image_url text,
   hero_title text,

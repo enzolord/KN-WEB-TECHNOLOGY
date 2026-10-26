@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './i18n/LanguageContext';
+import { CurrencyProvider } from './context/CurrencyContext';
 
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -87,6 +88,7 @@ export default function App() {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
+          <CurrencyProvider>
           <AuthProvider>
             <BrowserRouter>
               <ScrollToTop />
@@ -141,6 +143,7 @@ export default function App() {
               </Routes>
             </BrowserRouter>
           </AuthProvider>
+          </CurrencyProvider>
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

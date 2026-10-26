@@ -6,6 +6,7 @@ import { useServices, useFaqs, useSettings } from '../hooks/useContent';
 import { waLink } from '../data/services';
 import { steps as processSteps } from '../data/processSteps';
 import { useT } from '../i18n/LanguageContext';
+import { useCurrency } from '../context/CurrencyContext';
 import './FloatingAssistant.css';
 
 // Bot messages that come from the UI dictionary are stored as a key (not as
@@ -22,6 +23,7 @@ function normalize(str) {
 export default function FloatingAssistant() {
   const [open, setOpen] = useState(false);
   const t = useT();
+  const { currency, pick } = useCurrency();
   const [messages, setMessages] = useState([{ role: 'bot', textKey: 'assistant.greeting' }]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -43,6 +45,7 @@ export default function FloatingAssistant() {
         keywords: [s.title, s.slug, ...(s.shortDesc || '').split(' ')],
         answer: `${s.title} — ${s.shortDesc}`,
         price: s.price,
+        priceEur: s.priceEur,
         link: `/solutions/${s.slug}`,
         linkKey: 'assistant.seeService',
       });
@@ -59,6 +62,7 @@ export default function FloatingAssistant() {
     entries.push({
       keywords: ['prix', 'tarif', 'combien', 'coute', 'cout', 'devis', 'price', 'pricing', 'cost', 'quote'],
       answerKey: 'assistant.answers.pricing',
+      answerKeyEur: 'assistant.answers.pricingEur',
     });
     entries.push({
       keywords: ['delai', 'rapide', 'combien de temps', 'livraison', 'delivery', 'how long', 'turnaround', 'fast'],
@@ -139,6 +143,8 @@ export default function FloatingAssistant() {
               textKey: match.answerKey,
               vars: match.vars,
               price: match.price,
+              priceEur: match.priceEur,
+              textKeyEur: match.answerKeyEur,
               link: match.link,
               linkKey: match.linkKey,
             }
@@ -157,8 +163,9 @@ export default function FloatingAssistant() {
   const contentNote = t('assistant.contentNote');
 
   const messageText = (m) => {
-    if (m.textKey) return t(m.textKey, m.vars);
-    return m.price ? `${m.text} ${t('assistant.servicePrice', { price: m.price })}` : m.text;
+    if (m.textKey) return t(currency === 'EUR' && m.textKeyEur ? m.textKeyEur : m.textKey, m.vars);
+    const price = pick(m.price, m.priceEur);
+    return price ? `${m.text} ${t('assistant.servicePrice', { price })}` : m.text;
   };
 
   return (
